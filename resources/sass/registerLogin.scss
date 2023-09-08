@@ -1,0 +1,315 @@
+.divider {
+    width: 100%;
+    height: 5px;
+    background-color: #D5D5D5;
+    margin: 15px 0px 15px;
+}
+
+form .divider:nth-of-type(2) {
+    margin: 30px 0px 15px;
+}
+
+.inputs {
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+    grid-template-rows: repeat(4, auto);
+    grid-template-areas:
+        "container1 container2"
+        "container3 container4"
+        "container5 container5"
+        "container6 container7";
+    column-gap: 50px;
+    row-gap: 20px;
+}
+
+.inputs-login {
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+}
+
+#input-address {
+    grid-area: container5;
+}
+
+.input-row {
+    display: flex;
+    flex-direction: column-reverse !important;
+    width: 100%;
+}
+
+.input-label {
+    width: fit-content;
+    padding: 0px 0px;
+    font-family: 'Archivo', sans-serif;
+    font-weight: 900;
+    font-size: 25px;
+    color: rgba(255, 93, 38, 75%);
+    transition: all 0.3s ease-in-out;
+}
+
+.invalid-feedback {
+    display: initial!important;
+    width: fit-content;
+    align-self: center;
+    margin-top: 0.4rem;
+    font-size: 1em;
+}
+
+.was-validated .form-control:invalid, .form-control.is-invalid {
+    background-image: none;
+}
+
+.input-field {
+    width: 100%;
+}
+
+.input-field div {
+    display: flex;
+    flex-direction: row;
+    column-gap: 10px;
+}
+
+.input-field input {
+    border: 5px solid rgba(17, 17, 17, 75%);
+    height: 60px;
+    background-color: transparent;
+    font-family: 'Archivo', sans-serif;
+    font-weight: 900;
+    font-size: 20px;
+    color: rgba(17, 17, 17, 75%);
+    transition: all 0.3s ease-in-out;
+}
+
+form .btn {
+    margin-top: 15px;
+    height: 60px;
+    width: 100%;
+    background-color: #FF5D26;
+    border: 5px solid #FF5D26;
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 25px;
+    color: #EBEBEB;
+}
+
+form .btn:hover {
+    background-color: transparent;
+    color: #FF5D26;
+    border: 5px solid #FF5D26;
+    transition: all 0.3s ease-in-out;
+}
+
+.input-field input:focus {
+    border: 5px solid rgba(17, 17, 17, 100%) !important;
+    color: none;
+    background-color: none;
+    border-color: none;
+    outline: 0;
+    box-shadow: none;
+}
+
+.input-field input:focus + .input-label {
+    color: rgba(255, 93, 38, 100%);
+}
+
+
+.was-validated .form-control:invalid,
+.form-control.is-invalid {
+    background-color: none;
+    border-color: none;
+    padding-right: 0px;
+    box-shadow: none;
+    outline: 0;
+}
+
+.navbar-toggler {
+    padding: 0px;
+    font-size: 25px;
+    line-height: 0;
+    color: none;
+    background-color: transparent;
+    border: none;
+    border-radius: none;
+    transition: var(--bs-navbar-toggler-transition);
+}
+
+//change the color of the navbar-toggler-icon when it is presed 
+.navbar-toggler:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+.form-login {
+    width: 50%;
+}
+
+#space {
+    height: 20px;
+}
+
+.btn-remember {
+    display: flex;
+    column-gap: 10px;
+}
+
+.label-remember {
+    align-self: center;
+    justify-self: center;
+}
+
+.form-check-input {
+    --bs-form-check-bg: #FF5D26;
+    width: 25px;
+    height: 25px;
+    margin-top: 0.20em;
+    vertical-align: middle;
+    background-color: transparent;
+    border: 2.5px solid #FF5D26;
+    transition: all 0.3s ease-in-out;
+}
+
+.form-check-input:checked {
+    background-color: #FF5D26;
+    border-color: #FF5D26;
+}
+
+.form-check-input[type=checkbox]:not(:checked) {
+    background-color: transparent;
+}
+
+.form-check-input:focus {
+    border-color: #FF5D26;
+    background-color: #FF5D26;
+    box-shadow: none;
+}
+
+.label-remember {
+    font-family: 'Archivo', sans-serif;
+    font-weight: 500;
+    font-size: 20px;
+    color: rgba(17, 17, 17, 75%);
+    transition: all 0.3s ease-in-out;
+    cursor: pointer;
+}
+
+#divider-2 {
+    margin: 30px 0px 15px;
+}
+
+.login-footer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.password-link {
+    font-family: 'Archivo', sans-serif;
+    font-weight: 500;
+    font-size: 20px;
+    color: rgba(17, 17, 17, 75%);
+    transition: all 0.3s ease-in-out;
+    cursor: pointer;
+}
+
+.password-link:hover {
+    color: rgba(255, 93, 38, 75%);
+}
+
+p,
+a {
+    margin-block-start: 10;
+    margin-block-end: 0;
+    margin-bottom: 0;
+    font-family: 'Archivo', sans-serif;
+    font-weight: 500;
+    font-size: 20px;
+    color: rgba(17, 17, 17, 75%);
+    transition: all 0.3s ease-in-out;
+}
+
+a:hover {
+    color: rgba(255, 93, 38, 75%);
+}
+
+@media (max-width: 1700px) {
+    .form-login {
+        width: 50%;
+    }
+
+    .divider {
+        height: 4px;
+        margin: 12.5px 0px 12.5px;
+    }
+
+    form .divider:nth-of-type(2) {
+        margin: 27.5 0px 12.5px;
+    }
+
+    .inputs {
+        column-gap: 40px;
+        row-gap: 15px;
+    }
+
+    .input-label {
+        font-size: 20px;
+    }
+
+    .input-field {
+        width: 100%;
+    }
+
+    .input-field input {
+        border: 4px solid rgba(17, 17, 17, 75%);
+        height: 50px;
+        font-size: 15px;
+    }
+
+    form .btn {
+        height: 50px;
+        border: 4px solid #FF5D26;
+        font-size: 20px;
+    }
+
+    form .btn:hover {
+        border: 4px solid #b6a099;
+    }
+
+    .input-field input:focus {
+        border: 4px solid rgba(17, 17, 17, 100%) !important;
+    }
+
+    .btn-remember {
+        column-gap: 5px;
+    }
+
+    .form-check {
+        align-items: center;
+    }
+
+    .form-check-input {
+        width: 20px;
+        height: 20px;
+        margin-top: 0em;
+        border: 2.5px solid #FF5D26;
+    }
+
+    .label-remember {
+        font-size: 15px;
+    }
+
+    #divider-2 {
+        margin: 27.5px 0px 12.5px;
+    }
+
+    .password-link {
+        font-size: 15px;
+    }
+
+    .login-link {
+        font-size: 15px;
+    }
+
+    .login-link a {
+        font-size: 15px;
+    }
+}
