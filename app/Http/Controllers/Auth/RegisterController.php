@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Auth;
-
+use App\Enums\UserRole;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
@@ -51,12 +51,14 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
+            // 'user_type' => ['required', 'in:influencer,business'],
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', new EmailValidation, 'unique:users'],
             'phone' => ['required', 'string', 'min:10'],
             'dob' => ['required', 'date', 'before:today'],
             'address' => ['required', 'string', 'max:255'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'user_type' => ['required', 'in:influencer,business'], 
         ]);
     }
 
@@ -69,12 +71,14 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         return User::create([
+            // 'role_id' => $data['user_type'] === 'business' ? UserRole::business : UserRole::influencer, 
             'name' => $data['name'],
             'email' => $data['email'],
             'phone' => $data['phone'] ?? null,
             'dob' => $data['dob'] ?? null,
             'address' => $data['address'] ?? null,
             'password' => Hash::make($data['password']),
+            'role_id' => $data['user_type'] === 'business' ? UserRole::business : UserRole::influencer,
         ]);
     }
 }

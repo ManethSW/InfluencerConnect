@@ -43,6 +43,13 @@
                         <x-form-input-field field="password_confirmation" label="Confirm Password" type="password"
                             placeholder="Retype password" />
                     </div>
+                    <div class="form-group">
+                        <label for="user_type">User Type</label>
+                        <select name="user_type" id="user_type" required>
+                            <option value="influencer">Influencer</option>
+                            <option value="business">Business</option>
+                        </select>
+                    </div>
                     <div class="divider"></div>
                     <p class="login-link">Already have an account?<a href="{{ route('login') }}">Login</a></p>
                     <button type="submit" class="btn">
