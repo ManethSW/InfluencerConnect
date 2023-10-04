@@ -11,10 +11,15 @@
 // Bootstrap
 @import 'bootstrap/scss/bootstrap';
 
+html, body {
+    height: 100%;
+}
+
 body {
     background-image: url('../../public/Images/background.png');
     background-repeat: repeat;
     background-size: cover;
+    height: 100%;
 }
 
 @media (min-width: 1400px) {
@@ -65,27 +70,6 @@ nav {
     background-color: #FF5D26;
     color: #EBEBEB;
     transition: all 0.3s ease-in-out;
-}
-
-.form-header-register {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    margin-top: 40px;
-}
-
-.form-header-register p {
-    margin: 0px 0px 0px;
-    font-family: 'Archivo Black', sans-serif;
-    font-size: 25px;
-}
-
-.form-header-register p:nth-of-type(1) {
-    color: #FF5D26;
-}
-
-.form-header-register p:nth-of-type(2) {
-    color: #111111;
 }
 
 .user-dropdown {
@@ -179,6 +163,14 @@ nav {
     font-size: 18px;
     color: rgb(17, 17, 17, 75%);
 }
+
+// footer {
+//     margin-top: 100px;
+//     position: fixed;
+//     left: 0;
+//     right: 0;
+//     bottom: 0;
+// }
 
 .footer-content {
     max-width: 1320px!important;

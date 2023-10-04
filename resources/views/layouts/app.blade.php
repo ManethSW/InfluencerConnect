@@ -46,9 +46,6 @@
                             <li class="nav-item normal-link">
                                 <a class="nav-link" href="#">Businesses</a>
                             </li>
-                            <li class="nav-item normal-link">
-                                <a class="nav-link" href="#">Dashboard</a>
-                            </li>
                             @if (Route::has('login'))
                                 <li class="nav-item">
                                     <a class="btn btn-login nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>

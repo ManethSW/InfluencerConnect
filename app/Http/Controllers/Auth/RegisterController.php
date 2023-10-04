@@ -1,12 +1,15 @@
 <?php
 
 namespace App\Http\Controllers\Auth;
+
 use App\Enums\UserRole;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
 use App\Rules\EmailValidation;
+use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
@@ -42,43 +45,89 @@ class RegisterController extends Controller
         $this->middleware('guest');
     }
 
+    public function showRegistrationForm(Request $request)
+    {
+        $userType = $request->session()->get('user_type');
+        if ($userType == 1) {
+            return view('auth.register-influencer');
+        } elseif ($userType == 2) {
+            return view('auth.register-business');
+        } else {
+            return redirect()->route('user-type.create');
+        }
+    }
+
+    public function storeInfluencer(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'email', 'unique:users,email'],
+            'phone' => ['required', 'string', 'min:10'],
+            'dob' => ['required', 'date', 'before:today'],
+            'address' => ['required', 'string', 'max:255'],
+            'password' => ['required', 'string', 'min:8', 'confirmed'],
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->route('auth.register-influencer')->withErrors($validator)->withInput();
+        }
+
+        $user = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'phone' => $request->phone,
+            'dob' => $request->dob,
+            'address' => $request->address,
+            'password' => Hash::make($request->password),
+            'role_id' => UserRole::influencer,
+        ]);
+
+        Auth::login($user);
+
+        return redirect()->route('home');
+    }
+
+    public function storeBusiness(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'email', 'unique:users,email'],
+            'phone' => ['required', 'string', 'min:10'],
+            'address' => ['required', 'string', 'max:255'],
+            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'business_website' => ['nullable', 'url', 'max:255'],
+            'business_type' => ['nullable', 'string', 'max:255'],
+            'business_size' => ['nullable', 'numeric', 'min:1'],
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->route('auth.register-business')->withErrors($validator)->withInput();
+        }
+
+        $user = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'phone' => $request->phone,
+            'dob' => $request->dob,
+            'address' => $request->address,
+            'password' => Hash::make($request->password),
+            'role_id' => UserRole::business,
+            'business_website' => $request->business_website,
+            'business_type' => $request->business_type,
+            'business_size' => $request->business_size,
+        ]);
+
+        Auth::login($user);
+
+        return redirect()->route('home');
+    }
+
+
+
     /**
      * Get a validator for an incoming registration request.
      *
      * @param  array  $data
      * @return \Illuminate\Contracts\Validation\Validator
      */
-    protected function validator(array $data)
-    {
-        return Validator::make($data, [
-            // 'user_type' => ['required', 'in:influencer,business'],
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', new EmailValidation, 'unique:users'],
-            'phone' => ['required', 'string', 'min:10'],
-            'dob' => ['required', 'date', 'before:today'],
-            'address' => ['required', 'string', 'max:255'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
-            'user_type' => ['required', 'in:influencer,business'], 
-        ]);
-    }
-
-    /**
-     * Create a new user instance after a valid registration.
-     *
-     * @param  array  $data
-     * @return \App\Models\User
-     */
-    protected function create(array $data)
-    {
-        return User::create([
-            // 'role_id' => $data['user_type'] === 'business' ? UserRole::business : UserRole::influencer, 
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'phone' => $data['phone'] ?? null,
-            'dob' => $data['dob'] ?? null,
-            'address' => $data['address'] ?? null,
-            'password' => Hash::make($data['password']),
-            'role_id' => $data['user_type'] === 'business' ? UserRole::business : UserRole::influencer,
-        ]);
-    }
 }

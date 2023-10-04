@@ -26,6 +26,9 @@ class User extends Authenticatable
         'phone_verified_at',
         'dob',
         'address',
+        'business_website',
+        'business_type',
+        'business_size',
         'password',
         'status',
     ];
@@ -48,6 +51,7 @@ class User extends Authenticatable
     protected $casts = [
         'role_id' => UserRole::class,
         'email_verified_at' => 'datetime',
+        'phone_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
 }
