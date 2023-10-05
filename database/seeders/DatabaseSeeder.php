@@ -4,6 +4,8 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
+use App\Enums\UserRole;
 
 class DatabaseSeeder extends Seeder
 {
@@ -14,9 +16,12 @@ class DatabaseSeeder extends Seeder
     {
         // \App\Models\User::factory(10)->create();
 
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
+        \App\Models\User::create([
+            'name' => 'Super Admin',
+            'email' => 'admin@influencerconnect.com',
+            'password' => Hash::make('adminpassword'),
+            'phone' => '1234569990',
+            'role_id' => UserRole::SuperAdministrator,
+        ]);
     }
 }
