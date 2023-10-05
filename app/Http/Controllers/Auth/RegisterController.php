@@ -79,7 +79,8 @@ class RegisterController extends Controller
             'dob' => $request->dob,
             'address' => $request->address,
             'password' => Hash::make($request->password),
-            'role_id' => UserRole::influencer,
+            'role_id' => UserRole::Influencer,
+            'status' => 1,
         ]);
 
         Auth::login($user);
@@ -115,6 +116,7 @@ class RegisterController extends Controller
             'business_website' => $request->business_website,
             'business_type' => $request->business_type,
             'business_size' => $request->business_size,
+            'status' => 1,
         ]);
 
         Auth::login($user);

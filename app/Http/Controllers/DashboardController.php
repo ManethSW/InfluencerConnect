@@ -7,9 +7,9 @@ use Illuminate\Support\Facades\Auth;
 
 class DashboardController extends Controller
 {
-    public function adminDashboard()
+    public function dashboard()
     {
-        return view('dashboard.admin-dashboard');
+        return view('layouts.dashboard');
     }
     public function influencerDashboard()
     {

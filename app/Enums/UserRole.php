@@ -16,7 +16,6 @@ enum UserRole: int
     case SupportManager = 9;
 
     // Front end roles
-    case influencer = 10;
+    case Influencer = 10;
     case business = 11;
-
 }

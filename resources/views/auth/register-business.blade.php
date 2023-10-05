@@ -33,7 +33,7 @@
                             placeholder="Enter the business email" />
                         <x-form-input-field field="phone" label="Business Phone Number" type="tel"
                             placeholder="Enter the business phone number" />
-                        <x-form-input-field field="dob" label="Business Website" type="text"
+                        <x-form-input-field field="business_website" label="Business Website" type="text"
                             placeholder="Enter the website URL" />
                         <div id="input-address">
                             <x-form-input-field field="address" label="Business Address" type="text"
@@ -57,4 +57,8 @@
             </div>
         </div>
     </div>
+@endsection
+
+@section('footer')
+    <x-footer />
 @endsection

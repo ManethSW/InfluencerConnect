@@ -1,0 +1,293 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary-color: rgb(255, 93, 38);
+    --primary-color-75: rgba(255, 93, 38, 75%);
+    --primary-color-50: rgba(255, 93, 38, 50%);
+    --primary-color-25: rgba(255, 93, 38, 25%);
+    --primary-color-10: rgba(255, 93, 38, 10%);
+    --secondary-color: rgb(17, 17, 17);
+    --secondary-color-75: rgba(17, 17, 17, 75%);
+    --secondary-color-50: rgba(17, 17, 17, 50%);
+    --secondary-color-25: rgba(17, 17, 17, 25%);
+    --secondary-color-10: rgba(17, 17, 17, 10%);
+}
+
+body {
+    display: flex;
+    flex-direction: row;
+}
+
+h3 {
+    margin: 0px;
+    padding: 0px;
+}
+
+.dashboard-body {
+    width: 100%;
+}
+
+.dashboard-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    background-color: var(--primary-color-10);
+    padding: 20px 20px;
+}
+
+.dashboard-header h1 {
+    width: fit-content;
+    font-family: 'Archivo-Black', sans-serif;
+    font-weight: 800;
+    font-size: 25px;
+    color: var(--secondary-color);
+    margin: 0;
+    padding: 0;
+}
+
+.dashboard-header h2 {
+    font-family: 'Archivo', sans-serif;
+    font-weight: 900;
+    font-size: 18px;
+    color: var(--secondary-color);
+    margin: 0;
+    padding: 0;
+}
+
+.dashboard-content {
+    padding: 0px 50px;
+}
+
+.side-bar {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: rgba(255, 255, 255, 50%);
+    border-right: 2px solid var(--secondary-color-25);
+    min-height: 100vh;
+    padding: 0;
+    top: 0;
+    width: fit-content;
+}
+
+.side-bar-top {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.navbar-brand {
+    width: fit-content;
+    margin: 0px auto;
+    padding: 30px 20px;
+    border-bottom: 2px solid var(--secondary-color-25);
+}
+
+ol, ul {
+    margin: 0;
+    padding: 0;
+}
+
+.nav-items {
+    display: grid;
+    padding-top: 20px;
+    border-bottom: 2px solid rgb(17, 17, 17, 5%);
+}
+
+.nav-items h3, .logout{
+    font-family: 'Archivo', sans-serif;
+    font-weight: 900;
+    font-size: 18px;
+    padding-left: 20px;
+    padding-bottom: 20px;
+}
+
+.nav-item-dashboard {
+    display: flex;
+    flex-direction: row;
+    column-gap: 10px;
+    align-items: center;
+    padding: 10px 0px 10px 20px;
+    transition: all 0.3s ease-in;
+}
+
+.nav-item-dashboard i {
+    font-size: 15px;
+}
+.nav-item-dashboard a {
+    font-family: 'Archivo', sans-serif;
+    font-size: 15px;
+}
+
+.nav-item-dashboard:hover {
+    background-color: var(--primary-color-25);
+}
+
+.logout {
+    padding: 10px 0px 10px 20px;
+    border-top: 2px solid var(--secondary-color-25);
+}
+
+.users-header, .users-header div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.users-header {
+    background-color: rgba(255, 93, 38, 10%);
+    border-radius: 15px 15px 0px 0px;
+    padding: 10px 10px 10px 20px;
+    // border-top: 2px solid var(--secondary-color-25);
+    // border-left: 2px solid var(--secondary-color-25);
+    // border-right: 2px solid var(--secondary-color-25);
+}
+
+.users-header .search-add {
+    column-gap: 25px;
+}
+
+.users-header h3 {
+    font-family: 'Archivo', sans-serif;
+    font-weight: 900;
+    font-size: 20px;
+}
+
+.search button {
+    width: 100px;
+    border: 2px solid var(--secondary-color-75);
+    border-radius: 0px 10px 10px 0px;
+    font-size: 15px;
+    color: var(--secondary-color-75);
+    font-weight: 900;
+    transition: 0.3s all ease-in;
+}
+
+.search input {
+    border: 2px solid var(--secondary-color-75);
+    background-color: rgba(255, 255, 255, 50%);
+    border-right: none;
+    font-size: 15px;
+    font-family: 900;
+    color: var(--secondary-color-75);
+}
+
+.form-control:focus {
+    color: var(--primary-color);
+    background-color: rgba(255, 255, 255, 100%);
+    border-color: var(--primary-color);
+    border-right: 2px solid var(--primary-color);
+    outline: 0;
+    box-shadow: none;
+}
+
+.search button:hover, .add-user-button:hover {
+    color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+.add-user-button:hover a {
+    color: var(--primary-color);
+}
+
+.add-user-button {
+    display: flex;
+    width: 140px;
+    height: 39px;
+    border: 2px solid var(--secondary-color-75);
+    border-radius: 10px;
+    transition: 0.3s all ease-in;
+}
+
+.add-user-button a {
+    width: fit-content;
+    margin: 0px auto;
+    padding: 0px;
+    color: var(--secondary-color-75);
+    font-size: 15px;
+    font-weight: 900;
+    transition: 0.3s all ease-in;
+}
+
+.table th, .table td {
+    padding: 15px 20px;
+}
+
+.status {
+    display: flex;
+    align-items: center;
+    column-gap: 10px;
+}
+
+.status-badge {
+    width: 10px;
+    height: 10px;
+    border-radius: 10px;
+}
+
+.active {
+    background-color: #32CD32;
+}
+
+.inactive {
+    background-color: #FF0000;
+}
+
+.action-btn {
+    width: fit-content;
+    padding: 5px 10px;
+    border-radius: 10px;
+    font-weight: 900;
+}
+
+.edit-btn {
+    border: 2px solid var(--primary-color);
+    color: var(--primary-color);
+    transition: 0.3s all ease-in;
+}
+
+.edit-btn:hover {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.suspend-btn {
+    border: 2px solid #FFA500;
+    color: #FFA500;
+    border-radius: 10px;
+    transition: 0.3s all ease-in;
+}
+
+.suspend-btn:hover {
+    background-color: #FFA500;
+    color: white;
+}
+
+.activate-btn {
+    border: 2px solid #32CD32;
+    color: #32CD32;
+    border-radius: 10px;
+    transition: 0.3s all ease-in;
+}
+
+.activate-btn:hover {
+    background-color: #32CD32;
+    color: white;
+}
+
+.delete-btn {
+    border: 2px solid #FF0000;
+    color: #FF0000;
+    border-radius: 10px;
+    transition: 0.3s all ease-in;
+}
+
+.delete-btn:hover {
+    background-color: #FF0000;
+    color: white;
+}

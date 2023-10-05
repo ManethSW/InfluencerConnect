@@ -31,10 +31,8 @@
                     aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ms-auto">
-                        <!-- Authentication Links -->
                         @guest
                             <li class="nav-item normal-link">
                                 <a class="nav-link{{ request()->routeIs(['login', 'register']) ? '' : ' active-custom active' }}"
@@ -76,7 +74,7 @@
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="#">Profile</a>
-                                    <a class="dropdown-item" href="{{ route('dashboard.admin') }}">Dashboard</a>
+                                    <a class="dropdown-item" href="{{ route('dashboard') }}">Dashboard</a>
                                     <hr class="dropdown-divider">
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                         onclick="event.preventDefault();
@@ -94,7 +92,6 @@
                 </div>
             </div>
         </nav>
-
     </div>
     <main class="py-4">
         @yield('content')

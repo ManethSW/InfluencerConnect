@@ -13,7 +13,7 @@ Route::post('user-type', [App\Http\Controllers\UserTypeController::class, 'store
 Route::post('register/influencer', [App\Http\Controllers\Auth\RegisterController::class, 'storeInfluencer'])->name('register-influencer.store');
 Route::post('register/business', [App\Http\Controllers\Auth\RegisterController::class, 'storeBusiness'])->name('register-business.store');
 
-Route::get('/dashboard/admin', [DashboardController::class, 'adminDashboard'])->name('dashboard.admin')->middleware('auth');
+Route::get('/layouts/dashboard', [DashboardController::class, 'dashboard'])->name('dashboard')->middleware('auth');
 
 
 Route::get('register/influencer', function () {
@@ -25,6 +25,8 @@ Route::get('register/business', function () {
 })->name('auth.register-business');
 
 Route::resource('users', UserController::class);
+Route::get('users/{user}/suspend', [UserController::class, 'suspend'])->name('users.suspend');
+Route::get('users/{user}/activate', [UserController::class, 'activate'])->name('users.activate');
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 

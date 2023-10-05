@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->tinyInteger('role_id')->default(1);
+            $table->tinyInteger('role_id');
             $table->string('avatar')->nullable();
-            $table->string('name');
+            $table->string('name')->nullable();
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('phone')->nullable();
@@ -25,6 +25,7 @@ return new class extends Migration
             $table->string('business_website')->nullable();
             $table->string('business_type')->nullable();
             $table->string('business_size')->nullable();
+            $table->string('status');
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();

@@ -37,7 +37,16 @@
                         {{ __('Login') }}
                     </button>
                 </form>
+                @if (session('error'))
+                    <div class="alert alert-danger">
+                        {{ session('error') }}
+                    </div>
+                @endif
             </div>
         </div>
     </div>
+@endsection
+
+@section('footer')
+    <x-footer />
 @endsection
