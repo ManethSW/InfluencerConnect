@@ -153,7 +153,7 @@
                                 <label for="user_id">User</label>
                                 <select id="user_id" name="user_id" class="form-control">
                                     @foreach ($users as $user)
-                                        @if ($user->role_id->value != 1 && $user->influencerCard()->doesntExist())
+                                        @if ($user->role_id->value != 1 && $user->role_id->value != 11 && $user->influencerCard()->doesntExist())
                                             <option value="{{ $user->id }}">
                                                 {{ $user->name }}
                                             </option>
