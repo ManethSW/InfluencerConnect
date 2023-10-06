@@ -70,14 +70,46 @@
                                         <a href="{{ route('influencerCards.activate', $influencerCard->id) }}"
                                             class="btn action-btn activate-btn">Visible</a>
                                     @endif
-                                    <form action="{{ route('influencerCards.destroy', $influencerCard->id) }}"
+                                    {{-- <form action="{{ route('influencerCards.destroy', $influencerCard->id) }}"
                                         method="post" class="d-inline">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="btn action-btn delete-btn">Delete</button>
-                                    </form>
+                                    </form> --}}
+                                    <button type="button" class="btn action-btn delete-btn" data-bs-toggle="modal"
+                                        data-bs-target="#deleteModal{{ $influencerCard->id }}">
+                                        Delete
+                                    </button>
                                 </td>
                             </tr>
+                            <div class="modal fade" id="deleteModal{{ $influencerCard->id }}" tabindex="-1"
+                                role="dialog" aria-labelledby="deleteModalLabel{{ $influencerCard->id }}"
+                                aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title custom-title"
+                                                id="deleteModalLabel{{ $influencerCard->id }}">
+                                                Delete Influencer Card</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div>
+                                                Are you sure you want to delete this card?
+                                            </div>
+                                            <div class="modal-button">
+                                                <form
+                                                    action="{{ route('influencerCards.destroy', $influencerCard->id) }}"
+                                                    method="POST">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="btn delete-btn">Delete</button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             <div class="modal fade" id="suspendModal{{ $influencerCard->id }}" tabindex="-1"
                                 role="dialog" aria-labelledby="suspendModalLabel{{ $influencerCard->id }}"
                                 aria-hidden="true">

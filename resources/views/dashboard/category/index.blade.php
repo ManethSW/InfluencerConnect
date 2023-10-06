@@ -76,13 +76,13 @@
                                         <div class="modal-header">
                                             <h5 class="modal-title custom-title"
                                                 id="deleteModalLabel{{ $influencerCategory->id }}">
-                                                Delete Business Category</h5>
+                                                Delete Influencer Category</h5>
                                             <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                 aria-label="Close"></button>
                                         </div>
                                         <div class="modal-body">
                                             <div>
-                                                Are you sure you want to delete this business category?
+                                                Are you sure you want to delete this influencer category?
                                             </div>
                                             <div class="modal-button">
                                                 <form
