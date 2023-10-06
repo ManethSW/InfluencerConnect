@@ -64,6 +64,12 @@ Follow these steps to set up the Respawn Entertainment CRM system on your local 
     php artisan migrate
     ```
 
+8. Run the seeders:
+
+    ```shell
+   php artisan db:seed
+    ```
+
 9. Build the frontend:
     ```shell
     npm run build
@@ -76,6 +82,6 @@ Follow these steps to set up the Respawn Entertainment CRM system on your local 
 
 11. Visit `http://localhost:8000` or `http://127.0.0.1:8000` in your web browser to access the CRM system.
 
----
-
-With these steps, you'll have the InfluencerConnect CRM system up and running on your local environment.
+**Note:** The Admin user is created using the seeder. The default credentials are as follows:<br>
+email : `admin@admin.com`<br>
+password : `admin1234`
