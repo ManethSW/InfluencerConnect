@@ -16,9 +16,12 @@
                             </div>
                         </form>
                         <div class="add-user-button">
-                            <a class="btn btn-sm" data-bs-toggle="modal" data-bs-target="#addUserModal">Add
-                                User</a>
-
+                            <a class="btn btn-sm" data-bs-toggle="modal" data-bs-target="#addInfluencerModal">Add
+                                Influencer</a>
+                        </div>
+                        <div class="add-user-button">
+                            <a class="btn btn-sm" data-bs-toggle="modal" data-bs-target="#addBusinessModal">Add
+                                Business</a>
                         </div>
                     </div>
                 </div>
@@ -28,7 +31,6 @@
                             <th style="width: 5%;">ID</th>
                             <th style="width: 20%;">Name</th>
                             <th style="width: 22.5%;">Email</th>
-                            {{-- <th style="width: 15%;">Phone</th> --}}
                             <th style="width: 10%;">Status</th>
                             <th style="width: 17.5%;">Role</th>
                             <th style="width: 20%;">Actions</th>
@@ -40,7 +42,6 @@
                                 <td>{{ $user->id }}</td>
                                 <td>{{ $user->name }}</td>
                                 <td>{{ $user->email }}</td>
-                                {{-- <td>{{ $user->phone }}</td> --}}
                                 <td>
                                     @if ($user->status == 1)
                                         <div class="status">
@@ -68,12 +69,10 @@
                                             <a href="{{ route('users.activate', $user->id) }}"
                                                 class="btn action-btn activate-btn">Activate</a>
                                         @endif
-                                        <form action="{{ route('users.destroy', $user->id) }}" method="post"
-                                            class="d-inline">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="btn action-btn delete-btn">Delete</button>
-                                        </form>
+                                        <button type="button" class="btn action-btn delete-btn" data-bs-toggle="modal"
+                                            data-bs-target="#deleteModal{{ $user->id }}">
+                                            Delete
+                                        </button>
                                     @else
                                         No Actions Allowed
                                     @endif
@@ -90,13 +89,38 @@
                                                 aria-label="Close"></button>
                                         </div>
                                         <div class="modal-body">
-                                            Are you sure you want to suspend this user?
+                                            <div>
+                                                Are you sure you want to suspend this user?
+                                            </div>
+                                            <div class="modal-button">
+                                                <a href="{{ route('users.suspend', $user->id) }}"
+                                                    class="btn suspend-btn">Suspend User</a>
+                                            </div>
                                         </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary"
-                                                data-dismiss="modal">Cancel</button>
-                                            <a href="{{ route('users.suspend', $user->id) }}"
-                                                class="btn btn-warning">Suspend User</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal fade" id="deleteModal{{ $user->id }}" tabindex="-1" role="dialog"
+                                aria-labelledby="deleteModalLabel{{ $user->id }}" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title custom-title" id="deleteModalLabel{{ $user->id }}">
+                                                Delete User</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div>
+                                                Are you sure you want to delete this user?
+                                            </div>
+                                            <div class="modal-button">
+                                                <form action="{{ route('users.destroy', $user->id) }}" method="POST">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="btn delete-btn">Delete</button>
+                                                </form>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -104,54 +128,108 @@
                         @endforeach
                     </tbody>
                 </table>
+                @if ($errors->any())
+                    @foreach ($errors->all() as $error)
+                        <div class="alert alert-danger">{{ $error }}</div>
+                    @endforeach
+                @endif
             </div>
         </div>
     </div>
-    <div class="modal fade" id="addUserModal" tabindex="-1" aria-labelledby="addUserModalLabel" aria-hidden="true">
+    <div class="modal fade" id="addInfluencerModal" tabindex="-1" aria-labelledby="addInfluencerModalLabel"
+        aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="addUserModalLabel">Add User</h5>
+                    <h5 class="modal-title" id="addInfluencerModalLabel">Add Influencer</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <form method="post" action="{{ route('users.store') }}">
                         @csrf
-                        <div class="form-row">
-                            <div class="col">
-                                <label for="role_id">Role</label>
-                                <select id="role_id" name="role_id" class="form-control">
-                                    @foreach ([App\Enums\UserRole::Influencer, App\Enums\UserRole::business] as $role)
-                                        <option value="{{ $role->value }}">{{ $role->name }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                        </div>
-                        <div class="form-row">
-                            <div class="col">
+                        <div class="form-row edit-form modal-form">
+                            <input type="hidden" name="role_id" value="{{ App\Enums\UserRole::Influencer }}">
+                            <div class="col input-item">
                                 <label for="name">Name</label>
                                 <input type="text" id="name" name="name" class="form-control">
                             </div>
-                        </div>
-                        <div class="form-row">
-                            <div class="col">
+                            <div class="col input-item">
                                 <label for="email">Email</label>
                                 <input type="email" id="email" name="email" class="form-control">
                             </div>
-                        </div>
-                        <div class="form-row">
-                            <div class="col">
+                            <div class="col input-item">
                                 <label for="phone">Phone Number</label>
                                 <input type="phone" id="phone" name="phone" class="form-control">
                             </div>
-                        </div>
-                        <div class="form-row">
-                            <div class="col">
+                            <div class="col input-item">
+                                <label for="dob">Date of Birth</label>
+                                <input type="date" id="dob" name="dob" class="form-control">
+                            </div>
+                            <div class="col input-item">
+                                <label for="address">Address</label>
+                                <input type="text" id="address" name="address" class="form-control">
+                            </div>
+                            <div class="col input-item">
                                 <label for="password">Password</label>
                                 <input type="password" id="password" name="password" class="form-control">
                             </div>
                         </div>
-                        <div class="modal-footer">
+                        <div class="modal-button">
+                            <button type="submit" class="btn btn-primary">Create</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="addBusinessModal" tabindex="-1" aria-labelledby="addBusinessModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addBusinessModalLabel">Add Business</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form method="post" action="{{ route('users.store') }}">
+                        @csrf
+                        <div class="form-row edit-form modal-form">
+                            <input type="hidden" name="role_id" value="{{ App\Enums\UserRole::Business }}">
+                            <div class="col input-item">
+                                <label for="name">Business Name</label>
+                                <input type="text" id="name" name="name" class="form-control">
+                            </div>
+                            <div class="col input-item">
+                                <label for="email">Business Email</label>
+                                <input type="email" id="email" name="email" class="form-control">
+                            </div>
+                            <div class="col input-item">
+                                <label for="phone">Business Phone Number</label>
+                                <input type="phone" id="phone" name="phone" class="form-control">
+                            </div>
+                            <div class="col input-item">
+                                <label for="business_website">Business Website</label>
+                                <input type="url" id="business_website" name="business_website"
+                                    class="form-control">
+                            </div>
+                            <div class="col input-item">
+                                <label for="business_type">Business Type</label>
+                                <input type="text" id="business_type" name="business_type" class="form-control">
+                            </div>
+                            <div class="col input-item">
+                                <label for="business_size">Business Size</label>
+                                <input type="number" id="business_size" name="business_size" class="form-control">
+                            </div>
+                            <div class="col input-item">
+                                <label for="address">Business Address</label>
+                                <input type="text" id="address" name="address" class="form-control">
+                            </div>
+                            <div class="col input-item">
+                                <label for="password">Password</label>
+                                <input type="password" id="password" name="password" class="form-control">
+                            </div>
+                        </div>
+                        <div class="modal-button">
                             <button type="submit" class="btn btn-primary">Create</button>
                         </div>
                     </form>

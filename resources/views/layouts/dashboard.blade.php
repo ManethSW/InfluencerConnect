@@ -16,6 +16,7 @@
 
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/sass/dashboard.scss', 'resources/sass/dashboard-edit.scss', 'resources/js/app.js'])
+    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
     <script defer src="https://kit.fontawesome.com/582a81fd83.js" crossorigin="anonymous"></script>
 </head>
 
@@ -59,11 +60,11 @@
                     @csrf
                 </form>
                 <a class="nav-link logout" href="{{ route('logout') }}"
-                   onclick="event.preventDefault();
+                    onclick="event.preventDefault();
                    document.getElementById('logout-form').submit();">
-                   {{ __('Logout') }}
+                    {{ __('Logout') }}
                 </a>
-                
+
             </div>
         </div>
     </div>
@@ -73,9 +74,36 @@
             <h2>{{ Auth::user()->name }}</h2>
         </div>
         <div class="dashboard-content">
-            @yield('content')
+            @section('content')
+                <!-- Default content goes here -->
+                <div class="dashboard-default-content-container">
+                    <h2>Dashboard Analytics Coming Soon</h2>
+                    <p>Access Manage Features Through The Side Navigation</p>
+                </div>
+            @show
         </div>
+
     </main>
+    <!-- Success Message -->
+    <div x-data="{ show: true }" x-init="setTimeout(() => show = false, 3000)" x-show="show"
+        class="fixed bottom-0 right-0 bg-green-500 text-white p-4 rounded m-4  feedback-popup" style="display: none;">
+        <p>
+            @if (session('success'))
+                {{ session('success') }}
+            @endif
+        </p>
+    </div>
+    <!-- Error Message -->
+    @if ($errors->any())
+        <div x-data="{ show: true }" x-init="setTimeout(() => show = false, 3000)" x-show="show"
+            class="fixed bottom-0 right-0 bg-red-500 text-white p-4 rounded m-4  feedback-popup" style="display: none;">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
 </body>
 
 </html>

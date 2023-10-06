@@ -13,6 +13,11 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
+    public function influencerCards()
+    {
+        return $this->hasMany(InfluencerCard::class);
+    }
+
     public function influencerCard()
     {
         return $this->hasOne(InfluencerCard::class);

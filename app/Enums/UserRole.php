@@ -17,5 +17,5 @@ enum UserRole: int
 
     // Front end roles
     case Influencer = 10;
-    case business = 11;
+    case Business = 11;
 }

@@ -11,4 +11,8 @@ export default defineConfig({
             refresh: true,
         }),
     ],
+    plugins: [vue()],
+    optimizeDeps: {
+        include: ['bootstrap']
+    }
 });

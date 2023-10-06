@@ -49,7 +49,6 @@
                                     <a class="btn btn-login nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
                                 </li>
                             @endif
-
                             @if (Route::has('register'))
                                 <li class="nav-item">
                                     <a class="btn btn-register nav-link"
@@ -74,14 +73,17 @@
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="#">Profile</a>
-                                    <a class="dropdown-item" href="{{ route('dashboard') }}">Dashboard</a>
+                                    {{-- check users role_id through data dump --}}
+
+                                    @if (Auth::user()->role_id->name == 'SuperAdministrator')
+                                        <a class="dropdown-item" href="{{ route('dashboard') }}">Dashboard</a>
+                                    @endif
                                     <hr class="dropdown-divider">
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                         onclick="event.preventDefault();
                                                  document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
-
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                         @csrf
                                     </form>

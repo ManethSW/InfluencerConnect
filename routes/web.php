@@ -3,7 +3,6 @@
 use App\Http\Controllers\CategoryController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
-use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\InfluencerCardController;
 use App\Models\InfluencerCard;
@@ -16,9 +15,6 @@ Route::post('user-type', [App\Http\Controllers\UserTypeController::class, 'store
 Route::post('register/influencer', [App\Http\Controllers\Auth\RegisterController::class, 'storeInfluencer'])->name('register-influencer.store');
 Route::post('register/business', [App\Http\Controllers\Auth\RegisterController::class, 'storeBusiness'])->name('register-business.store');
 
-Route::get('/layouts/dashboard', [DashboardController::class, 'dashboard'])->name('dashboard')->middleware('auth');
-
-
 Route::get('register/influencer', function () {
     return view('auth.register-influencer');
 })->name('auth.register-influencer');
@@ -26,6 +22,15 @@ Route::get('register/influencer', function () {
 Route::get('register/business', function () {
     return view('auth.register-business');
 })->name('auth.register-business');
+
+Route::get('/dashboard', function () {
+    $userType = Auth::user()->role_id->name;
+    if ($userType === 'SuperAdministrator') {
+        return view('layouts.dashboard');
+    } else {
+        abort(403, 'Unauthorized action.');
+    }
+})->name('dashboard');
 
 Route::resource('users', UserController::class);
 Route::get('users/{user}/suspend', [UserController::class, 'suspend'])->name('users.suspend');

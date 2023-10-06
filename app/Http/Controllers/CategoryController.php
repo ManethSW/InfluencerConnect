@@ -8,10 +8,26 @@ use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
-    public function index()
+    // public function index()
+    // {
+    //     $influencerCategories = InfluencerCategory::all();
+    //     $businessCategories = BusinessCategory::all();
+    //     return view('dashboard.category.index', compact('influencerCategories', 'businessCategories'));
+    // }
+
+    public function index(Request $request)
     {
-        $influencerCategories = InfluencerCategory::all();
-        $businessCategories = BusinessCategory::all();
+        $search = $request->get('search');
+
+        $influencerCategories = InfluencerCategory::when($search, function ($query, $search) {
+            $query->where('name', 'like', "%{$search}%");
+        })->get();
+
+        $businessCategories = BusinessCategory::when($search, function ($query, $search) {
+            $query->where('name', 'like', "%{$search}%");
+        })->get();
+
         return view('dashboard.category.index', compact('influencerCategories', 'businessCategories'));
     }
+
 }

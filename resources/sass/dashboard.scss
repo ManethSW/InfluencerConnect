@@ -29,6 +29,27 @@ h3 {
 
 .dashboard-body {
     width: 100%;
+    margin-left: 208px;
+}
+
+.dashboard-default-content-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 85vh;
+    margin-top: 2.5%;
+    margin-bottom: 7.5%;
+    width: 100%;
+    background-color: var(--secondary-color-10);
+}
+
+.dashboard-default-content-container h2 {
+    border-bottom: 4px solid var(--primary-color-50);
+}
+
+.dashboard-default-content-container p {
+    font-size: 17.5px;
 }
 
 .dashboard-header {
@@ -64,6 +85,9 @@ h3 {
 }
 
 .side-bar {
+    position: fixed;
+    left: 0;
+    top: 0;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -88,7 +112,8 @@ h3 {
     border-bottom: 2px solid var(--secondary-color-25);
 }
 
-ol, ul {
+ol,
+ul {
     margin: 0;
     padding: 0;
 }
@@ -99,7 +124,8 @@ ol, ul {
     border-bottom: 2px solid rgb(17, 17, 17, 5%);
 }
 
-.nav-items h3, .logout{
+.nav-items h3,
+.logout {
     font-family: 'Archivo', sans-serif;
     font-weight: 900;
     font-size: 18px;
@@ -119,6 +145,7 @@ ol, ul {
 .nav-item-dashboard i {
     font-size: 15px;
 }
+
 .nav-item-dashboard a {
     font-family: 'Archivo', sans-serif;
     font-size: 15px;
@@ -133,7 +160,22 @@ ol, ul {
     border-top: 2px solid var(--secondary-color-25);
 }
 
-.users-header, .users-header div {
+.feedback-popup {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    background-color: var(--secondary-color-75);
+    // color: yellow;
+}
+
+.feedback-popup p {
+    color: #32CD32;
+    font-size: 15px;
+    font-weight: 900;
+}
+
+.users-header,
+.users-header div {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -143,7 +185,7 @@ ol, ul {
     height: 60px;
     background-color: rgba(255, 93, 38, 10%);
     border-radius: 15px 15px 0px 0px;
-    padding: 10px 10px 10px 20px;
+    padding: 10px 20px 10px 20px;
 }
 
 .users-header .search-add {
@@ -184,7 +226,8 @@ ol, ul {
     box-shadow: none;
 }
 
-.search button:hover, .add-user-button:hover {
+.search button:hover,
+.add-user-button:hover {
     color: var(--primary-color);
     border-color: var(--primary-color);
 }
@@ -212,7 +255,8 @@ ol, ul {
     transition: 0.3s all ease-in;
 }
 
-.table th, .table td {
+.table th,
+.table td {
     padding: 15px 20px;
 }
 
@@ -279,13 +323,93 @@ ol, ul {
 }
 
 .delete-btn {
-    border: 2px solid #FF0000!important;
-    color: #FF0000!important;
+    border: 2px solid #FF0000 !important;
+    color: #FF0000 !important;
     border-radius: 10px;
     transition: 0.3s all ease-in;
 }
 
 .delete-btn:hover {
-    background-color: #FF0000!important;
-    color: white!important;
+    background-color: #FF0000 !important;
+    color: white !important;
+}
+
+@media (max-width: 1700px) {
+    .dashboard-header h1 {
+        font-size: 20px;
+    }
+
+    .dashboard-header h2 {
+        font-size: 15px;
+    }
+
+    .dashboard-content {
+        padding: 0px 40px;
+    }
+
+    .nav-items {
+        padding-top: 15px;
+    }
+
+    .nav-items h3,
+    .logout {
+        font-size: 15px;
+        padding-bottom: 15px;
+    }
+
+    .nav-item-dashboard i {
+        font-size: 12.5px;
+    }
+
+    .nav-item-dashboard a {
+        font-size: 12.5px;
+    }
+
+    .users-header {
+        height: 50px;
+    }
+
+    .users-header .search-add {
+        column-gap: 25px;
+    }
+
+    .users-header h3 {
+        font-size: 17.5px;
+    }
+
+    .search button {
+        width: 75px;
+        height: 35px;
+        font-size: 12.5px;
+    }
+
+    .search input {
+        height: 35px;
+        font-size: 12.5px;
+    }
+
+    .add-user-button {
+        width: fit-content;
+        height: fit-content;
+    }
+
+    .add-user-button a {
+        padding: 5.5px 15px;
+        font-size: 12.5px;
+    }
+
+    .table th,
+    .table td {
+        padding: 12.5px 20px;
+        font-size: 12.5px;
+    }
+
+    .status-badge {
+        width: 7.5px;
+        height: 7.5px;
+    }
+
+    .action-btn {
+        font-size: 12.5px;
+    }
 }

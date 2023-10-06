@@ -39,7 +39,7 @@
 
 .influencer-content p:nth-of-type(1) {
     font-weight: 900;
-    margin-bottom: 5px!important;
+    margin-bottom: 5px !important;
 }
 
 .influencer-content p:nth-of-type(2) {
@@ -116,6 +116,16 @@
     background-color: #ffffff;
 }
 
+.card-edit-body-user {
+    grid-template-columns: 1fr;
+}
+
+.card-edit-header-user,
+.card-edit-body-user {
+    width: 70%;
+    margin: 0px auto;
+}
+
 .card-edit-body h4 {
     font-family: 'Archivo', sans-serif;
     font-size: 20px;
@@ -125,7 +135,8 @@
     background-color: rgb(17, 17, 17, 5%);
 }
 
-.preview-card, .edit-fields {
+.preview-card,
+.edit-fields {
     display: flex;
     flex-direction: column;
 }
@@ -135,7 +146,19 @@
     // margin-right: 20px;
 }
 
-.edit-fields form > div {
+.preview-card-user {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+
+.preview-card-user img {
+    width: 100px;
+    height: 100px;
+}
+
+.edit-fields form>div {
     padding: 10px 20px;
 }
 
@@ -158,7 +181,8 @@
     column-gap: 20px;
 }
 
-.edit-buttons button, .modal-button button {
+.edit-buttons button,
+.modal-button button {
     height: 44px;
     background-color: rgba(17, 17, 17, 0%);
     color: #FF5D26;
@@ -174,7 +198,8 @@
     transition: all 0.3s ease-in-out;
 }
 
-.edit-buttons button:hover, .modal-button button:hover {
+.edit-buttons button:hover,
+.modal-button button:hover {
     border: 2px solid #FF5D26;
     background-color: #FF5D26;
     color: #EBEBEB;
@@ -195,4 +220,76 @@
     display: grid;
     grid-template-columns: 1fr;
     padding: 20px 0px 0px 0px;
+}
+
+@media (max-width: 1700px) {
+    .influencer-card {
+        width: 250px;
+    }
+
+
+    .influencer-img img {
+        height: 170px;
+    }
+
+    .influencer-content h3 {
+        font-size: 20px;
+    }
+
+    .influencer-content p {
+        font-size: 15px;
+    }
+
+    .influencer-content p:nth-of-type(2) {
+        height: 100px;
+    }
+
+    .influencer-content .influencer-rating {
+        column-gap: 20px;
+    }
+
+    .influencer-content .influencer-rating img {
+        height: 17.5px;
+        width: 17.5px;
+    }
+
+    .influencer-content button {
+        font-size: 15px;
+    }
+
+    .card-edit-body h4 {
+        font-size: 17.5px;
+    }
+
+    .edit-fields form>div {
+        padding: 10px 20px;
+    }
+
+    .edit-form {
+        display: flex;
+        flex-direction: column;
+        row-gap: 16.5px;
+    }
+
+    .input-item label,
+    .input-item input,
+    .input-item select,
+    .input-item textarea {
+        font-size: 12.5px;
+    }
+
+    .edit-buttons button,
+    .modal-button button {
+        height: 38.3px;
+        font-size: 12.5px;
+    }
+
+    .modal-form {
+        row-gap: 14px!important;
+    }
+
+    .modal-form input {
+        height: 30px;
+        font-size: 12px;
+    }
 }

@@ -7,7 +7,7 @@
                 <div class="users-header">
                     <h3>Influencer Cards</h3>
                     <div class="search-add">
-                        <form method="get" action="{{ route('influencerCards.index') }}" class="">
+                        {{-- <form method="get" action="{{ route('influencerCards.index') }}" class="">
                             <div class="input-group search">
                                 <input type="search" name="search" class="form-control"
                                     placeholder="Search cards by influencer names" style="width: 275px">
@@ -15,7 +15,7 @@
                                     <button type="submit" class="btn">Search</button>
                                 </div>
                             </div>
-                        </form>
+                        </form> --}}
                         <div class="add-user-button">
                             <a class="btn btn-sm" data-bs-toggle="modal" data-bs-target="#addInfluencerCardModal">Add
                                 Card</a>
@@ -70,21 +70,38 @@
                                         <a href="{{ route('influencerCards.activate', $influencerCard->id) }}"
                                             class="btn action-btn activate-btn">Visible</a>
                                     @endif
-                                    {{-- <form action="{{ route('influencerCards.destroy', $influencerCard->id) }}"
-                                        method="post" class="d-inline">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="btn action-btn delete-btn">Delete</button>
-                                    </form> --}}
                                     <button type="button" class="btn action-btn delete-btn" data-bs-toggle="modal"
                                         data-bs-target="#deleteModal{{ $influencerCard->id }}">
                                         Delete
                                     </button>
                                 </td>
                             </tr>
-                            <div class="modal fade" id="deleteModal{{ $influencerCard->id }}" tabindex="-1"
-                                role="dialog" aria-labelledby="deleteModalLabel{{ $influencerCard->id }}"
+                            <div class="modal fade" id="suspendModal{{ $influencerCard->id }}" tabindex="-1"
+                                role="dialog" aria-labelledby="suspendModalLabel{{ $influencerCard->id }}"
                                 aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title custom-title"
+                                                id="suspendModalLabel{{ $influencerCard->id }}">
+                                                Suspend User</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div>
+                                                Are you sure you want to set this card to invisible?
+                                            </div>
+                                            <div class="modal-button">
+                                                <a href="{{ route('influencerCards.suspend', $influencerCard->id) }}"
+                                                    class="btn suspend-btn">Set To Invisible</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal fade" id="deleteModal{{ $influencerCard->id }}" tabindex="-1" role="dialog"
+                                aria-labelledby="deleteModalLabel{{ $influencerCard->id }}" aria-hidden="true">
                                 <div class="modal-dialog" role="document">
                                     <div class="modal-content">
                                         <div class="modal-header">
@@ -99,8 +116,7 @@
                                                 Are you sure you want to delete this card?
                                             </div>
                                             <div class="modal-button">
-                                                <form
-                                                    action="{{ route('influencerCards.destroy', $influencerCard->id) }}"
+                                                <form action="{{ route('influencerCards.destroy', $influencerCard->id) }}"
                                                     method="POST">
                                                     @csrf
                                                     @method('DELETE')
@@ -110,41 +126,10 @@
                                         </div>
                                     </div>
                                 </div>
-                            <div class="modal fade" id="suspendModal{{ $influencerCard->id }}" tabindex="-1"
-                                role="dialog" aria-labelledby="suspendModalLabel{{ $influencerCard->id }}"
-                                aria-hidden="true">
-                                <div class="modal-dialog" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title custom-title"
-                                                id="suspendModalLabel{{ $influencerCard->id }}">
-                                                Suspend User</h5>
-                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                aria-label="Close"></button>
-                                        </div>
-                                        <div class="modal-body">
-                                            Are you sure you want to set this card to invisible?
-                                        </div>
-                                        <div class="modal-footer">
-                                            <a href="{{ route('influencerCards.suspend', $influencerCard->id) }}"
-                                                class="btn suspend-btn">Set To Invisible</a>
-                                        </div>
-                                    </div>
-                                </div>
                             </div>
                         @endforeach
                     </tbody>
                 </table>
-                @if ($errors->any())
-                    <div class="alert alert-danger">
-                        <ul>
-                            @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                    </div>
-                @endif
-
             </div>
         </div>
     </div>

@@ -4,15 +4,14 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class extends Migration {
     public function up(): void
     {
         Schema::create('influencer_cards', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained();
+            $table->foreignId('user_id')->constrained('users');
             $table->string('avatar');
-            $table->foreignId('influencer_category_id')->constrained();
+            $table->foreignId('influencer_category_id')->constrained('influencer_categories');
             $table->smallInteger('rating');
             $table->timestamp('description');
             $table->boolean('visible');

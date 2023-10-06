@@ -9,9 +9,18 @@ use Illuminate\Http\Request;
 
 class InfluencerCardController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $influencerCards = InfluencerCard::with('user', 'influencerCategory')->get();
+        $search = $request->get('search');
+
+        $influencerCards = InfluencerCard::with([
+            'user' => function ($query) use ($search) {
+                if ($search) {
+                    $query->where('name', 'like', "%{$search}%");
+                }
+            }
+        ], 'influencerCategory')->get();
+
         $users = User::all();
         $categories = InfluencerCategory::all();
 

@@ -4,8 +4,6 @@
     $chunkedInfluencerCards = $influencerCards->chunk(4);
 @endphp
 
-{{-- {{ dd($influencerCards) }} --}}
-
 @section('content')
     <div class="container home-container justify-content-center">
         <div class="hero rounded-5">

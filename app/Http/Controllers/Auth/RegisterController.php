@@ -96,9 +96,9 @@ class RegisterController extends Controller
             'phone' => ['required', 'string', 'min:10'],
             'address' => ['required', 'string', 'max:255'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
-            'business_website' => ['nullable', 'url', 'max:255'],
-            'business_type' => ['nullable', 'string', 'max:255'],
-            'business_size' => ['nullable', 'numeric', 'min:1'],
+            'business_website' => ['required', 'url', 'max:255'],
+            'business_type' => ['required', 'string', 'max:255'],
+            'business_size' => ['required', 'numeric', 'min:1'],
         ]);
 
         if ($validator->fails()) {
@@ -112,7 +112,7 @@ class RegisterController extends Controller
             'dob' => $request->dob,
             'address' => $request->address,
             'password' => Hash::make($request->password),
-            'role_id' => UserRole::business,
+            'role_id' => UserRole::Business,
             'business_website' => $request->business_website,
             'business_type' => $request->business_type,
             'business_size' => $request->business_size,
