@@ -18,13 +18,13 @@ Follow these steps to set up the Respawn Entertainment CRM system on your local 
 1. Clone this repository to your local machine:
 
     ```shell
-    git clone https://github.com/DEXOW/gloflow.git
+    git clone https://github.com/ManethSW/InfluencerConnect.git
     ```
 
 2. Change to the project directory:
 
     ```shell
-    cd gloflow
+    cd InfluencerConnect
     ```
 
 3. Install Composer dependencies:
@@ -78,4 +78,4 @@ Follow these steps to set up the Respawn Entertainment CRM system on your local 
 
 ---
 
-With these steps, you'll have the Gloflow CRM system up and running on your local environment.
+With these steps, you'll have the InfluencerConnect CRM system up and running on your local environment.
