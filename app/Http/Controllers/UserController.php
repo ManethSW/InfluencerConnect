@@ -24,11 +24,6 @@ class UserController extends Controller
         return view('dashboard.users.edit', compact('user'));
     }
 
-    public function create()
-    {
-        return view('dashboard.users.create');
-    }
-
     public function update(Request $request, User $user)
     {
         $request->validate([

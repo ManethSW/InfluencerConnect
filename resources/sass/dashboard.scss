@@ -140,12 +140,10 @@ ol, ul {
 }
 
 .users-header {
+    height: 60px;
     background-color: rgba(255, 93, 38, 10%);
     border-radius: 15px 15px 0px 0px;
     padding: 10px 10px 10px 20px;
-    // border-top: 2px solid var(--secondary-color-25);
-    // border-left: 2px solid var(--secondary-color-25);
-    // border-right: 2px solid var(--secondary-color-25);
 }
 
 .users-header .search-add {
@@ -281,13 +279,13 @@ ol, ul {
 }
 
 .delete-btn {
-    border: 2px solid #FF0000;
-    color: #FF0000;
+    border: 2px solid #FF0000!important;
+    color: #FF0000!important;
     border-radius: 10px;
     transition: 0.3s all ease-in;
 }
 
 .delete-btn:hover {
-    background-color: #FF0000;
-    color: white;
+    background-color: #FF0000!important;
+    color: white!important;
 }

@@ -1,5 +1,11 @@
 @extends('layouts.app')
 
+@php
+    $chunkedInfluencerCards = $influencerCards->chunk(4);
+@endphp
+
+{{-- {{ dd($influencerCards) }} --}}
+
 @section('content')
     <div class="container home-container justify-content-center">
         <div class="hero rounded-5">
@@ -31,54 +37,21 @@
             </div>
             <div id="carouselExampleIndicators" class="container-carousel carousel slide">
                 <div class="carousel-inner">
-                    <div class="carousel-item active">
-                        <div class="items">
-                            <x-influencer-card image="/images/influencer-1.png" alt="influencer" name="Emily Johnson"
-                                category="Fashion & Beauty" rating="4"
-                                description="Fashion and beauty influencer, setting trends and sharing makeup tips." />
-                            <x-influencer-card image="/images/influencer-2.png" alt="influencer" name="Alex Rodriguez"
-                                category="Fitness & Wellness" rating="5"
-                                description="Fitness guru inspiring healthier lives with workouts and wellness advice" />
-                            <x-influencer-card image="/images/influencer-2.png" alt="influencer" name="James Smith"
-                                category="Tech & Gadgets" rating="5"
-                                description="Tech expert sharing latest trends and gadget insights." />
-                            <x-influencer-card image="/images/influencer-1.png" alt="influencer" name="Emily Johnson"
-                                category="Fashion & Beauty" rating="4"
-                                description="Fashion and beauty influencer, setting trends and sharing makeup tips." />
+                    @foreach ($chunkedInfluencerCards as $index => $chunk)
+                        <div class="carousel-item {{ $index === 0 ? 'active' : '' }}">
+                            <div class="items">
+                                @foreach ($chunk as $influencerCard)
+                                    @if ($influencerCard->visible)
+                                        <x-influencer-card image="storage/{{ $influencerCard->avatar }}" alt="influencer"
+                                            name="{{ $influencerCard->user->name }}"
+                                            category="{{ $influencerCard->influencerCategory->name }}"
+                                            rating="{{ $influencerCard->rating }}"
+                                            description="{{ $influencerCard->description }}" />
+                                    @endif
+                                @endforeach
+                            </div>
                         </div>
-                    </div>
-                    <div class="carousel-item">
-                        <div class="items">
-                            <x-influencer-card image="/images/influencer-1.png" alt="influencer" name="Emily Johnson"
-                                category="Fashion & Beauty" rating="4"
-                                description="Fashion and beauty influencer, setting trends and sharing makeup tips." />
-                            <x-influencer-card image="/images/influencer-2.png" alt="influencer" name="Alex Rodriguez"
-                                category="Fitness & Wellness" rating="5"
-                                description="Fitness guru inspiring healthier lives with workouts and wellness advice" />
-                            <x-influencer-card image="/images/influencer-2.png" alt="influencer" name="James Smith"
-                                category="Tech & Gadgets" rating="5"
-                                description="Tech expert sharing latest trends and gadget insights." />
-                            <x-influencer-card image="/images/influencer-1.png" alt="influencer" name="Emily Johnson"
-                                category="Fashion & Beauty" rating="4"
-                                description="Fashion and beauty influencer, setting trends and sharing makeup tips." />
-                        </div>
-                    </div>
-                    <div class="carousel-item">
-                        <div class="items">
-                            <x-influencer-card image="/images/influencer-1.png" alt="influencer" name="Emily Johnson"
-                                category="Fashion & Beauty" rating="4"
-                                description="Fashion and beauty influencer, setting trends and sharing makeup tips." />
-                            <x-influencer-card image="/images/influencer-2.png" alt="influencer" name="Alex Rodriguez"
-                                category="Fitness & Wellness" rating="5"
-                                description="Fitness guru inspiring healthier lives with workouts and wellness advice" />
-                            <x-influencer-card image="/images/influencer-2.png" alt="influencer" name="James Smith"
-                                category="Tech & Gadgets" rating="5"
-                                description="Tech expert sharing latest trends and gadget insights." />
-                            <x-influencer-card image="/images/influencer-1.png" alt="influencer" name="Emily Johnson"
-                                category="Fashion & Beauty" rating="4"
-                                description="Fashion and beauty influencer, setting trends and sharing makeup tips." />
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
                 <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
                     data-bs-slide="prev">
@@ -144,6 +117,7 @@
                 </div>
             </div>
         </div>
+
     </div>
 @endsection
 

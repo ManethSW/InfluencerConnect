@@ -1,0 +1,198 @@
+.influencer-card {
+    border-radius: 25px;
+    width: 270px;
+    margin: 10px;
+    padding-right: 20px;
+}
+
+.influencer-img {
+    display: grid;
+    justify-content: center;
+    background-color: transparent;
+    border: 5px solid rgba(17, 17, 17, 10%);
+    border-radius: 25px 25px 0px 0px;
+}
+
+.influencer-img img {
+    height: 200px;
+}
+
+.influencer-content {
+    background-color: rgba(17, 17, 17, 10%);
+    border-radius: 0px 0px 25px 25px;
+    padding: 5px;
+    display: grid;
+    justify-items: center;
+}
+
+.influencer-content h3 {
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 22.5px;
+    margin: 0px 0px 5px;
+}
+
+.influencer-content p {
+    font-family: 'Archivo', sans-serif;
+    color: rgba(17, 17, 17, 75%);
+    font-size: 17.5px;
+}
+
+.influencer-content p:nth-of-type(1) {
+    font-weight: 900;
+    margin-bottom: 5px!important;
+}
+
+.influencer-content p:nth-of-type(2) {
+    height: 100px;
+    font-weight: 500;
+    margin: 0px 10px;
+    text-align: justify;
+}
+
+.influencer-content .influencer-rating {
+    display: flex;
+    flex-direction: row;
+    column-gap: 25px;
+    margin: 5px 0px;
+}
+
+.influencer-content .influencer-rating img {
+    height: 20px;
+    width: 20px;
+    opacity: 0.5;
+    transition: all 0.3s ease-in-out;
+}
+
+.influencer-content .content-divider {
+    height: 2.5px;
+    width: 20%;
+    margin: 10px 0px;
+    background-color: rgba(255, 93, 38, 50%);
+    border-radius: 25px;
+    transition: all 0.3s ease-in-out;
+}
+
+.influencer-content button {
+    width: 100%;
+    padding: 5px 0px;
+    border-radius: 20px;
+    background-color: transparent;
+    border: 3px solid rgba(255, 93, 38, 50%);
+    color: #111111;
+    font-family: 'Archivo', sans-serif;
+    font-weight: 900;
+    font-size: 17.5px;
+    transition: all 0.3s ease-in-out;
+    cursor: pointer;
+}
+
+.influencer-card:hover .influencer-rating img {
+    opacity: 1;
+}
+
+.influencer-card:hover .content-divider {
+    width: 40%;
+    background-color: #FF5D26;
+}
+
+.influencer-card:hover p:nth-of-type(2) {
+    font-weight: 900;
+}
+
+.influencer-card:hover button {
+    border: 3px solid rgba(255, 93, 38, 100%);
+}
+
+.influencer-content button:hover {
+    background-color: rgba(255, 93, 38, 100%);
+    color: #EBEBEB;
+    transition: all 0.3s ease-in-out;
+}
+
+.card-edit-body {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    row-gap: 10px;
+    background-color: #ffffff;
+}
+
+.card-edit-body h4 {
+    font-family: 'Archivo', sans-serif;
+    font-size: 20px;
+    font-weight: 900;
+    margin: 0px;
+    padding: 10px 20px;
+    background-color: rgb(17, 17, 17, 5%);
+}
+
+.preview-card, .edit-fields {
+    display: flex;
+    flex-direction: column;
+}
+
+.preview-card {
+    border-right: 2px solid rgb(17, 17, 17, 10%);
+    // margin-right: 20px;
+}
+
+.edit-fields form > div {
+    padding: 10px 20px;
+}
+
+.edit-form {
+    display: flex;
+    flex-direction: column;
+    row-gap: 18px;
+}
+
+.input-item label {
+    font-family: 'Archivo', sans-serif;
+    font-size: 15px;
+    font-weight: 900;
+    margin-bottom: 5px;
+}
+
+.edit-buttons {
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+    column-gap: 20px;
+}
+
+.edit-buttons button, .modal-button button {
+    height: 44px;
+    background-color: rgba(17, 17, 17, 0%);
+    color: #FF5D26;
+    border: 2px solid #FF5D26;
+    border-radius: 5px;
+    font-weight: 900;
+    transition: all 0.3s ease-in-out;
+}
+
+.edit-buttons button a {
+    text-decoration: none;
+    color: #FF5D26;
+    transition: all 0.3s ease-in-out;
+}
+
+.edit-buttons button:hover, .modal-button button:hover {
+    border: 2px solid #FF5D26;
+    background-color: #FF5D26;
+    color: #EBEBEB;
+}
+
+.edit-buttons button:hover a {
+    color: #EBEBEB;
+}
+
+.alert {
+    padding: 10px 20px;
+    margin-top: 5px;
+    display: grid;
+    row-gap: 5px;
+}
+
+.modal-button {
+    display: grid;
+    grid-template-columns: 1fr;
+    padding: 20px 0px 0px 0px;
+}

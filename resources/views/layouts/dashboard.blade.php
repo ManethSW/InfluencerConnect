@@ -15,7 +15,7 @@
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
 
     <!-- Scripts -->
-    @vite(['resources/sass/app.scss', 'resources/sass/dashboard.scss', 'resources/js/app.js'])
+    @vite(['resources/sass/app.scss', 'resources/sass/dashboard.scss', 'resources/sass/dashboard-edit.scss', 'resources/js/app.js'])
     <script defer src="https://kit.fontawesome.com/582a81fd83.js" crossorigin="anonymous"></script>
 </head>
 
@@ -42,13 +42,13 @@
                     </li>
                     <li class="nav-item-dashboard">
                         <i class="fa-solid fa-filter"></i>
-                        <a class="nav-link" href="{{ route('users.index') }}">
+                        <a class="nav-link" href="{{ route('categories.index') }}">
                             Categories
                         </a>
                     </li>
                     <li class="nav-item-dashboard">
                         <i class="fa-regular fa-id-card"></i>
-                        <a class="nav-link" href="{{ route('users.index') }}">
+                        <a class="nav-link" href="{{ route('influencerCards.index') }}">
                             Influencer Cards
                         </a>
                     </li>
