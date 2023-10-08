@@ -29,32 +29,34 @@ Route::middleware(['superadmin'])->group(function () {
     })->name('dashboard');
 });
 
-Route::middleware(['superadmin'])->group(function () {
-    Route::resource('users', UserController::class);
-});
-
-Route::middleware(['superadmin'])->group(function () {
-    Route::resource('influencerCards', UserController::class);
-});
-
-Route::middleware(['superadmin'])->group(function () {
-    Route::resource('categories', UserController::class);
-});
-
 Route::prefix('dashboard')->group(function () {
     Route::resource('users', UserController::class);
     Route::get('users/{user}/suspend', [UserController::class, 'suspend'])->name('users.suspend');
     Route::get('users/{user}/activate', [UserController::class, 'activate'])->name('users.activate');
 
+    Route::middleware(['superadmin'])->group(function () {
+        Route::resource('users', UserController::class);
+    });
+
     Route::resource('influencerCards', InfluencerCardController::class);
     Route::get('influencerCards/{influencerCard}/suspend', [InfluencerCardController::class, 'suspend'])->name('influencerCards.suspend');
     Route::get('influencerCards/{influencerCard}/activate', [InfluencerCardController::class, 'activate'])->name('influencerCards.activate');
+
+    Route::middleware(['superadmin'])->group(function () {
+        Route::resource('influencerCards', UserController::class);
+    });
+    
 
     Route::resource('categories', CategoryController::class);
     Route::get('category', [CategoryController::class, 'index'])->name('category.index');
     Route::resource('influencerCategories', App\Http\Controllers\InfluencerCategoryController::class);
     Route::resource('businessCategories', App\Http\Controllers\BusinessCategoryController::class);
+
+    Route::middleware(['superadmin'])->group(function () {
+        Route::resource('categories', UserController::class);
+    });
 });
+
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
