@@ -37,15 +37,17 @@
                                 <div class="col input-item">
                                     <label for="user_id">User</label>
                                     <select id="user_id" name="user_id" class="form-control">
-                                        @foreach ($usersWithoutCard as $user)
-                                            <option value="{{ $user->id }}"
-                                                {{ $user->id == $influencerCard->user_id ? 'selected' : '' }}>
-                                                {{ $user->name }}</option>
+                                        @foreach ($users as $user)
+                                            @if (
+                                                $user->role_id->value != 1 &&
+                                                    $user->role_id->value != 11 &&
+                                                    ($user->influencerCard()->doesntExist() || $user->id == $influencerCard->user_id))
+                                                <option value="{{ $user->id }}"
+                                                    @if ($user->id == $influencerCard->user_id) selected @endif>
+                                                    {{ $user->name }}
+                                                </option>
+                                            @endif
                                         @endforeach
-
-                                        @if ($usersWithoutCard->isEmpty())
-                                            <p>No influencers to choose from</p>
-                                        @endif
                                     </select>
                                 </div>
                                 <div class="col input-item">

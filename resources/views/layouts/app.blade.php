@@ -35,7 +35,7 @@
                     <ul class="navbar-nav ms-auto">
                         @guest
                             <li class="nav-item normal-link">
-                                <a class="nav-link{{ request()->routeIs(['login', 'register']) ? '' : ' active-custom active' }}"
+                                <a class="nav-link{{ request()->routeIs(['login', 'user-type', 'user-type.create', 'auth.register-business', 'auth.register-business']) ? '' : ' active-custom active' }}"
                                     href="{{ route('home') }}">{{ __('Home') }}</a>
                             </li>
                             <li class="nav-item normal-link">

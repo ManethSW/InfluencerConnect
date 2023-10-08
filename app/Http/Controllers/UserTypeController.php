@@ -20,7 +20,7 @@ class UserTypeController extends Controller
         } elseif ($userType === 'business') {
             return redirect()->route('auth.register-business');
         } else {
-            // Handle invalid user type
+            return redirect()->route('user-type.create');
         }
     }
 }

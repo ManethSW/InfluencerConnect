@@ -206,7 +206,7 @@
                         @csrf
                         <div class="form-row edit-form">
                             <div class="col input-item">
-                                <label for="name">Influencer Category Name</label>
+                                <label for="name">Business Category Name</label>
                                 <input type="text" id="name" name="name" class="form-control">
                             </div>
                         </div>

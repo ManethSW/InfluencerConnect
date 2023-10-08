@@ -23,27 +23,38 @@ Route::get('register/business', function () {
     return view('auth.register-business');
 })->name('auth.register-business');
 
-Route::get('/dashboard', function () {
-    $userType = Auth::user()->role_id->name;
-    if ($userType === 'SuperAdministrator') {
+Route::middleware(['superadmin'])->group(function () {
+    Route::get('/dashboard', function () {
         return view('layouts.dashboard');
-    } else {
-        abort(403, 'Unauthorized action.');
-    }
-})->name('dashboard');
+    })->name('dashboard');
+});
 
-Route::resource('users', UserController::class);
-Route::get('users/{user}/suspend', [UserController::class, 'suspend'])->name('users.suspend');
-Route::get('users/{user}/activate', [UserController::class, 'activate'])->name('users.activate');
+Route::middleware(['superadmin'])->group(function () {
+    Route::resource('users', UserController::class);
+});
 
-Route::resource('influencerCards', InfluencerCardController::class);
-Route::get('influencerCards/{influencerCard}/suspend', [InfluencerCardController::class, 'suspend'])->name('influencerCards.suspend');
-Route::get('influencerCards/{influencerCard}/activate', [InfluencerCardController::class, 'activate'])->name('influencerCards.activate');
+Route::middleware(['superadmin'])->group(function () {
+    Route::resource('influencerCards', UserController::class);
+});
 
-Route::resource('categories', CategoryController::class);
-Route::get('/category', [CategoryController::class, 'index'])->name('category.index');
-Route::resource('influencerCategories', App\Http\Controllers\InfluencerCategoryController::class);
-Route::resource('businessCategories', App\Http\Controllers\BusinessCategoryController::class);
+Route::middleware(['superadmin'])->group(function () {
+    Route::resource('categories', UserController::class);
+});
+
+Route::prefix('dashboard')->group(function () {
+    Route::resource('users', UserController::class);
+    Route::get('users/{user}/suspend', [UserController::class, 'suspend'])->name('users.suspend');
+    Route::get('users/{user}/activate', [UserController::class, 'activate'])->name('users.activate');
+
+    Route::resource('influencerCards', InfluencerCardController::class);
+    Route::get('influencerCards/{influencerCard}/suspend', [InfluencerCardController::class, 'suspend'])->name('influencerCards.suspend');
+    Route::get('influencerCards/{influencerCard}/activate', [InfluencerCardController::class, 'activate'])->name('influencerCards.activate');
+
+    Route::resource('categories', CategoryController::class);
+    Route::get('category', [CategoryController::class, 'index'])->name('category.index');
+    Route::resource('influencerCategories', App\Http\Controllers\InfluencerCategoryController::class);
+    Route::resource('businessCategories', App\Http\Controllers\BusinessCategoryController::class);
+});
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
