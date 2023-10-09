@@ -11,13 +11,13 @@ class DashboardController extends Controller
     {
         return view('layouts.dashboard');
     }
-    public function influencerDashboard()
-    {
-        return view('influencer-dashboard');
-    }
+    // public function influencerDashboard()
+    // {
+    //     return view('influencer-dashboard');
+    // }
 
-    public function businessDashboard()
-    {
-        return view('business-dashboard');
-    }
+    // public function businessDashboard()
+    // {
+    //     return view('business-dashboard');
+    // }
 }

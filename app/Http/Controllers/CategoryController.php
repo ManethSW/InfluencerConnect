@@ -8,13 +8,6 @@ use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
-    // public function index()
-    // {
-    //     $influencerCategories = InfluencerCategory::all();
-    //     $businessCategories = BusinessCategory::all();
-    //     return view('dashboard.category.index', compact('influencerCategories', 'businessCategories'));
-    // }
-
     public function index(Request $request)
     {
         $search = $request->get('search');

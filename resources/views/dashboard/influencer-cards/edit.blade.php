@@ -20,7 +20,8 @@
                             <x-influencer-card image="{{ asset('storage/' . $influencerCard->avatar) }}" alt="influencer"
                                 name="{{ $influencerCard->user->name }}"
                                 category="{{ $influencerCard->influencerCategory->name }}"
-                                rating="{{ $influencerCard->rating }}" description="{{ $influencerCard->description }}" />
+                                rating="{{ $influencerCard->rating }}"
+                                description="{{ $influencerCard->description }}" />
                         </div>
                     </div>
                     <div class="edit-fields">

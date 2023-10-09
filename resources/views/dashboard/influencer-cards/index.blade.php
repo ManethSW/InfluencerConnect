@@ -40,7 +40,7 @@
                         @foreach ($influencerCards as $influencerCard)
                             <tr>
                                 <td>{{ $influencerCard->id }}</td>
-                                <td><img src="storage/{{ $influencerCard->avatar }}" alt="avatar" width="50px"></td>
+                                <td><img src="{{ asset('storage/' . $influencerCard->avatar) }}" alt="avatar" width="50px"></td>
                                 <td>{{ $influencerCard->user->name }}</td>
                                 <td>{{ $influencerCard->influencerCategory->name }}</td>
                                 <td>{{ $influencerCard->rating }}</td>

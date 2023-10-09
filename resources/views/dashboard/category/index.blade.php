@@ -28,7 +28,7 @@
                                 <td>{{ $influencerCategory->name }}</td>
                                 <td class="action-btns">
                                     <button type="button" class="btn action-btn edit-btn" data-bs-toggle="modal"
-                                        data-bs-target="#editModal{{ $influencerCategory->id }}">
+                                        data-bs-target="#editModalInfluencer{{ $influencerCategory->id }}">
                                         Edit
                                     </button>
 
@@ -38,13 +38,13 @@
                                     </button>
                                 </td>
                             </tr>
-                            <div class="modal fade" id="editModal{{ $influencerCategory->id }}" tabindex="-1"
-                                role="dialog" aria-labelledby="editModalLabel{{ $influencerCategory->id }}"
+                            <div class="modal fade" id="editModalInfluencer{{ $influencerCategory->id }}" tabindex="-1"
+                                role="dialog" aria-labelledby="editModalInfluencerLabel{{ $influencerCategory->id }}"
                                 aria-hidden="true">
                                 <div class="modal-dialog" role="document">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h5 class="modal-title" id="editModalLabel{{ $influencerCategory->id }}">Edit
+                                            <h5 class="modal-title" id="editModalInfluencerLabel{{ $influencerCategory->id }}">Edit
                                                 Influencer Category</h5>
                                             <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                 aria-label="Close"></button>
@@ -125,13 +125,46 @@
                                 <td>{{ $businessCategory->id }}</td>
                                 <td>{{ $businessCategory->name }}</td>
                                 <td class="action-btns">
-                                    <a href="" class="btn action-btn edit-btn">Edit</a>
+                                    <button type="button" class="btn action-btn edit-btn" data-bs-toggle="modal"
+                                        data-bs-target="#editModalBusiness{{ $businessCategory->id }}">
+                                        Edit
+                                    </button>
                                     <button type="button" class="btn action-btn delete-btn" data-bs-toggle="modal"
                                         data-bs-target="#suspendModal{{ $businessCategory->id }}">
                                         Delete
                                     </button>
                                 </td>
                             </tr>
+                            <div class="modal fade" id="editModalBusiness{{ $businessCategory->id }}" tabindex="-1"
+                                role="dialog" aria-labelledby="editModalBusinessLabel{{ $businessCategory->id }}"
+                                aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="editModalBusinessLabel{{ $businessCategory->id }}">Edit
+                                                Business Category</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form method="post"
+                                                action="{{ route('businessCategories.update', $businessCategory->id) }}"
+                                                enctype="multipart/form-data">
+                                                @csrf
+                                                @method('PATCH')
+                                                <div class="form-group">
+                                                    <label for="name">Name</label>
+                                                    <input type="text" class="form-control" id="name" name="name"
+                                                        value="{{ $businessCategory->name }}">
+                                                </div>
+                                                <div class="modal-button">
+                                                    <button type="submit" class="btn btn-primary">Update</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                             <div class="modal fade" id="suspendModal{{ $businessCategory->id }}" tabindex="-1"
                                 role="dialog" aria-labelledby="suspendModalLabel{{ $businessCategory->id }}"
                                 aria-hidden="true">
