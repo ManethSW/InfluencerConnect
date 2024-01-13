@@ -1,9 +1,3 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
 :root {
     --primary-color: rgb(255, 93, 38);
     --primary-color-75: rgba(255, 93, 38, 75%);
@@ -17,19 +11,20 @@
     --secondary-color-10: rgba(17, 17, 17, 10%);
 }
 
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 body {
     display: flex;
     flex-direction: row;
 }
 
-h3 {
-    margin: 0px;
-    padding: 0px;
-}
-
 .dashboard-body {
     width: 100%;
-    margin-left: 208px;
+    margin-left: 243px;
 }
 
 .dashboard-default-content-container {
@@ -63,8 +58,7 @@ h3 {
 
 .dashboard-header h1 {
     width: fit-content;
-    font-family: 'Archivo-Black', sans-serif;
-    font-weight: 800;
+    font-family: 'tripsansultra';
     font-size: 25px;
     color: var(--secondary-color);
     margin: 0;
@@ -72,9 +66,8 @@ h3 {
 }
 
 .dashboard-header h2 {
-    font-family: 'Archivo', sans-serif;
-    font-weight: 900;
-    font-size: 18px;
+    font-family: 'tripsansbold';
+    font-size: 20px;
     color: var(--secondary-color);
     margin: 0;
     padding: 0;
@@ -82,34 +75,6 @@ h3 {
 
 .dashboard-content {
     padding: 0px 50px;
-}
-
-.side-bar {
-    position: fixed;
-    left: 0;
-    top: 0;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    background-color: rgba(255, 255, 255, 50%);
-    border-right: 2px solid var(--secondary-color-25);
-    min-height: 100vh;
-    padding: 0;
-    top: 0;
-    width: fit-content;
-}
-
-.side-bar-top {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-}
-
-.navbar-brand {
-    width: fit-content;
-    margin: 0px auto;
-    padding: 30px 20px;
-    border-bottom: 2px solid var(--secondary-color-25);
 }
 
 ol,
@@ -260,6 +225,30 @@ ul {
     padding: 15px 20px;
 }
 
+.table-column-id {
+    width: 1%;
+  }
+  
+  .table-column-name {
+    width: 20%;
+  }
+  
+  .table-column-email {
+    width: 20%;
+  }
+  
+  .table-column-status {
+    width: 10%;
+  }
+  
+  .table-column-role {
+    width: 20%;
+  }
+  
+  .table-column-actions {
+    width: 29%;
+  }
+
 .status {
     display: flex;
     align-items: center;
@@ -280,11 +269,17 @@ ul {
     background-color: #FF0000;
 }
 
+.action-btns {
+    display: flex;
+    column-gap: 10px;
+}
+
 .action-btn {
     width: fit-content;
-    padding: 5px 10px;
+    padding: 0px 10px;
     border-radius: 10px;
-    font-weight: 900;
+    font-family: "tripsansbold";
+    font-size: 15px;
 }
 
 .edit-btn {

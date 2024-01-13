@@ -6,29 +6,7 @@
 
 @section('content')
     <div class="container home-container justify-content-center">
-        <div class="hero rounded-5">
-            <div class="hero-items">
-                <div class="hero-text">
-                    <div class="hero-heading">
-                        <h1>Connect With Influencers,</h1>
-                        <h1>Grow Your Business</h1>
-                    </div>
-                    <p>
-                        "Join InfluencerConnect to effortlessly connect with influencers and supercharge your brand's
-                        reach. Discover, collaborate, and thrive in the digital age with ease!"
-                    </p>
-                </div>
-                <div class="call-action-btn">
-                    <a class="" href="#!" role="button">Explore Now</a>
-                    <img src="/icons/down.svg">
-                </div>
-            </div>
-        </div>
-        <div class="form-outline search">
-            <input id="search-input" type="search" id="form1" class="form-control"
-                placeholder="Search for a business or influencer . . . " />
-            <img src="/icons/search.svg" alt="search" class="search-icon">
-        </div>
+        @include('components.hero')
         <div class="influencers">
             <div class="influencer-header">
                 <h2>Featured Influencers</h2>
@@ -115,7 +93,6 @@
                 </div>
             </div>
         </div>
-
     </div>
 @endsection
 

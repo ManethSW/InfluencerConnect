@@ -8,11 +8,11 @@
                     <h3>Users</h3>
                     <div class="search-add">
                         <form method="get" action="{{ route('users.index') }}" class="">
-                            <div class="input-group search">
-                                <input type="search" name="search" class="form-control" placeholder="Search users by name">
-                                <div class="input-group-append">
-                                    <button type="submit" class="btn">Search</button>
-                                </div>
+                            <div class="search">
+                                <input id="search-input" type="search" name="search" class="form-control" placeholder="Search users by name" />
+                                <button type="submit">
+                                    <img id="search-icon" src="/icons/search.svg" alt="search">
+                                </button>
                             </div>
                         </form>
                         <div class="add-user-button">
@@ -28,13 +28,13 @@
                 <table class="table">
                     <thead>
                         <tr>
-                            <th style="width: 5%;">ID</th>
-                            <th style="width: 20%;">Name</th>
-                            <th style="width: 22.5%;">Email</th>
-                            <th style="width: 10%;">Status</th>
-                            <th style="width: 17.5%;">Role</th>
-                            <th style="width: 20%;">Actions</th>
-                        </tr>
+                            <th class="table-column-id">ID</th>
+                            <th class="table-column-name">Name</th>
+                            <th class="table-column-email">Email</th>
+                            <th class="table-column-status">Status</th>
+                            <th class="table-column-role">Role</th>
+                            <th class="table-column-actions">Actions</th>
+                          </tr>
                     </thead>
                     <tbody>
                         @foreach ($users as $user)

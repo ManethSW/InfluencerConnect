@@ -1,25 +1,37 @@
-// Fonts
-@import url('https://fonts.bunny.net/css?family=Nunito');
-@import url('https://fonts.bunny.net/css?family=Archivo+Black&display=swap');
-// @import url('https://fonts.bunny.net/css?family=Archivo+Extra');
-//Archivo extrabold
-@import url('https://fonts.bunny.net/css?family=Archivo&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-// Variables
+@import 'fonts';
 @import 'variables';
-
-// Bootstrap
 @import 'bootstrap/scss/bootstrap';
+@import 'navbar.scss';
+@import 'home.scss';
+@import 'dashboard-navbar.scss';
 
-html, body {
-    height: 100%;
+:root {
+    --primary-color: rgb(255, 93, 38);
+    --primary-color-75: rgba(255, 93, 38, 75%);
+    --primary-color-50: rgba(255, 93, 38, 50%);
+    --primary-color-25: rgba(255, 93, 38, 25%);
+    --primary-color-10: rgba(255, 93, 38, 10%);
+    --secondary-color: rgb(17, 17, 17);
+    --secondary-color-75: rgba(17, 17, 17, 75%);
+    --secondary-color-50: rgba(17, 17, 17, 50%);
+    --secondary-color-25: rgba(17, 17, 17, 25%);
+    --secondary-color-10: rgba(17, 17, 17, 10%);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 body {
     background-image: url('../../public/Images/background.png');
     background-repeat: repeat;
     background-size: cover;
-    height: 100%;
 }
 
 @media (min-width: 1400px) {
@@ -27,150 +39,6 @@ body {
         max-width: 1600px;
     }
 }
-
-nav {
-    margin-top: 25px;
-}
-
-.navbar-nav {
-    column-gap: 20px;
-}
-
-.nav-item .btn {
-    display: grid;
-    justify-items: center;
-    align-items: center;
-    width: 158px;
-    height: 60px;
-    border-radius: 10px;
-    font-family: 'Archivo Black', sans-serif;
-    font-size: 20px;
-}
-
-.btn-login {
-    background-color: #FF5D26;
-    border: 5px solid #FF5D26;
-    color: #EBEBEB;
-    transition: all 0.3s ease-in-out;
-}
-
-.btn-login:hover {
-    background-color: transparent;
-    color: #FF5D26;
-    border: 5px solid #FF5D26;
-}
-
-.btn-register {
-    background-color: transparent;
-    border: 5px solid #FF5D26;
-    color: #FF5D26;
-}
-
-.btn-register:hover {
-    background-color: #FF5D26;
-    color: #EBEBEB;
-    transition: all 0.3s ease-in-out;
-}
-
-.user-dropdown {
-    background-color: rgbA(255, 93, 38, 25%);
-    font-style: 'Archivo Black', sans-serif;
-    font-weight: 900;
-    font-size: 20px;
-    color: #111111;
-    border-radius: 10px;
-    padding: 5px 20px!important;
-    transition: all 0.3s ease-in-out;
-}
-
-.user-dropdown:hover {
-    background-color: rgbA(255, 93, 38, 100%);
-    color: #EBEBEB;
-}
-
-.dropdown-toggle::after {
-    margin-left: 20px;
-    vertical-align: 0.2em;
-}
-
-.normal-link {
-    font-family: 'Archivo Black', sans-serif;
-    font-size: 20px;
-    font-weight: 900;
-    color: rgba(17, 17, 17, 75%);
-    transition: all 0.3s ease-in-out;
-    align-self: center;
-}
-
-.active-custom {
-    color: #ff5d26!important;
-}
-
-.active-custom::after {
-    content: '';
-    display: grid;
-    width: 60%;
-    margin-left: auto;
-    margin-right: auto;
-    height: 5px;
-    background-color: rgb(255, 93, 38, 75%);
-    border-radius: 10px;
-}
-
-.active-custom::after:hover {
-    background-color: rgb(255, 93, 38, 100%);
-}
-
-.nav-link {
-    padding: 0px 0px;
-}
-
-.dropdown-menu {
-    --bs-dropdown-spacer: 0.5rem;
-    --bs-dropdown-bg: #EBEBEB;
-    --bs-dropdown-border-color: rgba(17, 17, 17, 25%);
-    --bs-dropdown-border-radius: 10px;
-    --bs-dropdown-border-width: 2px;
-    --bs-dropdown-box-shadow: none;
-    padding: 0px 0px;
-}
-
-.dropdown-divider {
-    margin: 0 0;
-}
-
-.dropdown-item {
-    padding: 6px 16px;
-}
-
-.dropdown-item:hover {
-    background-color: rgba(255, 93, 38, 25%);
-    color: #111111;
-    transition: all 0.3s ease-in-out;
-}
-
-.dropdown-item:nth-of-type(1):hover {
-    border-radius: 8px 8px 0px 0px;
-}
-
-.dropdown-item:last-of-type:hover {
-    border-radius: 0px 0px 8px 8px;
-}
-
-.dropdown-menu a {
-    font-family: 'Archivo', sans-serif;
-    font-weight: 900;
-    font-size: 18px;
-    color: rgb(17, 17, 17, 75%);
-}
-
-// footer {
-//     margin-top: 100px;
-//     position: fixed;
-//     left: 0;
-//     right: 0;
-//     bottom: 0;
-// }
 
 .footer-content {
     max-width: 1320px!important;
