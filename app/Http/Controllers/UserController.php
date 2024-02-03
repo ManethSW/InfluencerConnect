@@ -7,7 +7,6 @@ use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rule;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
 {
@@ -30,97 +29,45 @@ class UserController extends Controller
 
     public function update(Request $request, User $user)
     {
-        if ($user->role_id->name == "Influencer") {
-            $request->validate([
-                'name' => ['string', 'max:255'],
-                'email' => ['email', 'unique:users,email,' . $user->id],
-                'phone' => ['string', 'min:10'],
-                'dob' => ['date', 'before:today'],
-                'address' => ['string', 'max:255'],
-            ]);
+        $validatedData = $request->validate([
+            'name' => ['string', 'max:255'],
+            'email' => ['email', 'unique:users,email,' . $user->id],
+            'phone' => ['string', 'min:10'],
+            'description' => ['string', 'max:255'],
+            'type' => ['string', 'max:255'],
+            'gender' => ['string', 'max:255'],
+            'avatar' => ['image', 'mimes:jpeg,png,jpg,gif,svg', 'max:2048'],
+            'banner' => ['image', 'mimes:jpeg,png,jpg,gif,svg', 'max:2048'],
+        ]);
+
+        if ($request->hasFile('avatar')) {
+            // Store the new image and update the avatar value
+            $avatarPath = $request->file('avatar')->store('avatars', 'public');
+            $validatedData['avatar'] = $avatarPath;
         } else {
-            $request->validate([
-                'name' => ['string', 'max:255'],
-                'email' => ['email', 'unique:users,email,' . $user->id],
-                'phone' => ['string', 'min:10'],
-                'address' => ['string', 'max:255'],
-                'business_website' => ['url', 'max:255'],
-                'business_type' => ['string', 'max:255'],
-                'business_size' => ['numeric', 'min:1'],
-            ]);
+            // Remove the avatar value to avoid overwriting
+            unset($validatedData['avatar']);
         }
 
-        $user->update($request->all());
+        $user->update($validatedData);
         return redirect()->route('users.index')
             ->with('success', 'User updated successfully');
     }
 
-    public function store(Request $request, Validator $validator)
+    public function store(Request $request, User $user)
     {
-        // dd($request->role_id);
-        if ((int) $request->role_id === 10) {
-            $validator = Validator::make($request->all(), [
-                'name' => ['required', 'string', 'max:255'],
-                'email' => ['required', 'email', 'unique:users,email'],
-                'phone' => ['required', 'string', 'min:10'],
-                'dob' => ['required', 'date', 'before:today'],
-                'address' => ['required', 'string', 'max:255'],
-                'password' => ['required', 'string', 'min:8'],
-                'role_id' => [
-                    'required',
-                    Rule::in(collect(UserRole::cases())->map(function ($value, $key) {
-                        return $value->value;
-                    })->toArray())
-                ],
-            ]);
+        $validatedData = $request->validate([
+            'name' => ['string', 'max:255'],
+            'email' => ['email', 'unique:users,email,' . $user->id],
+            'password' => ['string', 'min:8', 'confirmed'],
+        ]);
 
-            if ($validator->fails()) {
-                return redirect()->route('users.index')->withErrors($validator)->withInput();
-            }
-
-            User::create([
-                'name' => $request->name,
-                'email' => $request->email,
-                'phone' => $request->phone,
-                'password' => Hash::make($request->password),
-                'address' => $request->address,
-                'role_id' => $request->role_id,
-                'status' => 1,
-            ]);
-        } else {
-            $validator = Validator::make($request->all(), [
-                'name' => ['required', 'string', 'max:255'],
-                'email' => ['required', 'email', 'unique:users,email'],
-                'phone' => ['required', 'string', 'min:10'],
-                'address' => ['required', 'string', 'max:255'],
-                'password' => ['required', 'string', 'min:8'],
-                'business_website' => ['required', 'url', 'max:255'],
-                'business_type' => ['required', 'string', 'max:255'],
-                'business_size' => ['required', 'numeric', 'min:1'],
-                'role_id' => [
-                    'required',
-                    Rule::in(collect(UserRole::cases())->map(function ($value, $key) {
-                        return $value->value;
-                    })->toArray())
-                ],
-            ]);
-
-            if ($validator->fails()) {
-                return redirect()->route('users.index')->withErrors($validator)->withInput();
-            }
-
-            User::create([
-                'name' => $request->name,
-                'email' => $request->email,
-                'phone' => $request->phone,
-                'password' => Hash::make($request->password),
-                'business_website' => $request->business_website,
-                'business_type' => $request->business_type,
-                'business_size' => $request->business_size,
-                'role_id' => $request->role_id,
-                'status' => 1,
-            ]);
-        }
+        User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+            'role_id' => $request->role_id,
+        ]);
 
         return redirect()->route('users.index')
             ->with('success', 'User created successfully');

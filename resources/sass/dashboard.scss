@@ -1,4 +1,5 @@
 @import 'dashboard-navbar.scss';
+@import "total-analytics.scss";
 
 * {
     margin: 0;
@@ -179,23 +180,23 @@ ul {
 .table-column-id {
     width: 1%;
   }
-  
+
   .table-column-name {
     width: 20%;
   }
-  
+
   .table-column-email {
     width: 20%;
   }
-  
+
   .table-column-status {
     width: 10%;
   }
-  
+
   .table-column-role {
     width: 20%;
   }
-  
+
   .table-column-actions {
     width: 29%;
   }

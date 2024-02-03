@@ -20,6 +20,10 @@
                                 Influencer</a>
                         </div>
                         <div class="add-user-button">
+                            <a class="btn btn-sm" data-bs-toggle="modal" data-bs-target="#addIndividualModal">Add
+                                Individual</a>
+                        </div>
+                        <div class="add-user-button">
                             <a class="btn btn-sm" data-bs-toggle="modal" data-bs-target="#addBusinessModal">Add
                                 Business</a>
                         </div>
@@ -153,20 +157,50 @@
                                 <input type="email" id="email" name="email" class="form-control">
                             </div>
                             <div class="col input-item">
-                                <label for="phone">Phone Number</label>
-                                <input type="phone" id="phone" name="phone" class="form-control">
+                                <label for="password">Password</label>
+                                <input type="password" id="password" name="password" class="form-control">
                             </div>
                             <div class="col input-item">
-                                <label for="dob">Date of Birth</label>
-                                <input type="date" id="dob" name="dob" class="form-control">
+                                <label for="password_confirmation">Confirm Password</label>
+                                <input type="password" id="password_confirmation" name="password_confirmation" class="form-control">
+                            </div>
+                        </div>
+                        <div class="modal-button">
+                            <button type="submit" class="btn btn-primary">Create</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="addIndividualModal" tabindex="-1" aria-labelledby="addIndividualModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addIndividualModalLabel">Add Individual</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form method="post" action="{{ route('users.store') }}">
+                        @csrf
+                        <div class="form-row edit-form modal-form">
+                            <input type="hidden" name="role_id" value="{{ App\Enums\UserRole::Individual }}">
+                            <div class="col input-item">
+                                <label for="name">Name</label>
+                                <input type="text" id="name" name="name" class="form-control">
                             </div>
                             <div class="col input-item">
-                                <label for="address">Address</label>
-                                <input type="text" id="address" name="address" class="form-control">
+                                <label for="email">Email</label>
+                                <input type="email" id="email" name="email" class="form-control">
                             </div>
                             <div class="col input-item">
                                 <label for="password">Password</label>
                                 <input type="password" id="password" name="password" class="form-control">
+                            </div>
+                            <div class="col input-item">
+                                <label for="password_confirmation">Confirm Password</label>
+                                <input type="password" id="password_confirmation" name="password_confirmation" class="form-control">
                             </div>
                         </div>
                         <div class="modal-button">
@@ -199,29 +233,12 @@
                                 <input type="email" id="email" name="email" class="form-control">
                             </div>
                             <div class="col input-item">
-                                <label for="phone">Business Phone Number</label>
-                                <input type="phone" id="phone" name="phone" class="form-control">
-                            </div>
-                            <div class="col input-item">
-                                <label for="business_website">Business Website</label>
-                                <input type="url" id="business_website" name="business_website"
-                                    class="form-control">
-                            </div>
-                            <div class="col input-item">
-                                <label for="business_type">Business Type</label>
-                                <input type="text" id="business_type" name="business_type" class="form-control">
-                            </div>
-                            <div class="col input-item">
-                                <label for="business_size">Business Size</label>
-                                <input type="number" id="business_size" name="business_size" class="form-control">
-                            </div>
-                            <div class="col input-item">
-                                <label for="address">Business Address</label>
-                                <input type="text" id="address" name="address" class="form-control">
-                            </div>
-                            <div class="col input-item">
                                 <label for="password">Password</label>
                                 <input type="password" id="password" name="password" class="form-control">
+                            </div>
+                            <div class="col input-item">
+                                <label for="password_confirmation">Confirm Password</label>
+                                <input type="password" id="password_confirmation" name="password_confirmation" class="form-control">
                             </div>
                         </div>
                         <div class="modal-button">

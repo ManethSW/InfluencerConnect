@@ -46,7 +46,3 @@
         </div>
     </div>
 @endsection
-
-@section('footer')
-    <x-footer />
-@endsection

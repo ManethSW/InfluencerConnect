@@ -9,7 +9,7 @@
             </div>
             <div class="card-avatar-frame">
                 <div class="card-avatar">
-                    @if ($image != null)
+                    @if ($image != "" )
                         <img src="{{ asset($image) }}" alt="{{ $alt }}">
 {{--                        @dd($image)--}}
                     @else

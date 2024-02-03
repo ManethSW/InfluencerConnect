@@ -22,6 +22,27 @@ class User extends Authenticatable
     {
         return $this->hasOne(InfluencerCard::class);
     }
+
+    // app/Models/User.php
+    public function influencerIndividualDetails()
+    {
+        return $this->hasOne(InfluencerIndividualDetail::class);
+    }
+
+    public function businessDetails()
+    {
+        return $this->hasOne(BusinessDetail::class);
+    }
+
+    public function verifications()
+    {
+        return $this->hasMany(Verification::class);
+    }
+
+    public function socialMedia()
+    {
+        return $this->hasOne(SocialMedia::class);
+    }
     /**
      * The attributes that are mass assignable.
      *

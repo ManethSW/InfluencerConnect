@@ -15,8 +15,8 @@ class UserTypeController extends Controller
         $userType = $request->input('user_type');
         $request->session()->put('user_type', $userType);
 
-        if ($userType === 'influencer') {
-            return redirect()->route('auth.register-influencer');
+        if ($userType === 'influencer' || $userType === 'individual') {
+            return redirect()->route('auth.register-influencer-individual');
         } elseif ($userType === 'business') {
             return redirect()->route('auth.register-business');
         } else {

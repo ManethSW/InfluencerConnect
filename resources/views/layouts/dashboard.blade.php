@@ -18,6 +18,7 @@
     @vite(['resources/sass/app.scss', 'resources/sass/dashboard.scss', 'resources/sass/dashboard-edit.scss', 'resources/js/app.js'])
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
     <script defer src="https://kit.fontawesome.com/582a81fd83.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 </head>
 
 <body id="body">
@@ -34,10 +35,77 @@
         </div>
         <div class="dashboard-content">
             @section('content')
-                <!-- Default content goes here -->
-                <div class="dashboard-default-content-container">
-                    <h2>Dashboard Analytics Coming Soon</h2>
-                    <p>Access Manage Features Through The Side Navigation</p>
+{{--                <!-- Default content goes here -->--}}
+{{--                <div class="dashboard-default-content-container">--}}
+{{--                    <h2>Dashboard Analytics Coming Soon</h2>--}}
+{{--                    <p>Access Manage Features Through The Side Navigation</p>--}}
+{{--                </div>--}}
+            <div class="first-section">
+                <div class="total-analytics-container">
+                    <div class="glass-effect">
+                        <div class="analytics-header">
+                            <div>
+                                <i class="fa-solid fa-users"></i>
+                                <h2>Total Users</h2>
+                            </div>
+                            <h2>1000</h2>
+                        </div>
+                        <div class="analytics-body">
+                            <div>
+                                <h3>Influences</h3>
+                                <h4>500</h4>
+                            </div>
+                            <div>
+                                <h3>Businesses</h3>
+                                <h4>500</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="total-analytics-container">
+                    <div class="glass-effect">
+                        <div class="analytics-header">
+                            <div>
+                                <i class="fa-solid fa-handshake"></i>
+                                <h2>Total Collaborations</h2>
+                            </div>
+                            <h2>1000</h2>
+                        </div>
+                        <div class="analytics-body">
+                            <div>
+                                <h3>Ongoing</h3>
+                                <h4>500</h4>
+                            </div>
+                            <div>
+                                <h3>Completed</h3>
+                                <h4>500</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="total-analytics-container">
+                    <div class="glass-effect">
+                        <div class="analytics-header">
+                            <div>
+                                <i class="fa-solid fa-file-import"></i>
+                                <h2>Total Proposals</h2>
+                            </div>
+                            <h2>1000</h2>
+                        </div>
+                        <div class="analytics-body">
+                            <div>
+                                <h3>Influences</h3>
+                                <h4>500</h4>
+                            </div>
+                            <div>
+                                <h3>Businesses</h3>
+                                <h4>500</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                <div id="chart">
                 </div>
             @show
         </div>
@@ -66,3 +134,41 @@
 </body>
 
 </html>
+
+<script>
+    var options = {
+        series: [{
+            name: "Desktops",
+            data: [10, 41, 35, 51, 49, 62, 69, 91, 148]
+        }],
+        chart: {
+            height: 350,
+            type: 'line',
+            zoom: {
+                enabled: false
+            }
+        },
+        dataLabels: {
+            enabled: false
+        },
+        stroke: {
+            curve: 'straight'
+        },
+        title: {
+            text: 'Product Trends by Month',
+            align: 'left'
+        },
+        grid: {
+            row: {
+                colors: ['#f3f3f3', 'transparent'], // takes an array which will be repeated on columns
+                opacity: 0.5
+            },
+        },
+        xaxis: {
+            categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep'],
+        }
+    };
+
+    var chart = new ApexCharts(document.querySelector("#chart"), options);
+    chart.render();
+</script>
