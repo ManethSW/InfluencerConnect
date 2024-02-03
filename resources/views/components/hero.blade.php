@@ -1,5 +1,9 @@
 <div class="hero">
     <div class="hero-container">
+        {{-- <script src="https://cdn.lordicon.com/lordicon.js"></script>
+        <lord-icon src="https://cdn.lordicon.com/abwrkdvl.json" trigger="loop" state="loop-all"
+           class="animated-icon" style="width:250px;height:250px">
+        </lord-icon> --}}
         <div class="hero-header">
             <h1>Connect With Influencers,</h1>
             <h1>Grow Your Business</h1>

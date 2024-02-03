@@ -1,15 +1,4 @@
-:root {
-    --primary-color: rgb(255, 93, 38);
-    --primary-color-75: rgba(255, 93, 38, 75%);
-    --primary-color-50: rgba(255, 93, 38, 50%);
-    --primary-color-25: rgba(255, 93, 38, 25%);
-    --primary-color-10: rgba(255, 93, 38, 10%);
-    --secondary-color: rgb(17, 17, 17);
-    --secondary-color-75: rgba(17, 17, 17, 75%);
-    --secondary-color-50: rgba(17, 17, 17, 50%);
-    --secondary-color-25: rgba(17, 17, 17, 25%);
-    --secondary-color-10: rgba(17, 17, 17, 10%);
-}
+@import 'dashboard-navbar.scss';
 
 * {
     margin: 0;
@@ -24,7 +13,7 @@ body {
 
 .dashboard-body {
     width: 100%;
-    margin-left: 243px;
+    margin-left: 195px;
 }
 
 .dashboard-default-content-container {
@@ -56,6 +45,10 @@ body {
     padding: 20px 20px;
 }
 
+.dashboard-header-logo {
+    height: 22.5px;
+}
+
 .dashboard-header h1 {
     width: fit-content;
     font-family: 'tripsansultra';
@@ -81,48 +74,6 @@ ol,
 ul {
     margin: 0;
     padding: 0;
-}
-
-.nav-items {
-    display: grid;
-    padding-top: 20px;
-    border-bottom: 2px solid rgb(17, 17, 17, 5%);
-}
-
-.nav-items h3,
-.logout {
-    font-family: 'Archivo', sans-serif;
-    font-weight: 900;
-    font-size: 18px;
-    padding-left: 20px;
-    padding-bottom: 20px;
-}
-
-.nav-item-dashboard {
-    display: flex;
-    flex-direction: row;
-    column-gap: 10px;
-    align-items: center;
-    padding: 10px 0px 10px 20px;
-    transition: all 0.3s ease-in;
-}
-
-.nav-item-dashboard i {
-    font-size: 15px;
-}
-
-.nav-item-dashboard a {
-    font-family: 'Archivo', sans-serif;
-    font-size: 15px;
-}
-
-.nav-item-dashboard:hover {
-    background-color: var(--primary-color-25);
-}
-
-.logout {
-    padding: 10px 0px 10px 20px;
-    border-top: 2px solid var(--secondary-color-25);
 }
 
 .feedback-popup {

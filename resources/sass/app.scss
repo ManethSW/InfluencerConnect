@@ -7,7 +7,6 @@
 @import 'bootstrap/scss/bootstrap';
 @import 'navbar.scss';
 @import 'home.scss';
-@import 'dashboard-navbar.scss';
 
 :root {
     --primary-color: rgb(255, 93, 38);
@@ -16,9 +15,11 @@
     --primary-color-25: rgba(255, 93, 38, 25%);
     --primary-color-10: rgba(255, 93, 38, 10%);
     --secondary-color: rgb(17, 17, 17);
+    --secondary-color-85: rgba(17, 17, 17, 85%);
     --secondary-color-75: rgba(17, 17, 17, 75%);
     --secondary-color-50: rgba(17, 17, 17, 50%);
     --secondary-color-25: rgba(17, 17, 17, 25%);
+    --secondary-color-15: rgba(17, 17, 17, 15%);
     --secondary-color-10: rgba(17, 17, 17, 10%);
 }
 
@@ -26,6 +27,10 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+}
+
+h1, h2, h3, h4 {
+    margin: 0px 0px 0px;
 }
 
 body {
@@ -166,7 +171,7 @@ p {
 }
 
 .navbar-toggler {
-    padding: 0px; 
+    padding: 0px;
     font-size: 25px;
     line-height: 0;
     color: none;
@@ -176,7 +181,7 @@ p {
     transition: var(--bs-navbar-toggler-transition);
 }
 
-//change the color of the navbar-toggler-icon when it is presed 
+//change the color of the navbar-toggler-icon when it is presed
 .navbar-toggler:focus {
     outline: none;
     box-shadow: none;
@@ -186,7 +191,7 @@ p {
     .container {
         max-width: 1320px;
     }
-    
+
     .navbar-nav {
         column-gap: 20px;
     }
@@ -194,82 +199,82 @@ p {
     .navbar-brand img {
         height: 50px;
     }
-    
+
     .nav-item .btn {
         width: 138px;
         height: 50px;
         border-radius: 8px;
         font-size: 18px;
     }
-    
+
     .btn-login {
         border: 4px solid #FF5D26;
     }
-    
+
     .btn-login:hover {
         border: 4px solid #FF5D26;
     }
-    
+
     .btn-register {
         border: 4px solid #FF5D26;
     }
-    
+
     .form-header-register {
         margin-top: 30px;
     }
-    
+
     .form-header-register p {
         font-size: 20px;
     }
-    
+
     .user-dropdown {
         font-size: 15px;
         border-radius: 8px;
         padding: 5px 17.5px!important;
     }
-    
+
     .dropdown-toggle::after {
         vertical-align: 0.1em;
     }
-    
+
     .normal-link {
         font-size: 15px;
     }
-    
+
     .active-custom::after {
         height: 3px;
     }
-    
+
     .dropdown-divider {
         margin: 0 0;
     }
-    
+
     .dropdown-item {
         padding: 5px 12px;
     }
-    
+
     .dropdown-menu a {
         font-size: 15px;
     }
-    
+
     .footer-content {
         max-width: 1100px!important;
         margin-top: 75px;
     }
-    
+
     .footer-links {
         padding: 17.5px!important;
         column-gap: 30px;
     }
-    
+
     .footer-links a {
         font-size: 20px;
     }
-    
+
     .footer-text {
         margin: 20px 0px;
     }
-    
+
     .footer-text p, .useful-links a, .contact p {
         font-size: 12.5px;
     }
@@ -277,15 +282,15 @@ p {
     .useful-links h6 {
         margin-bottom: 5px;
     }
-    
+
     .contact h6 {
         margin-bottom: 5px;
     }
-    
+
     .footer-copyright {
         padding: 10px!important;
     }
-    
+
     .footer-copyright p, .footer-copyright a {
         font-size: 12.5px;
     }

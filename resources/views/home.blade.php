@@ -7,9 +7,13 @@
 @section('content')
     <div class="container home-container justify-content-center">
         @include('components.hero')
-        <div class="influencers">
-            <div class="influencer-header">
-                <h2>Featured Influencers</h2>
+        <div class="section">
+            <div class="section-header">
+                <div class="section-header-content">
+                    <h2>Featured Influencers</h2>
+                    <h4>Get in touch with the best</h4>
+                </div>
+                <div class="section-header-divider"></div>
             </div>
             <div id="carouselExampleIndicators" class="container-carousel carousel slide">
                 <div class="carousel-inner">

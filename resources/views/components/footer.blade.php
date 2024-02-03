@@ -66,10 +66,7 @@
         </div>
         </section>
     </div>
-
-    <!-- Copyright -->
     <div class="footer-copyright text-center p-4">
         <a class="text-reset fw-bold" href="#">© 2021 Copyright: influencerconnect.com</a>
     </div>
-    <!-- Copyright -->
 </footer>

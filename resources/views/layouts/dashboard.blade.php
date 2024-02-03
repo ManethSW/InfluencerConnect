@@ -26,7 +26,10 @@
     </div>
     <main class="dashboard-body">
         <div class="dashboard-header">
-            <h1>DASHBOARD</h1>
+            <a href="{{ url('/') }}">
+                <img src="/images/influencer_connect_logo.png" alt="Influencer Connect"  class="dashboard-header-logo">
+            </a>
+            {{-- <h1>DASHBOARD</h1> --}}
             <h2>{{ Auth::user()->name }}</h2>
         </div>
         <div class="dashboard-content">

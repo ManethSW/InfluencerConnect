@@ -1,9 +1,10 @@
-.nav-items h3 {
+
+.side-navbar-items h3 {
     margin: 0px;
     padding: 0px;
 }
 
-.side-bar {
+.side-navbar {
     position: fixed;
     left: 0;
     top: 0;
@@ -18,16 +19,64 @@
     width: fit-content;
 }
 
-.side-bar-top {
+.side-navbar-top {
     display: flex;
     flex-direction: column;
 }
 
-.navbar-logo {
-    height: 20px;
+.side-navbar-header {
+    font-family: 'tripsansbold';
+    font-size: 25px;
+    color: var(--primary-color);
+    padding: 16px 25px;
+    margin: 0px;
+    border-bottom: 2px solid var(--secondary-color-25);
 }
 
-.navbar-brand {
-    padding: 30px 20px;
-    border-bottom: 2px solid var(--secondary-color-25);
+.side-navbar-items {
+    display: grid;
+    border-bottom: 2px solid rgb(17, 17, 17, 5%);
+}
+
+.side-navbar-items h3,
+.side-navbar-main-link,
+.logout {
+    font-family: 'tripsansbold';
+    font-size: 18px;
+    color: var(--secondary-color-75);
+    padding-top: 16px;
+    padding-left: 25px;
+    padding-bottom: 16px;
+}
+
+.side-navbar-main-link {
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.side-navbar-item-links {
+    display: flex;
+    flex-direction: row;
+    column-gap: 10px;
+    align-items: center;
+    padding: 10px 0px 10px 25px;
+    transition: all 0.3s ease-in;
+}
+
+.side-navbar-item-links i {
+    font-size: 15px;
+}
+
+.side-navbar-item-links a {
+    font-family: 'Archivo', sans-serif;
+    font-size: 15px;
+}
+
+.side-navbar-item-links:hover {
+    background-color: var(--primary-color-25);
+}
+
+.logout {
+    padding: 10px 0px 10px 20px;
+    border-top: 2px solid var(--secondary-color-25);
 }

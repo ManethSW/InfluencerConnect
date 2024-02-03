@@ -1,0 +1,224 @@
+.influencer-card h3,
+.influencer-card h4 {
+    margin-bottom: 0px;
+}
+
+.influencer-card {
+    width: 280px;
+    cursor: default;
+    border-radius: 25px;
+    transition: all 0.3s ease-in-out 0s;
+}
+
+.influencer-card:hover {
+    box-shadow: 0px 20px 43px 0px rgba(0, 0, 0, 10%);
+}
+
+.influencer-card:hover .card-section:nth-of-type(1) {
+    border: 3px solid var(--secondary-color);
+}
+
+.influencer-card:hover .card-section:nth-of-type(2) {
+    border: 3px solid var(--primary-color);
+    border-top: none;
+}
+
+.card-section {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    transition: all 0.3s ease-in-out 0s;
+}
+
+.card-section:nth-of-type(1) {
+    background-image: url("../../public/Images/hero.png");
+    background-size: cover;
+    background-position: center;
+    border: 3px solid var(--secondary-color-75);
+    border-radius: 25px 25px 0 0;
+    overflow: hidden;
+}
+
+.card-section-one {
+    background-color: rgba(255, 255, 255, 0.75);
+    backdrop-filter: blur(10.0px);
+    padding: 15px;
+    padding-top: 25px;
+}
+
+.card-section:nth-of-type(2) {
+    border: 3px solid var(--secondary-color-15);
+    border-top: none;
+    padding: 15px;
+    background-color: rgba($color: #FFFFFF, $alpha: 0.80);
+    border-radius: 0 0 25px 25px;
+}
+
+.card-rating {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    display: flex;
+    flex-direction: row;
+    column-gap: 5px;
+}
+
+.card-rating h3 {
+    font-family: 'tripsansbold';
+    font-size: 20px;
+    height: fit-content;
+    margin: auto 0;
+}
+
+.card-avatar-frame {
+    border: 3px solid var(--primary-color-75);
+    width: fit-content;
+    margin: 0 auto;
+    border-radius: 40px;
+    padding: 4px;
+}
+
+.card-avatar {
+    width: 100px;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba($color: #FFFFFF, $alpha: 0.8);
+    border-radius: 34px;
+}
+
+.card-avatar img {
+    height: 100%;
+    object-fit: cover;
+    border-radius: 34px;
+}
+
+.card-avatar i {
+    font-size: 25px;
+    color: var(--secondary-color-85);
+}
+
+.card-info {
+    margin-top: 15px;
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+}
+
+.card-info h3 {
+    font-family: 'tripsansbold';
+    font-size: 20px;
+    text-align: center;
+    margin-bottom: 0px;
+    color: var(--primary-color-100);
+}
+
+.card-info h4 {
+    font-family: 'tripsansmedium';
+    font-size: 20px;
+    text-align: center;
+    margin-bottom: 0px;
+    color: var(--primary-color-85);
+}
+
+.card-links {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin-top: 15px;
+    column-gap: 20px;
+}
+
+.card-links i {
+    font-size: 20px;
+    color: var(--secondary-color-85);
+    transition: all 0.3s ease-in-out;
+}
+
+.link-divider {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background-color: var(--primary-color-50);
+}
+
+.card-analytics {
+    width: fit-content;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    column-gap: 50px;
+    margin: 0px auto;
+}
+
+.card-analytics div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.card-analytics h3 {
+    font-family: 'tripsansbold', serif;
+    font-size: 20px;
+    color: var(--secondary-color);
+}
+
+.card-analytics h4 {
+    font-family: 'tripsansbold', serif;
+    font-size: 20px;
+    color: var(--primary-color);
+}
+
+.card-action-buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    column-gap: 15px;
+    margin-top: 15px;
+}
+
+.card-action-buttons button {
+    background-color: var(--secondary-color-10);
+    border-radius: 15px;
+    border: 2px solid transparent;
+    transition: all 0.3s ease-in-out;
+}
+
+.card-action-buttons button:hover {
+    background-color: rgba($color: #FFFFFF, $alpha: 0.80);
+    border: 2px solid var(--secondary-color-75);
+}
+
+.card-action-buttons button:hover i,
+.card-action-buttons button:hover h3{
+    color: var(--primary-color);
+}
+
+.card-action-buttons .chat {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    column-gap: 15px;
+    width: 100%;
+}
+
+.card-action-buttons h3 {
+    font-family: 'tripsansbold';
+    font-size: 20px;
+    color: var(--secondary-color);
+}
+
+.card-action-buttons i {
+    font-size: 14px;
+}
+
+.card-action-buttons .view {
+    padding: 10px 20px;
+}
+
+.card-action-buttons .view i {
+    scale: 1.25;
+}
