@@ -1,16 +1,119 @@
-.first-section {
+.analytics-section-one {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    margin-top: 45px;
 }
 
-.total-analytics-container {
+.total-analytics-container, .growth-chart {
     background-image: url("../../public/Images/hero.png");
     background-size: cover;
     background-position: center;
+    border: 3px solid var(--secondary-color-50);
+    border-radius: 25px;
+    overflow: hidden;
 }
 
 .glass-effect {
     background-color: rgba(255, 255, 255, 0.75);
     backdrop-filter: blur(10.0px);
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    row-gap: 15px;
+}
+
+.analytics-header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.analytics-header div {
+    display: flex;
+    column-gap: 15px;
+    align-items: center;
+}
+
+.analytics-header i, .chart-header i {
+    font-size: 14px;
+}
+
+.analytics-header h2, .chart-header h2 {
+    font-family: 'tripsansbold', serif;
+    font-size: 20px;
+}
+
+.analytics-amount {
+    color: var(--primary-color);
+}
+
+.analytics-body-content {
+    display: grid;
+    grid-template-columns: 1fr;
+    justify-content: center;
+    align-items: center;
+}
+
+.piechart {
+    margin: 25px auto 0px auto !important;
+}
+
+.data-label-class {
+    text-shadow: none !important;
+    box-shadow: none !important;
+}
+
+.analytics-body {
+    display: flex;
+    flex-direction: row;
+    column-gap: 25px;
+    justify-content: space-between;
+}
+
+.analytics-body div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    row-gap: 5px;
+    border: 3px solid var(--primary-color-75);
+    padding: 10px 15px;
+    border-radius: 15px;
+    background-color: rgba(255, 255, 255, 0.75);
+}
+
+.analytics-body div h3 {
+    font-family: 'tripsansbold', serif;
+    font-size: 18px;
+    text-align: center;
+}
+
+.analytics-body div h4 {
+    font-family: 'tripsansbold', serif;
+    font-size: 20px;
+    text-align: center;
+    color: var(--primary-color);
+}
+
+.analytics-section-two {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin-top: 45px;
+    column-gap: 50px;
+}
+
+.growth-chart {
+    display: flex;
+    flex-direction: column;
+    row-gap: 15px;
+}
+
+.chart-header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    column-gap: 10px;
+}
+
+.apexcharts-xaxis-tick {
+    stroke: var(--secondary-color) !important; // Change the color of the ticks here
 }

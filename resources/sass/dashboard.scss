@@ -1,5 +1,21 @@
+@import 'variables';
 @import 'dashboard-navbar.scss';
 @import "total-analytics.scss";
+
+:root {
+    --primary-color: rgb(255, 93, 38);
+    --primary-color-75: rgba(255, 93, 38, 75%);
+    --primary-color-50: rgba(255, 93, 38, 50%);
+    --primary-color-25: rgba(255, 93, 38, 25%);
+    --primary-color-10: rgba(255, 93, 38, 10%);
+    --secondary-color: rgb(17, 17, 17);
+    --secondary-color-85: rgba(17, 17, 17, 85%);
+    --secondary-color-75: rgba(17, 17, 17, 75%);
+    --secondary-color-50: rgba(17, 17, 17, 50%);
+    --secondary-color-25: rgba(17, 17, 17, 25%);
+    --secondary-color-15: rgba(17, 17, 17, 15%);
+    --secondary-color-10: rgba(17, 17, 17, 10%);
+}
 
 * {
     margin: 0;
@@ -69,6 +85,10 @@ body {
 
 .dashboard-content {
     padding: 0px 50px;
+}
+
+.analytics {
+    margin-top: 25px;
 }
 
 ol,
