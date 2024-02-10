@@ -7,12 +7,12 @@ use Illuminate\Support\Facades\Schema;
 return new class extends Migration {
     public function up(): void
     {
-        Schema::create('', function (Blueprint $table) {
+        Schema::create('projects', function (Blueprint $table) {
             $table->id();
-            $table->tinyInteger('user_id');
+            $table->foreignId('user_id')->constrained('users');
             $table->string('title');
-            $table->string('description');
-            $table->string('url');
+            $table->text('description');
+            $table->string('url')->nullable();
             $table->string('image1');
             $table->string('image2')->nullable();
             $table->string('image3')->nullable();
@@ -22,6 +22,6 @@ return new class extends Migration {
 
     public function down(): void
     {
-        Schema::dropIfExists('');
+        Schema::dropIfExists('projects');
     }
 };

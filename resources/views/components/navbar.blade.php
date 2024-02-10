@@ -74,7 +74,7 @@
                             @endif
                             <a href="{{ route('profile') }}"
                                class=" hover:bg-gray-200 dark:hover:bg-gray-600 dark:hover:text-white">Profile</a>
-                            <a href="{{ route('profile') }}"
+                            <a href="{{ route('collaborations') }}"
                                class=" hover:bg-gray-200 dark:hover:bg-gray-600 dark:hover:text-white">Collaborations</a>
                             <a href="#"
                                class=" hover:bg-gray-200 dark:hover:bg-gray-600 dark:hover:text-white">Earnings</a>

@@ -22,7 +22,6 @@ class DatabaseSeeder extends Seeder
             'password' => Hash::make('admin1234'),
             'role_id' => UserRole::SuperAdministrator,
             'status' => 1,
-            'verification_status' => 0,
         ]);
 
 //        \App\Models\User::create([

@@ -22,8 +22,8 @@ return new class extends Migration {
             $table->string('gender')->nullable();
             $table->string('avatar')->nullable();
             $table->string('banner')->nullable();
-            $table->string('status')->default(1);
-            $table->timestamp('verification_status')->default(0);
+            $table->string('status')->default(0);
+            $table->timestamp('verified')->default(0);
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();

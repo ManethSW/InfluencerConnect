@@ -7,15 +7,18 @@ use Illuminate\Support\Facades\Schema;
 return new class extends Migration {
     public function up(): void
     {
-        Schema::create('influencer_cards', function (Blueprint $table) {
+        Schema::create('support_tickets', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained('users');
+            $table->foreignId('sender_id')->constrained('users');
+            $table->string('subject');
+            $table->text('message');
+            $table->tinyInteger('status')->default(0);
             $table->timestamps();
         });
     }
 
     public function down(): void
     {
-        Schema::dropIfExists('influencer_cards');
+        Schema::dropIfExists('support_tickets');
     }
 };

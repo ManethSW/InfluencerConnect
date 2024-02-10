@@ -1,0 +1,61 @@
+@import "incomig-offers.scss";
+
+.collaborations-container{
+    max-width: 1320px;
+    margin: 50px auto;
+}
+
+.collaborations-header{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.header-content {
+    display: flex;
+    align-items: flex-end;
+    column-gap: 5px;
+}
+
+.header-content h2 {
+    font-family: 'tripsansultra';
+    font-size: 25px;
+}
+
+.header-content h4 {
+    font-family: 'tripsansmedium';
+    font-size: 20px;
+    color: var(--primary-color);
+}
+
+.header-navigation {
+    display: flex;
+    column-gap: 15px;
+}
+
+.header-navigation a {
+    font-family: 'tripsansbold';
+    font-size: 16px;
+    color: var(--primary-color);
+    text-decoration: none;
+    border: 2px solid var(--primary-color);
+    border-radius: 50px;
+    padding: 2.5px 15px;
+    transition: all 0.3s ease-in-out;
+}
+
+.header-navigation a:hover {
+    background-color: var(--primary-color);
+    color: #FFFFFF;
+}
+
+.header-navigation .active {
+    background-color: var(--primary-color)!important;
+    color: #FFFFFF!important;
+}
+
+.collaborations-body {
+    margin-top: 25px;
+}

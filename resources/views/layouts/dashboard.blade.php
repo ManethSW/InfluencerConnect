@@ -118,7 +118,6 @@
                                 <i class="fa-solid fa-sack-dollar"></i>
                                 <h2>Payments</h2>
                             </div>
-{{--                            <h2 class="analytics-amount">100</h2>--}}
                         </div>
                         <div>
                             <div class="analytics-body">

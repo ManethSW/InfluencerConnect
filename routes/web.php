@@ -28,6 +28,10 @@ Route::get('profile', function () {
     return view('profile');
 })->name('profile');
 
+Route::get('collaborations', function () {
+    return view('collaborations');
+})->name('collaborations');
+
 Route::middleware(['superadmin'])->group(function () {
     Route::get('/dashboard', function () {
         return view('layouts.dashboard');
@@ -51,6 +55,7 @@ Route::prefix('dashboard')->middleware(['superadmin'])->group(function () {
 
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/collaborations', [App\Http\Controllers\CollaborationsController::class, 'show'])->name('collaborations');
 
 Route::get('/', function () {
     $influencerCards = InfluencerCard::with('user', 'influencerCategory')->get();

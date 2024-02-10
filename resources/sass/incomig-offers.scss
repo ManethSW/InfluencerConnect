@@ -1,0 +1,246 @@
+.offer-body {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 50px;
+    justify-content: space-between;
+}
+
+.incoming-offer-container {
+    background-image: url("../../public/Images/hero.png");
+    background-size: cover;
+    background-position: center;
+    border: 3px solid var(--secondary-color-75);
+    border-radius: 25px;
+    overflow: hidden;
+}
+
+.glass-effect {
+    background-color: rgba(255, 255, 255, 0.75);
+    backdrop-filter: blur(10.0px);
+    padding: 20px 20px 15px 20px;
+    display: flex;
+    flex-direction: column;
+    row-gap: 25px;
+}
+
+.offer-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.offer-user {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    column-gap: 15px;
+}
+
+.offer-user i {
+    font-size: 16px;
+    border: 2px solid var(--primary-color);
+    border-radius: 50%;
+    padding: 12.5px;
+    color: var(--secondary-color-50);
+    background: rgba(255, 255, 255, 0.5);
+}
+
+.offer-user h2 {
+    font-family: 'tripsansultra';
+    font-size: 20px;
+    color: var(--secondary-color);
+}
+
+.offer-budget {
+    font-family: 'tripsansbold';
+    font-size: 20px;
+    color: rgba(255, 255, 255, 1);
+    background: var(--secondary-color-75);
+    border-radius: 100px;
+    padding: 5px 15px;
+}
+
+.offer-title-date {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.offer-title-date h3, .offer-task-section h3 {
+    font-family: 'tripsansbold';
+    font-size: 20px;
+    color: var(--secondary-color);
+}
+
+.offer-description, .offer-task-list h4 {
+    font-family: 'tripsansmedium';
+    font-size: 16px;
+    text-align: justify;
+    color: var(--secondary-color-75);
+    background: rgba(255, 255, 255, 0.75);
+    padding: 15px;
+    border-radius: 15px;
+}
+
+.offer-actions {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.offer-actions .main {
+    display: flex;
+    flex-direction: row;
+    column-gap: 15px;
+}
+
+.offer-actions i {
+    font-size: 18px;
+}
+
+.offer-actions button {
+    font-family: 'tripsansbold';
+    font-size: 16px;
+    border-radius: 15px;
+    padding: 0px 15px;
+    height: 40px;
+    transition: all 0.3s ease-in-out;
+    background-color: #FFFFFF;
+}
+
+.offer-actions .main button {
+    display: flex;
+    align-items: center;
+    column-gap: 15px;
+}
+
+.offer-actions .main button h3 {
+    font-family: 'tripsansbold';
+    font-size: 18px;
+}
+
+.decline {
+    border: 2px solid #FF5861;
+    color: #FF5861;
+}
+
+.decline h3 {
+    color: #FF5861;
+}
+
+.accept {
+    border: 2px solid #00A96E;
+    color: #00A96E;
+}
+
+.accept h3 {
+    color: #00A96E;
+}
+
+.other {
+    display: flex;
+    flex-direction: row;
+    column-gap: 15px;
+}
+
+.other button {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    column-gap: 15px;
+    border: 2px solid var(--primary-color);
+}
+
+.other button h3 {
+    font-family: 'tripsansbold';
+    font-size: 18px;
+    color: var(--primary-color);
+}
+
+.other i {
+    font-size: 16px;
+    color: var(--primary-color);
+}
+
+.custom-modal-width {
+    max-width: 1000px;
+}
+
+.modal-content {
+    border: 25px;
+    background-color: transparent;
+}
+
+.modal-close-section {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    column-gap: 10px;
+}
+
+.modal-close-section button {
+    font-size: 20px;
+    transition: all 0.3s ease-in-out;
+}
+
+.offer-task-list {
+    display: flex;
+    flex-direction: column;
+    row-gap: 15px;
+    margin-top: 25px;
+}
+
+.offer-task-list h4 {
+    color: white;
+    background: none;
+}
+
+.offer-task {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--secondary-color-75);
+    border-radius: 15px;
+}
+
+.offer-task-priority {
+    width: 12.5px;
+    height: 12.5px;
+    border-radius: 50%;
+    margin-right: 20px;
+    background: var(--primary-color);
+}
+
+.high-priority {
+    background: #FF5861;
+}
+
+.medium-priority {
+    background: #FFA761;
+}
+
+.low-priority {
+    background: #00A96E;
+}
+
+.showcase-priority {
+    display: flex;
+    flex-direction: row;
+    column-gap: 10px;
+    align-items: center;
+}
+
+.showcase-priority div {
+    display: flex;
+    flex-direction: row;
+    column-gap: 5px;
+    align-items: center;
+}
+
+.showcase-priority div h4 {
+    font-family: 'tripsansmedium';
+    font-size: 16px;
+    color: var(--secondary-color-75);
+}

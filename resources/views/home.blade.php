@@ -1,8 +1,8 @@
 @extends('layouts.app')
 
-@php
-    $chunkedInfluencerCards = $influencerCards->chunk(4);
-@endphp
+{{--@php--}}
+{{--    $chunkedInfluencerCards = $influencerCards->chunk(4);--}}
+{{--@endphp--}}
 
 @section('content')
     <div class="container home-container justify-content-center">
@@ -17,21 +17,75 @@
             </div>
             <div id="carouselExampleIndicators" class="container-carousel carousel slide">
                 <div class="carousel-inner">
-                    @foreach ($chunkedInfluencerCards as $index => $chunk)
-                        <div class="carousel-item {{ $index === 0 ? 'active' : '' }}">
-                            <div class="items">
-                                @foreach ($chunk as $influencerCard)
-                                    @if ($influencerCard->visible)
-                                        <x-influencer-card image="storage/{{ $influencerCard->avatar }}" alt="influencer"
-                                            name="{{ $influencerCard->user->name }}"
-                                            category="{{ $influencerCard->influencerCategory->name }}"
-                                            rating="{{ $influencerCard->rating }}"
-                                            description="{{ $influencerCard->description }}" />
-                                    @endif
-                                @endforeach
+{{--                    @foreach ($chunkedInfluencerCards as $index => $chunk)--}}
+{{--                        <div class="carousel-item {{ $index === 0 ? 'active' : '' }}">--}}
+{{--                            <div class="items">--}}
+{{--                                @foreach ($chunk as $influencerCard)--}}
+{{--                                    @if ($influencerCard->visible)--}}
+{{--                                        <x-influencer-card image="storage/{{ $influencerCard->avatar }}" alt="influencer"--}}
+{{--                                            name="{{ $influencerCard->user->name }}"--}}
+{{--                                            category="{{ $influencerCard->influencerCategory->name }}"--}}
+{{--                                            rating="{{ $influencerCard->rating }}"--}}
+{{--                                            description="{{ $influencerCard->description }}" />--}}
+{{--                                    @endif--}}
+{{--                                @endforeach--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                    @endforeach--}}
+                    <div class="influencer-card">
+                        <div class="card-section">
+                            <div class="card-section-one">
+                                <div class="card-rating">
+                                    <h3>4.5</h3>
+                                    <img src="/icons/star-filled.svg" alt="star">
+                                </div>
+                                <div class="card-avatar-frame">
+                                    <div class="card-avatar">
+{{--                                        @if ($image != "" )--}}
+{{--                                            <img src="{{ asset($image) }}" alt="{{ $alt }}">--}}
+                                            {{--                        @dd($image)--}}
+{{--                                        @else--}}
+                                            <i class="fa-solid fa-user"></i>
+{{--                                        @endif--}}
+                                    </div>
+                                </div>
+                                <div class="card-info">
+                                    <h3>Maneth Weerasinghe</h3>
+                                    <h4>Health & Fitness</h4>
+                                </div>
+                                <div class="card-links">
+                                    <a href="#"><i class="fa-brands fa-linkedin"></i></a>
+                                    <div class="link-divider"></div>
+                                    <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                                    <div class="link-divider"></div>
+                                    <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
+                                    <div class="link-divider"></div>
+                                    <a href="#"><i class="fa-brands fa-facebook"></i></a>
+                                </div>
                             </div>
                         </div>
-                    @endforeach
+                        <div class="card-section">
+                            <div class="card-analytics">
+                                <div>
+                                    <h3>Collabs</h3>
+                                    <h4>12</h4>
+                                </div>
+                                <div>
+                                    <h3>Reviews</h3>
+                                    <h4>12</h4>
+                                </div>
+                            </div>
+                            <div class="card-action-buttons">
+                                <button class="chat">
+                                    <i class="fa-solid fa-comment"></i>
+                                    <h3>Chat</h3>
+                                </button>
+                                <button class="view">
+                                    <i class="fa-solid fa-arrow-right"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
                     data-bs-slide="prev">
