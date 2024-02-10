@@ -4,6 +4,7 @@ namespace App\Enums;
 
 enum UserRole: int
 {
+    // Backend roles
     case SuperAdministrator = 1;
     case Administrator = 2;
     case ContentModerator = 3;
@@ -14,8 +15,7 @@ enum UserRole: int
     case AdvertisementManager = 8;
     case SupportManager = 9;
 
+    // Front end roles
     case Influencer = 10;
-
     case Business = 11;
-    case Individual = 12;
 }

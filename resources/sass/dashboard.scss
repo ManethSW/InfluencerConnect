@@ -1,6 +1,7 @@
 @import 'variables';
 @import 'dashboard-navbar.scss';
 @import "total-analytics.scss";
+@import 'dashboard-collaborations.scss';
 
 :root {
     --primary-color: rgb(255, 93, 38);
@@ -175,7 +176,7 @@ ul {
     // box-shadow: 0px 10px 50px 0px rgba(0, 0, 0, 25%);
 }
 
-.search:hover>img {
+.search:hover > img {
     opacity: 0.75;
 }
 
@@ -183,7 +184,7 @@ ul {
     color: rgba(17, 17, 17, 100%);
 }
 
-.search input:focus+img {
+.search input:focus + img {
     opacity: 1;
 }
 
@@ -235,59 +236,138 @@ ul {
 
 .table-column-id {
     width: 1%;
-  }
+}
 
-  .table-column-name {
+.table-column-name {
     width: 20%;
-  }
+}
 
-  .table-column-email {
+.table-column-email {
     width: 20%;
-  }
+}
 
-  .table-column-status {
-    width: 10%;
-  }
+.table-column-status {
+    width: 15%;
+}
 
-  .table-column-role {
-    width: 20%;
-  }
+.table-column-role {
+    width: 15%;
+}
 
-  .table-column-actions {
+.table-column-actions {
     width: 29%;
-  }
+    height: 100%;
+}
+
+.table th, td {
+    font-size: 14px;
+}
+
+.table th {
+    font-family: 'tripsansmedium', serif;
+}
 
 .status {
+    width: fit-content;
+    height: 35px;
     display: flex;
     align-items: center;
-    column-gap: 10px;
+    column-gap: 15px;
+    padding: 0px 20px;
+    border-radius: 100px;
+}
+
+.status p {
+    font-family: "tripsansmedium", serif;
+    font-size: 12px;
 }
 
 .status-badge {
-    width: 10px;
-    height: 10px;
+    width: 7px;
+    height: 7px;
     border-radius: 10px;
 }
 
-.active {
+.orange {
+    background-color: rgba(255, 93, 38, 0.15);
+    border: 2px solid var(--primary-color);
+}
+
+.orange p {
+    color: var(--primary-color);
+}
+
+.orange .status-badge {
+    background-color: var(--primary-color);
+}
+
+.yellow {
+    background-color: rgba(250, 202, 19, 0.15);
+    border: 2px solid #FACA13;
+}
+
+.yellow p {
+    color: #FACA13;
+}
+
+.yellow .status-badge {
+    background-color: #FACA13;
+}
+
+.green {
+    background-color: rgba(50, 205, 50, 0.15);
+    border: 2px solid #32CD32;
+}
+
+.green p {
+    color: #32CD32;
+}
+
+.green .status-badge {
     background-color: #32CD32;
 }
 
-.inactive {
-    background-color: #FF0000;
+.red {
+    background-color: rgba(255, 52, 63, 0.15);
+    border: 2px solid #FF343F;
+}
+
+.red p {
+    color: #FF343F;
+}
+
+.red .status-badge {
+    background-color: #FF343F;
+}
+
+.active .status-badge {
+    background-color: #00A96E;
+}
+
+.inactive .status-badge {
+    background-color: #FF343F;
 }
 
 .action-btns {
+    height: 100%;
     display: flex;
     column-gap: 10px;
 }
 
 .action-btn {
+    display: flex;
+    column-gap: 15px;
+    align-items: center;
     width: fit-content;
-    padding: 0px 10px;
+    height: 35px;
+    padding: 0 15px;
     border-radius: 10px;
-    font-family: "tripsansbold";
-    font-size: 15px;
+    font-family: "tripsansmedium", serif;
+    font-size: 14px;
+}
+
+.action-btn i {
+    font-size: 12px;
 }
 
 .edit-btn {
@@ -302,14 +382,14 @@ ul {
 }
 
 .suspend-btn {
-    border: 2px solid #FFA500;
-    color: #FFA500;
+    border: 2px solid #FACA13;
+    color: #FACA13;
     border-radius: 10px;
     transition: 0.3s all ease-in;
 }
 
 .suspend-btn:hover {
-    background-color: #FFA500;
+    background-color: #FACA13;
     color: white;
 }
 
@@ -326,15 +406,48 @@ ul {
 }
 
 .delete-btn {
-    border: 2px solid #FF0000 !important;
-    color: #FF0000 !important;
+    border: 2px solid #FF343F;
+    color: #FF343F;
     border-radius: 10px;
     transition: 0.3s all ease-in;
 }
 
 .delete-btn:hover {
-    background-color: #FF0000 !important;
-    color: white !important;
+    background-color: #FF0000;
+    color: white;
+}
+
+.no-actions {
+    height: 40px;
+    color: #FF343F;
+}
+
+.modal-add {
+    background-color: #FFFFFF;
+}
+
+.modal-content {
+    background-color: #FFFFFF;
+}
+
+.modal-container-1 {
+    background-color: #FFFFFF;
+    width: 1000px;
+    border-radius: 25px;
+    overflow: hidden;
+}
+
+.custom-modal-header {
+    background-color: rgba(0, 0, 0, 0.25);
+}
+
+.custom-modal-header h5 {
+    font-family: 'tripsansbold', serif;
+    font-size: 20px;
+}
+
+.custom-modal-header {
+    padding: 15px 25px;
 }
 
 @media (max-width: 1700px) {

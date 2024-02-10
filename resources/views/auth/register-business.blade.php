@@ -24,17 +24,16 @@
                     </p>
                 </div>
                 <div class="divider"></div>
-                <form method="POST" action="{{ route('store_user.store') }}">
+                <form method="POST" action="{{ route('register-business.store') }}">
                     @csrf
                     <div class="inputs">
-                        <x-form-input-field field="name" label="Business Name" type="text"
-                            placeholder="Enter the business name" />
-                        <x-form-input-field field="email" label="Business Email Address" type="email"
-                            placeholder="Enter the business email" />
+                        <x-form-input-field field="name" label="Name" type="text" placeholder="Enter your name" />
+                        <x-form-input-field field="email" label="Email Address" type="email"
+                                            placeholder="Enter your email" />
                         <x-form-input-field field="password" label="Password" type="password"
-                            placeholder="Enter a password" />
+                                            placeholder="Enter a password" />
                         <x-form-input-field field="password_confirmation" label="Confirm Password" type="password"
-                            placeholder="Retype password" />
+                                            placeholder="Retype password" />
                     </div>
                     <div class="divider"></div>
                     <p class="login-link">Already have an account?<a href="{{ route('login') }}">Login</a></p>

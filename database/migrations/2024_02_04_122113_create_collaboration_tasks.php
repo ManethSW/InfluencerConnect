@@ -10,7 +10,6 @@ return new class extends Migration {
         Schema::create('collaboration_tasks', function (Blueprint $table) {
             $table->id();
             $table->foreignId('collaboration_id')->constrained('collaborations');
-            $table->string('title');
             $table->text('description');
             $table->tinyInteger('priority');
             $table->timestamps();

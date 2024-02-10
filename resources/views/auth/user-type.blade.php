@@ -22,17 +22,6 @@
                                 <img src="/icons/select-check.svg">
                             </span>
                         </div>
-                        <div class="user-type-box" data-type="individual">
-                            <img src="/icons/select-influencer.svg">
-                            <h2>Individual</h2>
-                            <div class="user-type-box-divider"></div>
-                            <p>
-                                As an individual, you can find influencers to collaborate with, manage your campaigns, post brand deals and track your results.
-                            </p>
-                            <span class="check-icon">
-                                <img src="/icons/select-check.svg">
-                            </span>
-                        </div>
                         <div class="user-type-box" data-type="business">
                             <img src="/icons/select-business.svg">
                             <h2>Business</h2>

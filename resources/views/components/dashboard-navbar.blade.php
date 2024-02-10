@@ -2,13 +2,7 @@
     <div class="side-navbar-top">
         <h1 class="side-navbar-header">DASHBOARD</h1>
         <ul class="side-navbar-items flex-column">
-            <a href="{{ route('dashboard') }}" class="side-navbar-main-link">Home</a>
-        </ul>
-        <ul class="side-navbar-items flex-column">
-            <h3>Profile</h3>
-        </ul>
-        <ul class="side-navbar-items flex-column">
-            <h3>Analytics</h3>
+            <a href="{{ route('dashboard') }}" class="side-navbar-main-link">Analytics</a>
         </ul>
         <ul class="side-navbar-items flex-column">
             <h3>Manage</h3>
@@ -28,6 +22,11 @@
                 <i class="fa-regular fa-id-card"></i>
                 <a class="nav-link" href="{{ route('influencerCards.index') }}">
                     Influencer Cards
+                </a>
+            </li><li class="side-navbar-item-links">
+                <i class="fa-solid fa-handshake-simple"></i>
+                <a class="nav-link" href="{{ route('collaborations.index') }}">
+                    Collaborations
                 </a>
             </li>
         </ul>

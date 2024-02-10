@@ -23,6 +23,10 @@ class User extends Authenticatable
         return $this->hasOne(InfluencerCard::class);
     }
 
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
     /**
      * The attributes that are mass assignable.
      *
@@ -32,15 +36,17 @@ class User extends Authenticatable
         'role_id',
         'name',
         'email',
+        'email_verified_at',
         'phone',
         'phone_verified_at',
-        'dob',
-        'address',
-        'business_website',
-        'business_type',
-        'business_size',
+        'description',
+        'type',
+        'gender',
+        'avatar',
+        'banner',
         'password',
         'status',
+        'verified',
     ];
 
     /**

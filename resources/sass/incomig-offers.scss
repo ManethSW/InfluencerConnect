@@ -139,6 +139,12 @@
     color: #00A96E;
 }
 
+.edit {
+    border: 2px solid var(--primary-color);
+    color: var(--primary-color);
+    font-size: 14px;
+}
+
 .other {
     display: flex;
     flex-direction: row;

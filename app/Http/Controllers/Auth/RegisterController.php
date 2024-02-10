@@ -41,9 +41,6 @@ class RegisterController extends Controller
         $validator = Validator::make($request->all(), [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'email', 'unique:users,email'],
-            'phone' => ['required', 'string', 'min:10'],
-            'dob' => ['required', 'date', 'before:today'],
-            'address' => ['required', 'string', 'max:255'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
 
@@ -54,9 +51,6 @@ class RegisterController extends Controller
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
-            'phone' => $request->phone,
-            'dob' => $request->dob,
-            'address' => $request->address,
             'password' => Hash::make($request->password),
             'role_id' => UserRole::Influencer,
             'status' => 1,
@@ -72,12 +66,7 @@ class RegisterController extends Controller
         $validator = Validator::make($request->all(), [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'email', 'unique:users,email'],
-            'phone' => ['required', 'string', 'min:10'],
-            'address' => ['required', 'string', 'max:255'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
-            'business_website' => ['required', 'url', 'max:255'],
-            'business_type' => ['required', 'string', 'max:255'],
-            'business_size' => ['required', 'numeric', 'min:1'],
         ]);
 
         if ($validator->fails()) {
@@ -87,14 +76,8 @@ class RegisterController extends Controller
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
-            'phone' => $request->phone,
-            'dob' => $request->dob,
-            'address' => $request->address,
             'password' => Hash::make($request->password),
             'role_id' => UserRole::Business,
-            'business_website' => $request->business_website,
-            'business_type' => $request->business_type,
-            'business_size' => $request->business_size,
             'status' => 1,
         ]);
 

@@ -21,11 +21,7 @@ class UserController extends Controller
 
     public function edit(User $user)
     {
-        if ($user->role_id->name == 'Influencer') {
-            return view('dashboard.users.edit-influencer', compact('user'));
-        } else {
-            return view('dashboard.users.edit-business', compact('user'));
-        }
+        return response()->json($user);
     }
 
     public function update(Request $request, User $user)
@@ -62,9 +58,6 @@ class UserController extends Controller
             $validator = Validator::make($request->all(), [
                 'name' => ['required', 'string', 'max:255'],
                 'email' => ['required', 'email', 'unique:users,email'],
-                'phone' => ['required', 'string', 'min:10'],
-                'dob' => ['required', 'date', 'before:today'],
-                'address' => ['required', 'string', 'max:255'],
                 'password' => ['required', 'string', 'min:8'],
                 'role_id' => [
                     'required',
@@ -81,9 +74,7 @@ class UserController extends Controller
             User::create([
                 'name' => $request->name,
                 'email' => $request->email,
-                'phone' => $request->phone,
                 'password' => Hash::make($request->password),
-                'address' => $request->address,
                 'role_id' => $request->role_id,
                 'status' => 1,
             ]);
@@ -91,12 +82,7 @@ class UserController extends Controller
             $validator = Validator::make($request->all(), [
                 'name' => ['required', 'string', 'max:255'],
                 'email' => ['required', 'email', 'unique:users,email'],
-                'phone' => ['required', 'string', 'min:10'],
-                'address' => ['required', 'string', 'max:255'],
                 'password' => ['required', 'string', 'min:8'],
-                'business_website' => ['required', 'url', 'max:255'],
-                'business_type' => ['required', 'string', 'max:255'],
-                'business_size' => ['required', 'numeric', 'min:1'],
                 'role_id' => [
                     'required',
                     Rule::in(collect(UserRole::cases())->map(function ($value, $key) {
@@ -112,11 +98,7 @@ class UserController extends Controller
             User::create([
                 'name' => $request->name,
                 'email' => $request->email,
-                'phone' => $request->phone,
                 'password' => Hash::make($request->password),
-                'business_website' => $request->business_website,
-                'business_type' => $request->business_type,
-                'business_size' => $request->business_size,
                 'role_id' => $request->role_id,
                 'status' => 1,
             ]);
