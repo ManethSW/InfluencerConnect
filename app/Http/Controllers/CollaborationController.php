@@ -26,6 +26,24 @@ class CollaborationController extends Controller
         return view('collaborations.my-collaborations', compact('collaborations'));
     }
 
+    public function getActiveCollaborations()
+    {
+        // Get the ID of the currently logged-in user
+        $userId = Auth::id();
+
+        // Get all the collaborations that belong to this user and are currently active
+        $activeCollaborations = Collaboration::where('business_id', $userId)
+            ->where('status', CollaborationStatus::Active->getValue())
+            ->get();
+
+        // Check if the user is an influencer or an business
+        if (auth()->user()->role_id->value == 1) {
+            return view('collaborations.active-influencer', compact('activeCollaborations'));
+        } else {
+            return view('collaborations.active-business', compact('activeCollaborations'));
+        }
+    }
+
     public function updateByBusiness(Request $request, Collaboration $collaboration)
     {
         // Validate the request data

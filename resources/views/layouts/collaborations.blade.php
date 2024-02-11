@@ -25,7 +25,7 @@
                 <div class="header-navigation">
                     @if (Auth::user()->role_id->value == 10)
                         {{--                    <a href="{{ route('incoming') }}" class="{{ $activePage == 'incoming' ? 'active' : '' }}">Requests</a>--}}
-                        {{--                    <a href="{{ route('proposals') }}" class="{{ $activePage == 'proposals' ? 'active' : '' }}">My Proposals</a>--}}
+                        <a href="{{ route('collaborations.my_proposals') }}">My Proposals</a>
                         {{--                    <a href="{{ route('active_influencer') }}" class="{{ $activePage == 'active_influencer' ? 'active' : '' }}">Active Collaborations</a>--}}
                     @else
                         <a class="btn btn-sm" data-bs-toggle="modal" data-bs-target="#addCollaborationModal">Add

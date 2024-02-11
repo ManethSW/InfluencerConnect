@@ -75,8 +75,8 @@
                             <a href="{{ route('profile') }}"
                                class=" hover:bg-gray-200 dark:hover:bg-gray-600 dark:hover:text-white">Profile</a>
                             @if(Auth::user()->role_id->value == 10)
-{{--                                <a href="{{ route('collaborations') }}?page=proposals"--}}
-{{--                                   class=" hover:bg-gray-200 dark:hover:bg-gray-600 dark:hover:text-white">Collaborations</a>--}}
+                                <a href="{{ route('collaborations.my_proposals') }}"
+                                   class=" hover:bg-gray-200 dark:hover:bg-gray-600 dark:hover:text-white">Collaborations</a>
                             @else
                                 <a href="{{ route('collaborations.my_collaborations') }}"
                                    class=" hover:bg-gray-200 dark:hover:bg-gray-600 dark:hover:text-white">Collaborations</a>

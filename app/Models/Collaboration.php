@@ -39,4 +39,9 @@ class Collaboration extends Model
     {
         return $this->hasMany(CollaborationTask::class);
     }
+
+    public function proposals()
+    {
+        return $this->hasMany(Proposal::class);
+    }
 }

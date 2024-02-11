@@ -9,6 +9,7 @@ use App\Models\InfluencerCard;
 use App\Http\Controllers\InfluencerCategoryController;
 use App\Http\Controllers\BusinessCategoryController;
 use App\Http\Controllers\CollaborationController;
+use App\Http\Controllers\ProposalController;
 
 Auth::routes();
 
@@ -36,13 +37,18 @@ Route::get('collaborations', function () {
 
 Route::prefix('collaborations')->group(function () {
 //    Route::get('incoming', [App\Http\Controllers\IncomingOffersController::class, 'index'])->name('collaborations.incoming');
-//    Route::get('proposals', [App\Http\Controllers\MyProposalsController::class, 'index'])->name('collaborations.proposals');
-//    Route::get('active_influencer', [App\Http\Controllers\ActiveInfluencerController::class, 'index'])->name('collaborations.active_influencer');
+    Route::get('my_proposals', [App\Http\Controllers\ProposalController::class, 'getByInfluencers'])->name('collaborations.my_proposals');
+    Route::get('active_influencer', [App\Http\Controllers\CollaborationController::class, 'getActiveCollaborations'])->name('collaborations.active_influencer');
     Route::get('my_collaborations', [App\Http\Controllers\CollaborationController::class, 'getByBusiness'])->name('collaborations.my_collaborations');
-//    Route::get('active_business', [App\Http\Controllers\ActiveBusinessController::class, 'index'])->name('collaborations.active_business');
+    Route::get('active_business', [App\Http\Controllers\CollaborationController::class, 'getActiveCollaborations'])->name('collaborations.active_business');
 });
 
 Route::put('collaborations/{collaboration}/updateByBusiness', [App\Http\Controllers\CollaborationController::class, 'updateByBusiness'])->name('collaborations.updateByBusiness');
+
+Route::resource('proposals', ProposalController::class)->middleware('auth');
+Route::put('proposals/{proposal}/updateByInfluencers', [App\Http\Controllers\ProposalController::class, 'updateByInfluencers'])->name('proposals.updateByInfluencers');
+Route::get('proposals/{proposal}/acceptProposal', [App\Http\Controllers\ProposalController::class, 'acceptProposal'])->name('proposals.acceptProposal');
+Route::get('proposals/{proposal}/rejectProposal', [App\Http\Controllers\ProposalController::class, 'rejectProposal'])->name('proposals.rejectProposal');
 
 Route::middleware(['superadmin'])->group(function () {
     Route::get('/dashboard', function () {
@@ -65,10 +71,9 @@ Route::prefix('dashboard')->middleware(['superadmin'])->group(function () {
     Route::resource('businessCategories', BusinessCategoryController::class);
 
     Route::resource('collaborations', CollaborationController::class);
-});
 
-Route::get('/collaborations', [App\Http\Controllers\CollaborationsController::class, 'show'])->name('collaborations');
-Route::get('/collaborations/business/{businessId}', [CollaborationController::class, 'getByBusiness'])->name('collaborations.business');
+    Route::resource('proposals', ProposalController::class);
+});
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 

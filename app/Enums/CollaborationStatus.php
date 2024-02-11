@@ -8,4 +8,9 @@ enum CollaborationStatus: int
     case Active = 1;
     case Completed = 3;
     case Rejected = 4;
+
+    public function getValue(): int
+    {
+        return $this->value;
+    }
 }

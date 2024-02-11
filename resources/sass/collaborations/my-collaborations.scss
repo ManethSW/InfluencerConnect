@@ -1,0 +1,274 @@
+.background-image {
+    background-image: url("../../../public/Images/hero.png");
+    background-size: cover;
+    background-position: center;
+    border: 3px solid var(--secondary-color-75);
+    border-radius: 25px;
+    overflow: hidden;
+}
+
+.proposal-glass-effect {
+    background-color: rgba(255, 255, 255, 0.75);
+    backdrop-filter: blur(10.0px);
+    padding: 20px 20px 15px 20px;
+    height: 100%;
+}
+
+.proposal-container-1 {
+    width: 700px!important;
+}
+
+.proposal-container-2 {
+    width: 400px!important;
+}
+
+.proposals-container {
+    display: flex;
+    flex-direction: column;
+    row-gap: 25px;
+}
+
+.no-proposals {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    font-family: 'tripsansmedium', serif;
+    font-size: 18px;
+    color: var(--secondary-color-75);
+    background-color: rgba(255, 255, 255, 0.75);
+    border-radius: 15px;
+    padding: 15px 0;
+}
+
+.proposals-user-budget {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.75);
+    padding: 10px 20px;
+    border-radius: 15px;
+}
+
+.proposals-user-budget h4 {
+    font-family: 'tripsansbold', serif;
+    font-size: 18px;
+}
+
+.user-budget {
+    display: flex;
+    flex-direction: row;
+    column-gap: 10px;
+    align-items: center;
+}
+
+.user-budget h4:nth-of-type(2) {
+    color: var(--primary-color);
+}
+
+.view-button {
+    display: flex;
+    flex-direction: row;
+    column-gap: 15px;
+    align-items: center;
+    padding: 5px 15px;
+    font-family: 'tripsansbold', serif;
+    font-size: 18px;
+    color: var(--primary-color);
+    border: 2px solid var(--primary-color);
+    border-radius: 10px;
+    transition: all 0.3s ease-in-out;
+    background-color: #FFFFFF;
+}
+
+.view-button:hover {
+    background-color: var(--primary-color);
+    color: #FFFFFF;
+}
+
+.view-button:hover i {
+    color: #FFFFFF;
+}
+
+.proposal-content {
+    display: flex;
+    flex-direction: column;
+    row-gap: 15px;
+}
+
+.proposal-content .offer-user {
+    width: fit-content;
+    margin: 0 auto;
+}
+
+.proposal-budget {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--secondary-color-75);
+    padding: 10px 20px;
+    border-radius: 15px;
+}
+
+.proposal-budget h2 {
+    font-family: 'tripsansbold', serif;
+    font-size: 18px;
+    color: #FFFFFF;
+}
+
+.proposal-buttons {
+    display: flex;
+    flex-direction: row;
+    column-gap: 15px;
+}
+
+.proposal-buttons button {
+    font-family: 'tripsansbold', serif;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    flex-direction: row;
+    column-gap: 10px;
+    align-items: center;
+    font-size: 16px;
+    background-color: #FFFFFF;
+    border: 2px solid var(--primary-color);
+    color: var(--primary-color);
+    border-radius: 15px;
+    padding: 5px 20px;
+    transition: all 0.3s ease-in-out;
+}
+
+.active-button {
+    background-color: var(--primary-color)!important;
+    color: #FFFFFF!important;
+}
+
+.view-container {
+    display: flex;
+    flex-direction: column;
+    row-gap: 15px;
+}
+
+.view-links-container h3 {
+    font-family: 'tripsansmedium', serif;
+    font-size: 16px;
+    color: var(--secondary-color-50);
+    background-color: rgba(255, 255, 255, 0.75);
+    padding: 10px 20px;
+    border-radius: 15px;
+    margin-bottom: 15px;
+}
+
+.proposal-content {
+    display: none;
+}
+
+.select-proposal-prompt {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.75);
+    border-radius: 15px;
+}
+
+.select-proposal-prompt h3 {
+    font-family: 'tripsansmedium', serif;
+    font-size: 18px;
+    color: var(--secondary-color-75);
+}
+
+.view-links-container {
+    display: none;
+}
+
+.view-uploads-container {
+    display: none;
+}
+
+.upload-body {
+    display: flex;
+    flex-direction: row;
+    column-gap: 15px;
+    margin-bottom: 15px;
+}
+
+.upload-body h3 {
+    font-family: 'tripsansmedium', serif;
+    font-size: 16px;
+    width: 100%;
+    color: var(--secondary-color-50);
+    background-color: rgba(255, 255, 255, 0.75);
+    padding: 10px 20px;
+    border-radius: 15px;
+}
+
+.upload-body button {
+    font-family: 'tripsansbold', serif;
+    display: flex;
+    justify-content: center;
+    width: fit-content;
+    flex-direction: row;
+    align-items: center;
+    font-size: 16px;
+    background-color: #FFFFFF;
+    border: 2px solid var(--primary-color);
+    color: var(--primary-color);
+    border-radius: 15px;
+    padding: 5px 20px;
+    transition: all 0.3s ease-in-out;
+}
+
+.proposal-action-buttons {
+    display: flex;
+    flex-direction: row;
+    column-gap: 15px;
+}
+
+.proposal-action-buttons button {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    column-gap: 10px;
+    font-family: 'tripsansbold', serif;
+    font-size: 16px;
+    background-color: #FFFFFF;
+    border-radius: 15px;
+    padding: 5px 20px;
+    transition: all 0.3s ease-in-out;
+}
+
+.collaboration-status-badge {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    border: 2px solid var(--secondary-color-50);
+}
+
+.collaboration-status-badge.pending {
+    background-color: var(--primary-color);
+}
+
+.collaboration-status-badge.accepted {
+    background-color: #FACA13;
+}
+
+.collaboration-status-badge.rejected {
+    background-color: #FF343F;
+}
+
+.collaboration-status-badge.completed {
+    background-color: #32CD32;
+}
+
+.title-status-badge {
+    display: flex;
+    flex-direction: row;
+    column-gap: 10px;
+    align-items: center;
+}

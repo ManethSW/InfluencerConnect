@@ -23,10 +23,17 @@
                 <a class="nav-link" href="{{ route('influencerCards.index') }}">
                     Influencer Cards
                 </a>
-            </li><li class="side-navbar-item-links">
+            </li>
+            <li class="side-navbar-item-links">
                 <i class="fa-solid fa-handshake-simple"></i>
                 <a class="nav-link" href="{{ route('collaborations.index') }}">
                     Collaborations
+                </a>
+            </li>
+            <li class="side-navbar-item-links">
+                <i class="fa-solid fa-file"></i>
+                <a class="nav-link" href="{{ route('proposals.index') }}">
+                    Proposals
                 </a>
             </li>
         </ul>
