@@ -1,0 +1,30 @@
+.active-collaboration-budegt-type {
+    display: flex;
+    flex-direction: row;
+    column-gap: 10px;
+    align-items: center;
+}
+
+.active-collaboration-title-deadline {
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.active-collaboration-title-deadline h3 {
+    font-family: 'tripsansbold', serif;
+    font-size: 20px;
+}
+
+.active-collaboration-title-deadline h3:nth-of-type(2) {
+    color: var(--secondary-color-50);
+}
+
+.active-collaboration-description {
+    font-family: 'tripsansregular', serif;
+    font-size: 14px;
+    line-height: 1.25;
+    color: var(--secondary-color-50);
+}

@@ -2,6 +2,7 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     column-gap: 50px;
+    row-gap: 50px;
     justify-content: space-between;
 }
 
@@ -15,11 +16,13 @@
 }
 
 .glass-effect {
+    height: 100%;
     background-color: rgba(255, 255, 255, 0.75);
     backdrop-filter: blur(10.0px);
     padding: 20px 20px 15px 20px;
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     row-gap: 25px;
 }
 
@@ -97,7 +100,7 @@
 }
 
 .offer-actions i {
-    font-size: 18px;
+    font-size: 14px;
 }
 
 .offer-actions button {
@@ -122,12 +125,12 @@
 }
 
 .decline {
-    border: 2px solid #FF5861;
-    color: #FF5861;
+    border: 2px solid #FF343F;
+    color: #FF343F;
 }
 
 .decline h3 {
-    color: #FF5861;
+    color: #FF343F;
 }
 
 .accept {
@@ -166,7 +169,7 @@
 }
 
 .other i {
-    font-size: 16px;
+    font-size: 14px;
     color: var(--primary-color);
 }
 

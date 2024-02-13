@@ -29,7 +29,7 @@
                     @foreach ($collaborations as $collaboration)
                         <tr>
                             <td>{{ $collaboration->id }}</td>
-                            <td>{{ $collaboration->title }}</td>
+                            <td>{{ Str::limit($collaboration->title, 35) }}</td>
                             <td>{{ \App\Models\User::find($collaboration->business_id)->name }}</td>
                             <td>
                                 @if ($collaboration->influencer_id)
@@ -69,12 +69,8 @@
                                     View
                                 </button>
                                 @if ($collaboration->status == 0)
-                                    <button
-                                        type="button"
-                                        class="btn action-btn edit-btn"
-                                        data-bs-toggle="modal"
-                                        data-bs-target="#editCollaborationModal{{ $collaboration->id }}"
-                                    >
+                                    <button class="btn action-btn edit-btn" data-bs-toggle="modal"
+                                            data-bs-target="#editCollaboration-{{ $collaboration->id }}">
                                         <i class="fa-solid fa-pen"></i>
                                         Edit
                                     </button>
@@ -86,39 +82,6 @@
                                 @endif
                             </td>
                         </tr>
-                        {{--                        Edit modal --}}
-                        <div class="modal fade"
-                             id="editCollaborationModal{{ $collaboration->id }}"
-                             tabindex="-1"
-                             role="dialog"
-                             aria-labelledby="editCollaborationModalLabel{{ $collaboration->id }}"
-                             aria-hidden="true">
-                            <div class="modal-dialog" role="document">
-                                <div class="modal-add modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title"
-                                            id="editCollaborationModalLabel{{ $collaboration->id }}">
-                                            Edit {{ $collaboration->name }}'s Profile</h5>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                aria-label="Close"></button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <div class="edit-fields">
-                                            <form method="post" action="{{ route('users.update', $collaboration->id) }}"
-                                                  enctype="multipart/form-data">
-                                                @csrf
-                                                @method('PATCH')
-                                                <div class="form-row edit-form">
-                                                    <div class="edit-buttons">
-                                                        <button type="submit">Update</button>
-                                                    </div>
-                                                </div>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                         <div class="modal fade" id="deleteModal{{ $collaboration->id }}" tabindex="-1" role="dialog"
                              aria-labelledby="deleteModalLabel{{ $collaboration->id }}" aria-hidden="true">
                             <div class="modal-dialog" role="document">
@@ -135,13 +98,108 @@
                                             Are you sure you want to delete this collaboration?
                                         </div>
                                         <div class="modal-button">
-                                            <form action="{{ route('users.destroy', $collaboration->id) }}"
+                                            <form action="{{ route('collaborations.destroy', $collaboration->id) }}"
                                                   method="POST">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit" class="btn delete-btn">Delete</button>
                                             </form>
                                         </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal fade" id="editCollaboration-{{ $collaboration->id }}" tabindex="-1"
+                             aria-labelledby="editCollaborationLabel"
+                             aria-hidden="false">
+                            <div class="modal-dialog modal-dialog-centered custom-modal-width">
+                                <div class="modal-container-1 modal-content">
+                                    <div class="custom-modal-header modal-header">
+                                        <h5 class="modal-title" id="addCollaborationModalLabel">
+                                            Edit collaboration
+                                            {{$collaboration->id}}
+                                            by
+                                            {{ \App\Models\User::find($collaboration->business_id)->name }}
+                                        </h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="custom-modal-body modal-body">
+                                        <form method="post"
+                                              action="{{ route('collaborations.update', ['collaboration' => $collaboration->id]) }}">
+                                            @csrf
+                                            @method('PUT')
+                                            <div class="form-container">
+                                                <div class="col input-item">
+                                                    <label for="title">Collaboration Title</label>
+                                                    <input type="text" class="form-control" id="title" name="title"
+                                                           value="{{ $collaboration->title }}" required>
+                                                </div>
+                                                <div class="form-row-container">
+                                                    <div class="col input-item">
+                                                        <label for="budget">Collaboration Budget</label>
+                                                        <input type="text" class="form-control" id="budget" name="budget"
+                                                               value={{ $collaboration->budget }} required>
+                                                    </div>
+                                                    <div class="col input-item">
+                                                        <label for="collaboration_type">Collaboration Type</label>
+                                                        <select id="collaboration_type" name="collaboration_type"
+                                                                class="form-control"
+                                                                required>
+                                                            @foreach (\App\Enums\CollaborationType::asSelectArray() as $value => $label)
+                                                                <option
+                                                                    value="{{ $value }}" {{ $value == $collaboration->collaboration_type ? 'selected' : '' }}>
+                                                                    {{ $label }}
+                                                                </option>
+                                                            @endforeach
+                                                        </select>
+                                                    </div>
+                                                    <div class="col input-item">
+                                                        <label for="deadline">Deadline</label>
+                                                        <input type="date" class="form-control" id="deadline" name="deadline"
+                                                               value="{{ $collaboration->deadline }}"
+                                                               required>
+                                                    </div>
+                                                </div>
+                                                <div class="col input-item">
+                                                    <label for="description">Collaboration Description</label>
+                                                    <input type="text" class="form-control" id="description" name="description"
+                                                           value="{{ $collaboration->description }}"
+                                                           required>
+                                                </div>
+                                                <div id="col input-item tasks-container-{{ $collaboration->id }}">
+                                                    <label for="tasks">Tasks</label>
+                                                    <div id="tasks_body-{{ $collaboration->id }}" class="tasks-body">
+                                                        <!-- Show the tasks associated with the collaboration in input format so user can edit like the other inputs -->
+                                                        @foreach($collaboration->tasks as $task)
+                                                            <div class="task-body">
+                                                                <input type="text" class="task-text"
+                                                                       name="tasks[{{ $task->id }}][description]"
+                                                                       value="{{ $task->description }}" required>
+                                                                <select class="task-selector"
+                                                                        name="tasks[{{ $task->id }}][priority]"
+                                                                        required>
+                                                                    <option value="0" {{ $task->priority == 0 ? 'selected' : '' }}>
+                                                                        Low
+                                                                    </option>
+                                                                    <option value="1" {{ $task->priority == 1 ? 'selected' : '' }}>
+                                                                        Medium
+                                                                    </option>
+                                                                    <option value="2" {{ $task->priority == 2 ? 'selected' : '' }}>
+                                                                        Critical
+                                                                    </option>
+                                                                </select>
+                                                            </div>
+                                                        @endforeach
+                                                    </div>
+                                                </div>
+                                                <input class="hidden-input" type="hidden" name="request_type" value="0">
+                                                <div class="custom-button-container">
+                                                    <button type="button" id="add_task_button-{{ $collaboration->id }}" class="btn btn-primary">+ Add A Task
+                                                    </button>
+                                                    <button type="submit" class="btn btn-primary">save</button>
+                                                </div>
+                                            </div>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
@@ -178,12 +236,12 @@
                             </div>
                             <div class="col input-item">
                                 <label for="title">Collaboration Title</label>
-                                <input type="text" class="form-control" id="title" name="title" required>
+                                <input placeholder="Enter a title" type="text" class="form-control" id="title" name="title" required>
                             </div>
                             <div class="form-row-container">
                                 <div class="col input-item">
                                     <label for="budget">Budget</label>
-                                    <input type="text" class="form-control" id="budget" name="budget" required>
+                                    <input placeholder="Enter a budget" type="text" class="form-control" id="budget" name="budget" required>
                                 </div>
                                 <div class="col input-item">
                                     <label for="collaboration_type">Collaboration Type</label>
@@ -201,7 +259,7 @@
                             </div>
                             <div class="col input-item">
                                 <label for="description">Collaboration Description</label>
-                                <input type="text" class="form-control" id="description" name="description" required>
+                                <input placeholder="Enter a collaboration" type="text" class="form-control" id="description" name="description" required>
                             </div>
                             <div id="col input-item tasks-container">
                                 <label for="tasks">Tasks</label>
@@ -275,6 +333,58 @@
             taskContainer.appendChild(taskBody);
 
             taskId++;
+        });
+
+
+        let taskIdEdit = 0;
+
+        // Get all the "Add A Task" buttons
+        const addTaskButtons = document.querySelectorAll('[id^="add_task_button-"]');
+
+        // Loop over each button
+        addTaskButtons.forEach((button) => {
+            const collaborationId = button.id.split('-')[1];
+
+            const taskContainerEdit = document.getElementById('tasks_body-' + collaborationId);
+
+            button.addEventListener('click', function () {
+                const taskBody = document.createElement('div');
+                taskBody.className = 'task-body';
+
+                const descriptionField = document.createElement('input');
+                descriptionField.type = 'text';
+                descriptionField.className = 'task-text';
+                descriptionField.name = `tasks[${taskIdEdit}][description]`;
+                descriptionField.placeholder = 'Task Description';
+                descriptionField.required = true;
+
+                const priorityField = document.createElement('select');
+                priorityField.className = 'task-selector';
+                priorityField.name = `tasks[${taskIdEdit}][priority]`;
+                priorityField.required = true;
+
+                const lowOption = document.createElement('option');
+                lowOption.value = '0';
+                lowOption.text = 'Low';
+                priorityField.add(lowOption);
+
+                const mediumOption = document.createElement('option');
+                mediumOption.value = '1';
+                mediumOption.text = 'Medium';
+                priorityField.add(mediumOption);
+
+                const criticalOption = document.createElement('option');
+                criticalOption.value = '2';
+                criticalOption.text = 'Critical';
+                priorityField.add(criticalOption);
+
+                taskBody.appendChild(descriptionField);
+                taskBody.appendChild(priorityField);
+
+                taskContainerEdit.appendChild(taskBody);
+
+                taskIdEdit++;
+            });
         });
     });
 </script>

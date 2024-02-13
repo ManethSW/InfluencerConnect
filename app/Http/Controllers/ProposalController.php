@@ -118,6 +118,14 @@ class ProposalController extends Controller
             return response()->json(['error' => 'This collaboration is not accepting proposals.'], 400);
         }
 
+        $existingProposal = Proposal::where('collaboration_id', $request->collaboration_id)
+            ->where('influencer_id', $request->influencer_id)
+            ->first();
+
+        if ($existingProposal) {
+            return redirect()->route('proposals.index')->with('error', 'You have already submitted a proposal for this collaboration');
+        }
+
         // Validate the request data
         $request->validate([
             'collaboration_id' => 'required|exists:collaborations,id',
@@ -198,10 +206,17 @@ class ProposalController extends Controller
         return redirect()->route('proposals.index')->with('success', 'Proposal updated successfully');
     }
 
+    public function destroybyInfluencers(Proposal $proposal)
+    {
+        $proposal->delete();
+
+        return redirect()->route('collaborations.my_proposals')->with('success', 'Proposal deleted successfully');
+    }
+
     public function destroy(Proposal $proposal)
     {
         $proposal->delete();
 
-        return response()->json();
+        return redirect()->route('proposals.index')->with('success', 'Proposal deleted successfully');
     }
 }

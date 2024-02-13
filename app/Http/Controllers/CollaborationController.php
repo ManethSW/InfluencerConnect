@@ -31,13 +31,21 @@ class CollaborationController extends Controller
         // Get the ID of the currently logged-in user
         $userId = Auth::id();
 
-        // Get all the collaborations that belong to this user and are currently active
-        $activeCollaborations = Collaboration::where('business_id', $userId)
-            ->where('status', CollaborationStatus::Active->getValue())
-            ->get();
+//        dd($userId);
 
         // Check if the user is an influencer or an business
-        if (auth()->user()->role_id->value == 1) {
+        if (auth()->user()->role_id->value == 10) {
+            $activeCollaborations = Collaboration::where('influencer_id', $userId)
+                ->where('status', CollaborationStatus::Active->getValue())
+                ->get();
+        } else {
+            $activeCollaborations = Collaboration::where('business_id', $userId)
+                ->where('status', CollaborationStatus::Active->getValue())
+                ->get();
+        }
+
+        // Check if the user is an influencer or an business
+        if (auth()->user()->role_id->value == 10) {
             return view('collaborations.active-influencer', compact('activeCollaborations'));
         } else {
             return view('collaborations.active-business', compact('activeCollaborations'));
@@ -82,6 +90,7 @@ class CollaborationController extends Controller
 
     public function update(Request $request, Collaboration $collaboration)
     {
+        dd($request->all());
         // Validate the request data
         $request->validate([
             'title' => 'required',
@@ -163,6 +172,14 @@ class CollaborationController extends Controller
 
     public function destroy(Collaboration $collaboration)
     {
+
+        // Delete the tasks
+        $collaboration->tasks()->delete();
+
+        // Delete the proposals
+        $collaboration->proposals()->delete();
+
+        // Delete the collaboration
         $collaboration->delete();
 
         return redirect()->route('collaborations.index')

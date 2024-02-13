@@ -9,6 +9,7 @@
     @vite(['resources/sass/app.scss', 'resources/sass/registerLogin.scss', 'resources/js/app.js'])
     <script defer src="https://kit.fontawesome.com/582a81fd83.js" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 </head>
 
 <body id="body">
@@ -24,14 +25,12 @@
                 </div>
                 <div class="header-navigation">
                     @if (Auth::user()->role_id->value == 10)
-                        {{--                    <a href="{{ route('incoming') }}" class="{{ $activePage == 'incoming' ? 'active' : '' }}">Requests</a>--}}
-                        <a href="{{ route('collaborations.my_proposals') }}">My Proposals</a>
-                        {{--                    <a href="{{ route('active_influencer') }}" class="{{ $activePage == 'active_influencer' ? 'active' : '' }}">Active Collaborations</a>--}}
+                        <a href="{{ route('collaborations.my_proposals') }}" class="{{ Route::currentRouteNamed('collaborations.my_proposals') ? 'active' : '' }}">My Proposals</a>
+                        <a href="{{ route('collaborations.active_influencer') }}" class="{{ Route::currentRouteNamed('collaborations.active_influencer') ? 'active' : '' }}">Active Collaborations</a>
                     @else
-                        <a class="btn btn-sm" data-bs-toggle="modal" data-bs-target="#addCollaborationModal">Add
-                            Collaboration</a>
-                        <a href="{{ route('collaborations.my_collaborations') }}">My Collaboration</a>
-                        {{--                    <a href="{{ route('active_business') }}" class="{{ $activePage == 'active_business' ? 'active' : '' }}">Active Collaborations</a>--}}
+                        <a class="btn btn-sm {{ Route::currentRouteNamed('collaborations.store') ? 'active' : '' }}" data-bs-toggle="modal" data-bs-target="#addCollaborationModal">Add Collaboration</a>
+                        <a href="{{ route('collaborations.my_collaborations') }}" class="{{ Route::currentRouteNamed('collaborations.my_collaborations') ? 'active' : '' }}">My Collaboration</a>
+                        <a href="{{ route('collaborations.active_business') }}" class="{{ Route::currentRouteNamed('collaborations.active_business') ? 'active' : '' }}">Active Collaborations</a>
                     @endif
                 </div>
             </div>

@@ -254,8 +254,16 @@
     background-color: var(--primary-color);
 }
 
+.collaboration-status-badge.pending-yellow {
+    background-color:  #FACA13;
+}
+
 .collaboration-status-badge.accepted {
     background-color: #FACA13;
+}
+
+.collaboration-status-badge.accepted-green {
+    background-color: #32CD32;
 }
 
 .collaboration-status-badge.rejected {

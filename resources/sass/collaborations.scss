@@ -2,6 +2,7 @@
 @import "add-collaboration.scss";
 @import "collaborations/my-proposals.scss";
 @import "collaborations/my-collaborations.scss";
+@import "collaborations/active-collaborations.scss";
 
 .collaborations-container{
     max-width: 1320px;
@@ -61,4 +62,8 @@
 
 .collaborations-body {
     margin-top: 25px;
+}
+
+.modal-content {
+    border-radius: 26px;
 }

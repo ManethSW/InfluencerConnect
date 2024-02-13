@@ -124,7 +124,7 @@
             <div class="modal fade" id="editCollaboration-{{ $collaboration->id }}" tabindex="-1"
                  aria-labelledby="editCollaborationLabel"
                  aria-hidden="false">
-                <div class="modal-dialog custom-modal-width">
+                <div class="modal-dialog modal-dialog-centered custom-modal-width">
                     <div class="modal-container-1 modal-content">
                         <div class="custom-modal-header modal-header">
                             <h5 class="modal-title" id="addCollaborationModalLabel">Edit your collaboration</h5>
@@ -239,7 +239,8 @@
                                                 </div>
                                                 <div class="other">
                                                     <button class="view-button"
-                                                            data-proposal-id="{{ $proposal->id }}">
+                                                            data-proposal-id="{{ $proposal->id }}"
+                                                            data-collaboration-id="{{ $collaboration->id }}">
                                                         View
                                                         <i class="fa-solid fa-arrow-right"></i>
                                                     </button>
@@ -262,7 +263,8 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="proposal-container-2 background-image">
+                        <div class="proposal-container-2 background-image"
+                                id="proposal-container-{{$collaboration->id}}">
                             <div class="proposal-glass-effect">
                                 <div class="select-proposal-prompt">
                                     <h3>Select a proposal to view</h3>
@@ -345,8 +347,7 @@
                                             </button>
                                         </div>
                                     </div>
-{{--                                    Check to see if the staus of the collaboration is not equal to 0 then show now buttons--}}
-                                    @if($collaboration->status = 0)
+                                    @if($collaboration->status == 0)
                                         <div class="proposal-action-buttons">
                                             <form action="{{ route('proposals.acceptProposal', ['proposal' => $proposal->id]) }}">
                                                 @csrf
@@ -377,92 +378,76 @@
 <script>
     document.addEventListener('DOMContentLoaded', (event) => {
         const viewButtons = document.querySelectorAll('.view-button');
-        const proposalContent = document.querySelector('.proposal-content');
-        const viewLinksButton = document.getElementById('view_links_button');
-        const viewUploadsButton = document.getElementById('view_uploads_button');
-        const viewLinksContainer = document.querySelector('.view-links-container');
-        const viewUploadsContainer = document.querySelector('.view-uploads-container');
 
         viewButtons.forEach(function (button) {
             button.addEventListener('click', function () {
                 // Get the clicked proposal detail
                 const proposalId = this.getAttribute('data-proposal-id');
+                const collaborationId = this.getAttribute('data-collaboration-id');
+
                 const clickedProposalDetail = document.getElementById('proposalDetails' + proposalId);
 
+                // Get the unique proposal container
+                const proposalContainer = document.getElementById('proposal-container-' + collaborationId);
+                console.log(proposalContainer + " " + proposalId + " " + collaborationId);
+
                 // Set the proposal content to be visible and the select proposal prompt to be hidden
+                const proposalContent = proposalContainer.querySelector('.proposal-content');
                 proposalContent.style.display = 'flex';
-                document.querySelector('.select-proposal-prompt').style.display = 'none';
+                proposalContainer.querySelector('.select-proposal-prompt').style.display = 'none';
 
                 // Get the influencer name and proposed budget
                 const influencerName = clickedProposalDetail.querySelector('h3').innerText;
                 const proposedBudget = clickedProposalDetail.querySelector('h3:nth-child(2)').innerText;
 
                 // Set the influencer name and proposed budget in the proposal content
-                document.getElementById('influencer_name').innerText = influencerName;
-                document.getElementById('proposed_budget').innerText = proposedBudget + " LKR";
+                proposalContainer.querySelector('#influencer_name').innerText = influencerName;
+                proposalContainer.querySelector('#proposed_budget').innerText = proposedBudget + " LKR";
 
                 // Take the "supporting_links" and create an array of links by splitting the string by ',' and make the array size 5 by filling the undefined indexes with 'undefined'
                 const links = clickedProposalDetail.querySelector('h3:nth-child(3)').innerText.split(',');
                 while (links.length < 5) {
                     links.push('');
                 }
-                console.log(links);
 
                 // Set the links in the proposal content by using the array. If they are undefined, set the text to "No Link Uploaded" and truncate the text to be less than 20 characters
-                document.getElementById('link-1').innerText = links[0] === '' ? 'No Link Uploaded' : links[0].length > 25 ? links[0].substring(0, 25) + '...' : links[0];
-                document.getElementById('link-2').innerText = links[1] === '' ? 'No Link Uploaded' : links[1].length > 25 ? links[1].substring(0, 25) + '...' : links[1];
-                document.getElementById('link-3').innerText = links[2] === '' ? 'No Link Uploaded' : links[2].length > 25 ? links[2].substring(0, 25) + '...' : links[2];
-                document.getElementById('link-4').innerText = links[3] === '' ? 'No Link Uploaded' : links[3].length > 25 ? links[3].substring(0, 25) + '...' : links[3];
-                document.getElementById('link-5').innerText = links[4] === '' ? 'No Link Uploaded' : links[4].length > 25 ? links[4].substring(0, 25) + '...' : links[4];
+                for (let i = 0; i < 5; i++) {
+                    const linkElement = proposalContainer.querySelector('#link-' + (i + 1));
+                    linkElement.innerText = links[i] === '' ? 'No Link Uploaded' : links[i].length > 25 ? links[i].substring(0, 25) + '...' : links[i];
+                }
 
                 // Get the supporting files respectively
-                const supportingFile1 = clickedProposalDetail.querySelector('h3:nth-child(4)').innerText;
-                const supportingFile2 = clickedProposalDetail.querySelector('h3:nth-child(5)').innerText;
-                const supportingFile3 = clickedProposalDetail.querySelector('h3:nth-child(6)').innerText;
-                const supportingFile4 = clickedProposalDetail.querySelector('h3:nth-child(7)').innerText;
-                const supportingFile5 = clickedProposalDetail.querySelector('h3:nth-child(8)').innerText;
+                const supportingFiles = [
+                    clickedProposalDetail.querySelector('h3:nth-child(4)').innerText,
+                    clickedProposalDetail.querySelector('h3:nth-child(5)').innerText,
+                    clickedProposalDetail.querySelector('h3:nth-child(6)').innerText,
+                    clickedProposalDetail.querySelector('h3:nth-child(7)').innerText,
+                    clickedProposalDetail.querySelector('h3:nth-child(8)').innerText,
+                ];
 
                 // Set the supporting files in the proposal content. If they are undefined, set the text to "No File Uploaded" and truncate the text to be less than 25 characters
-                document.getElementById('supporting_file_1').innerText = supportingFile1 === '' ? 'No File Uploaded' : supportingFile1.length > 20 ? supportingFile1.substring(0, 20) + '...' : supportingFile1;
-                document.getElementById('supporting_file_2').innerText = supportingFile2 === '' ? 'No File Uploaded' : supportingFile2.length > 20 ? supportingFile2.substring(0, 20) + '...' : supportingFile2;
-                document.getElementById('supporting_file_3').innerText = supportingFile3 === '' ? 'No File Uploaded' : supportingFile3.length > 20 ? supportingFile3.substring(0, 20) + '...' : supportingFile3;
-                document.getElementById('supporting_file_4').innerText = supportingFile4 === '' ? 'No File Uploaded' : supportingFile4.length > 20 ? supportingFile4.substring(0, 20) + '...' : supportingFile4;
-                document.getElementById('supporting_file_5').innerText = supportingFile5 === '' ? 'No File Uploaded' : supportingFile5.length > 20 ? supportingFile5.substring(0, 20) + '...' : supportingFile5;
+                for (let i = 0; i < 5; i++) {
+                    const fileElement = proposalContainer.querySelector('#supporting_file_' + (i + 1));
+                    const downloadButton = proposalContainer.querySelector('#download-supporting_file_' + (i + 1));
 
-                // Set the download buttons to download the respective files and if they are undefined, set the button to be disabled
-                const downloadSupportingFile1 = document.getElementById('download-supporting_file_1');
-                const downloadSupportingFile2 = document.getElementById('download-supporting_file_2');
-                const downloadSupportingFile3 = document.getElementById('download-supporting_file_3');
-                const downloadSupportingFile4 = document.getElementById('download-supporting_file_4');
-                const downloadSupportingFile5 = document.getElementById('download-supporting_file_5');
-
-                downloadSupportingFile1.addEventListener('click', function () {
-                    if (supportingFile1 !== '') {
-                        window.open('/storage/app/' + supportingFile1, '_blank');
+                    if (supportingFiles[i]) {
+                        fileElement.innerText = supportingFiles[i].length > 20 ? supportingFiles[i].substring(0, 20) + '...' : supportingFiles[i];
+                        downloadButton.disabled = false;
+                        downloadButton.addEventListener('click', function () {
+                            window.open('/storage/app/' + supportingFiles[i], '_blank');
+                        });
+                    } else {
+                        fileElement.innerText = 'No File Uploaded';
+                        downloadButton.disabled = true;
                     }
-                });
-                downloadSupportingFile2.addEventListener('click', function () {
-                    if (supportingFile2 !== '') {
-                        window.open('/storage/app/' + supportingFile2, '_blank');
-                    }
-                });
-                downloadSupportingFile3.addEventListener('click', function () {
-                    if (supportingFile3 !== '') {
-                        window.open('/storage/app/' + supportingFile3, '_blank');
-                    }
-                });
-                downloadSupportingFile4.addEventListener('click', function () {
-                    if (supportingFile4 !== '') {
-                        window.open('/storage/app/' + supportingFile4, '_blank');
-                    }
-                });
-                downloadSupportingFile5.addEventListener('click', function () {
-                    if (supportingFile5 !== '') {
-                        window.open('/storage/app/' + supportingFile5, '_blank');
-                    }
-                });
+                }
 
                 // Set the links container by default to display first and uploads container to display none and set the view links button to active
+                const viewLinksContainer = proposalContainer.querySelector('.view-links-container');
+                const viewUploadsContainer = proposalContainer.querySelector('.view-uploads-container');
+                const viewLinksButton = proposalContainer.querySelector('#view_links_button');
+                const viewUploadsButton = proposalContainer.querySelector('#view_uploads_button');
+
                 viewLinksContainer.style.display = 'block';
                 viewUploadsContainer.style.display = 'none';
                 viewLinksButton.classList.add('active-button');

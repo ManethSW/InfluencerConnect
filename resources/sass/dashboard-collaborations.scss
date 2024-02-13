@@ -113,3 +113,27 @@
     grid-template-columns: 5fr 1fr;
     column-gap: 15px;
 }
+
+.file-body {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    column-gap: 15px;
+}
+
+.file-body span {
+    border: 2px solid var(--secondary-color-50);
+    border-radius: 15px;
+    height: 40px;
+    padding: 0px 15px;
+    display: grid;
+    align-items: center;
+    width: 100%;
+    font-family: 'tripsansregular', serif;
+    font-size: 16px;
+}
+
+.file-body button {
+    height: 40px;
+}

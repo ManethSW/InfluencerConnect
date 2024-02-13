@@ -5,7 +5,7 @@
         <div class="row">
             <div class="col-sm">
                 <div class="users-header">
-                    <h3>Collaborations</h3>
+                    <h3>Proposals</h3>
                     <div class="search-add">
                         <div class="add-user-button">
                             <a class="btn btn-sm" data-bs-toggle="modal" data-bs-target="#addProposalModal">Add
@@ -77,28 +77,42 @@
                                 @endif
                             </td>
                         </tr>
-                        <div class="modal fade" id="editProposalModal{{ $proposal->id }}" tabindex="-1" aria-labelledby="editProposalModalLabel{{ $proposal->id }}"
+                        <div class="modal fade" id="editProposalModal{{ $proposal->id }}" tabindex="-1"
+                             aria-labelledby="editProposalModalLabel{{ $proposal->id }}"
                              aria-hidden="false">
                             <div class="modal-dialog modal-dialog-centered">
                                 <div class="modal-content">
                                     <div class="custom-modal-header modal-header">
-                                        <h5 class="modal-title" id="editProposalModalLabel">Edit Proposal By "{{ $proposal->influencer->name }}" for Collaboration id "{{ $proposal->collaboration_id }}"</h5>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        <h5 class="modal-title" id="editProposalModalLabel">Edit Proposal By
+                                            "{{ $proposal->influencer->name }}" for Collaboration id
+                                            "{{ $proposal->collaboration_id }}"</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
                                     </div>
                                     <div class="custom-modal-body modal-body">
-                                        <form method="post" action="{{ route('proposals.update', $proposal->id) }}" enctype="multipart/form-data">
+                                        <form method="post" action="{{ route('proposals.update', $proposal->id) }}"
+                                              enctype="multipart/form-data">
                                             @csrf
                                             @method('PATCH')
                                             <div class="form-container">
+                                                <input type="hidden" name="collaboration_id"
+                                                       value="{{ $proposal->collaboration_id }}">
+                                                <input type="hidden" name="influencer_id"
+                                                       value="{{ $proposal->influencer_id }}">
                                                 <div class="col input-item">
                                                     <label for="proposed_budget">Proposed Budget</label>
-                                                    <input type="text" class="form-control" id="proposed_budget" name="proposed_budget" value="{{ $proposal->proposed_budget }}" required>
+                                                    <input type="text" class="form-control" id="proposed_budget"
+                                                           name="proposed_budget"
+                                                           value="{{ $proposal->proposed_budget }}" required>
                                                 </div>
                                                 <div class="col input-item">
                                                     <label for="supporting_links">Supporting Links</label>
-                                                    <input type="text" placeholder="separate with a comma(,)" class="form-control" id="supporting_links" name="supporting_links" value="{{ $proposal->supporting_links }}">
+                                                    <input type="text" placeholder="separate with a comma(,)"
+                                                           class="form-control" id="supporting_links"
+                                                           name="supporting_links"
+                                                           value="{{ $proposal->supporting_links }}">
                                                 </div>
-                                                <<div id="col input-item tasks-container">
+                                                <div id="col input-item tasks-container">
                                                     <label for="tasks">Supporting Files</label>
                                                     <div id="files_body" class="tasks-body">
                                                         @for ($i = 1; $i <= 5; $i++)
@@ -106,17 +120,26 @@
                                                                 $fileKey = "supporting_file_$i";
                                                             @endphp
                                                             @if ($proposal->$fileKey)
-                                                                <div class="task-body">
-                                                                    <input disabled type="text" class="form-control" id="{{ $fileKey }}" name="{{ $fileKey }}" value="{{ basename(Storage::url($proposal->$fileKey)) }}" readonly>
-                                                                    <input type="hidden" id="new_{{ $fileKey }}" name="new_{{ $fileKey }}">
-                                                                    <button type="button" class="btn btn-danger remove-button" data-file-key="{{ $fileKey }}">Remove</button>
+                                                                <div class="task-body file-body">
+                                                                    <span class="form-control" id="{{ $fileKey }}"
+                                                                          name="{{ $fileKey }}">
+                                                                        {{ strlen(basename(Storage::url($proposal->$fileKey))) > 35 ? substr(basename(Storage::url($proposal->$fileKey)), 0, 35) . '...' : basename(Storage::url($proposal->$fileKey)) }}
+                                                                    </span>
+                                                                    <input type="hidden" id="new_{{ $fileKey }}"
+                                                                           name="new_{{ $fileKey }}">
+                                                                    <button type="button"
+                                                                            class="btn action-btn delete-btn"
+                                                                            data-file-key="{{ $fileKey }}"><i
+                                                                            class="fa-solid fa-trash"></i></button>
                                                                 </div>
                                                             @endif
                                                         @endfor
                                                     </div>
                                                 </div>
                                                 <div class="custom-button-container">
-                                                    <button type="button" id="upload_file_button" class="btn btn-primary">Upload File</button>
+                                                    <button type="button" id="upload_file_button"
+                                                            class="btn btn-primary">Upload File
+                                                    </button>
                                                     <button type="submit" class="btn btn-primary">Update</button>
                                                 </div>
                                             </div>
@@ -132,16 +155,16 @@
                                     <div class="modal-header">
                                         <h5 class="modal-title custom-title"
                                             id="deleteModalLabel{{ $proposal->id }}">
-                                            Delete Collaboration</h5>
+                                            Delete Proposal</h5>
                                         <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                 aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body">
                                         <div>
-                                            Are you sure you want to delete this collaboration?
+                                            Are you sure you want to delete this proposal?
                                         </div>
                                         <div class="modal-button">
-                                            <form action="{{ route('users.destroy', $proposal->id) }}"
+                                            <form action="{{ route('proposals.destroy', $proposal->id) }}"
                                                   method="POST">
                                                 @csrf
                                                 @method('DELETE')
@@ -163,7 +186,7 @@
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="custom-modal-header modal-header">
-                    <h5 class="modal-title" id="addProposalLabel">Add Collaboration</h5>
+                    <h5 class="modal-title" id="addProposalLabel">Add Proposal</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="custom-modal-body modal-body">
@@ -187,28 +210,31 @@
                                 <select id="collaboration_id" name="collaboration_id" class="form-control">
                                     @foreach ($collaborations as $collaboration)
                                         <option value="{{ $collaboration->id }}">
-                                            {{ $collaboration->title }}
+                                            {{ $collaboration->id }} : {{ $collaboration->title }}
                                         </option>
                                     @endforeach
                                 </select>
                             </div>
                             <div class="col input-item">
                                 <label for="proposed_budget">Proposed Budget</label>
-                                <input type="text" class="form-control" id="proposed_budget" name="proposed_budget" required>
+                                <input placeholder="Enter proposed budget" type="text" class="form-control" id="proposed_budget" name="proposed_budget"
+                                       required>
                             </div>
                             <div class="col input-item">
                                 <label for="supporting_links">Supporting Links</label>
-                                <input type="text" placeholder="separate with a comma(,)" class="form-control" id="supporting_links" name="supporting_links">
+                                <input type="text" placeholder="separate with a comma(,)" class="form-control"
+                                       id="supporting_links" name="supporting_links">
                             </div>
-                            <div id="col input-item tasks-container">
+                            <div id="col input-item">
                                 <label for="tasks">Supporting Files</label>
                                 <div id="files_body1" class="tasks-body">
-                                    <h4 class="default-message1">Click "Upload File" to add a file to the proposal</h4>
+                                    <h4 class="default-message">Click "Upload File" to add a file to the proposal</h4>
                                     <!-- file fields will be added here -->
                                 </div>
                             </div>
                             <div class="custom-button-container">
-                                <button type="button" id="upload_file_button1" class="btn btn-primary">Upload File</button>
+                                <button type="button" id="upload_file_button1" class="btn btn-primary">Upload File
+                                </button>
                                 <button type="submit" class="btn btn-primary">Create</button>
                             </div>
                         </div>
@@ -221,49 +247,6 @@
 
 <script>
     document.addEventListener('DOMContentLoaded', (event) => {
-        let fileId = 1;
-        const taskContainer = document.getElementById('files_body');
-        const defaultMessage = document.querySelector('.default-message');
-        document.getElementById('upload_file_button').addEventListener('click', function () {
-            if (defaultMessage) {
-                defaultMessage.remove();
-            }
-
-            const fileBody = document.createElement('div');
-            fileBody.className = 'task-body';
-
-            const fileInput = document.createElement('input');
-            fileInput.type = 'file';
-            fileInput.name = `supporting_file_${fileId}`;
-            fileInput.className = 'form-control';
-            fileInput.style.display = 'none'; // Hide the input element
-            fileBody.appendChild(fileInput);
-
-            const fileNameDisplay = document.createElement('span');
-            fileBody.appendChild(fileNameDisplay);
-
-            const deleteButton = document.createElement('button');
-            deleteButton.innerHTML = '<i class="fa-solid fa-trash"></i>';
-            deleteButton.className = 'btn btn-danger';
-            deleteButton.type = 'button';
-            deleteButton.addEventListener('click', function () {
-                fileBody.remove();
-            });
-            fileBody.appendChild(deleteButton);
-            taskContainer.appendChild(fileBody);
-
-            // Trigger click event on the file input
-            fileInput.click();
-
-            // Display the name of the file after it's selected
-            fileInput.addEventListener('change', function () {
-                fileNameDisplay.textContent = fileInput.files[0].name;
-                document.getElementById(`new_supporting_file_${fileId}`).value = fileInput.files[0].name;
-            });
-
-            fileId++;
-        });
-
         // Add event listeners to the "Remove" buttons
         document.querySelectorAll('.remove-button').forEach(button => {
             button.addEventListener('click', function () {
@@ -273,7 +256,7 @@
 
         let fileId1 = 1;
         const taskContainer1 = document.getElementById('files_body1');
-        const defaultMessage1 = document.querySelector('.default-message1');
+        const defaultMessage1 = document.querySelector('.default-message');
 
         document.getElementById('upload_file_button1').addEventListener('click', function () {
             if (defaultMessage1) {
@@ -281,7 +264,7 @@
             }
 
             const fileBody = document.createElement('div');
-            fileBody.className = 'task-body';
+            fileBody.className = 'task-body file-body';
 
             const fileInput = document.createElement('input');
             fileInput.type = 'file';
@@ -295,7 +278,7 @@
 
             const deleteButton = document.createElement('button');
             deleteButton.innerHTML = '<i class="fa-solid fa-trash"></i>';
-            deleteButton.className = 'btn btn-danger';
+            deleteButton.className = 'btn action-btn delete-btn';
             deleteButton.type = 'button';
             deleteButton.addEventListener('click', function () {
                 fileBody.remove();
@@ -308,7 +291,8 @@
 
             // Display the name of the file after it's selected
             fileInput.addEventListener('change', function () {
-                fileNameDisplay.textContent = fileInput.files[0].name;
+                let fileName = fileInput.files[0].name;
+                fileNameDisplay.textContent = fileName.length > 35 ? fileName.substring(0, 35) + '...' : fileName;
             });
 
             fileId1++;
