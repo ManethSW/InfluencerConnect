@@ -37,110 +37,80 @@
     </div>
     <div class="dashboard-content">
         @section('content')
+{{--            @dd($totalInfluencers, $totalBusinesses)--}}
             <div class="analytics-section-one">
                 <div class="total-analytics-container">
-                    <div class="glass-effect">
+                    <div class="glass-effect-analytics">
                         <div class="analytics-header">
                             <div>
                                 <i class="fa-solid fa-users"></i>
                                 <h2>Users</h2>
                             </div>
-                            <h2 class="analytics-amount">100</h2>
+                            <h2 class="analytics-amount">{{ $totalUsers }}</h2>
                         </div>
-                        <div>
-                            <div class="analytics-body">
-                                <div>
-                                    <h3>Influences</h3>
-                                    <h4>500</h4>
-                                </div>
-                                <div>
-                                    <h3>Businesses</h3>
-                                    <h4>500</h4>
-                                </div>
-                            </div>
+                        <div class="piechart-container">
                             <div id="piechart_users" class="piechart"></div>
                         </div>
                     </div>
                 </div>
                 <div class="total-analytics-container">
-                    <div class="glass-effect">
+                    <div class="glass-effect-analytics">
                         <div class="analytics-header">
                             <div>
                                 <i class="fa-solid fa-handshake"></i>
                                 <h2>Collaborations</h2>
                             </div>
-                            <h2 class="analytics-amount">100</h2>
+                            <h2 class="analytics-amount">{{ $totalCollaborations }}</h2>
                         </div>
-                        <div>
-                            <div class="analytics-body">
-                                <div>
-                                    <h3>Ongoing</h3>
-                                    <h4>500</h4>
-                                </div>
-                                <div>
-                                    <h3>Completed</h3>
-                                    <h4>500</h4>
-                                </div>
-                            </div>
+                        <div class="piechart-container">
                             <div id="piechart_collaborations" class="piechart"></div>
                         </div>
                     </div>
                 </div>
                 <div class="total-analytics-container">
-                    <div class="glass-effect">
+                    <div class="glass-effect-analytics">
                         <div class="analytics-header">
                             <div>
                                 <i class="fa-solid fa-file-import"></i>
                                 <h2>Proposals</h2>
                             </div>
-                            <h2 class="analytics-amount">100</h2>
+                            <h2 class="analytics-amount">{{ $totalProposals }}</h2>
                         </div>
-                        <div class="analytics-body-content">
-                            <div class="analytics-body">
-                                <div>
-                                    <h3>Pending</h3>
-                                    <h4>500</h4>
-                                </div>
-                                <div>
-                                    <h3>Accepted</h3>
-                                    <h4>500</h4>
-                                </div>
-                                <div>
-                                    <h3>Rejected</h3>
-                                    <h4>500</h4>
-                                </div>
-                            </div>
+                        <div class="piechart-container">
                             <div id="piechart_proposals" class="piechart"></div>
                         </div>
                     </div>
                 </div>
                 <div class="total-analytics-container">
-                    <div class="glass-effect">
+                    <div class="glass-effect-analytics">
                         <div class="analytics-header">
                             <div>
-                                <i class="fa-solid fa-sack-dollar"></i>
-                                <h2>Payments</h2>
+                                <i class="fa-solid fa-check"></i>
+                                <h2>Verifications</h2>
                             </div>
                         </div>
-                        <div>
-                            <div class="analytics-body">
-                                <div>
-                                    <h3>Money/LKR</h3>
-                                    <h4>10,000</h4>
-                                </div>
-                                <div>
-                                    <h3>Transactions</h3>
-                                    <h4>500</h4>
-                                </div>
+                        <div class="piechart-container">
+                            <div id="piechart_verifications" class="piechart"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="total-analytics-container">
+                    <div class="glass-effect-analytics">
+                        <div class="analytics-header">
+                            <div>
+                                <i class="fa-solid fa-headset"></i>
+                                <h2>Support Tickets</h2>
                             </div>
-                            <div id="piechart_transactions" class="piechart"></div>
+                        </div>
+                        <div class="piechart-container">
+                            <div id="piechart_tickets" class="piechart"></div>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="analytics-section-two">
                 <div class="growth-chart">
-                    <div class="glass-effect">
+                    <div class="glass-effect-analytics-graphs">
                         <div class="chart-header">
                             <i class="fa-solid fa-users"></i>
                             <h2>User Growth by Month</h2>
@@ -149,7 +119,7 @@
                     </div>
                 </div>
                 <div class="growth-chart">
-                    <div class="glass-effect">
+                    <div class="glass-effect-analytics-graphs">
                         <div class="chart-header">
                             <i class="fa-solid fa-users"></i>
                             <h2>User Growth by Month</h2>
@@ -158,7 +128,6 @@
                     </div>
                 </div>
             </div>
-            <button id="random_button"> Press me </button>
         @show
     </div>
 
@@ -188,250 +157,91 @@
 </html>
 
 <script>
-    let piechart_users_options = {
-        series: [46, 12],
-        colors: ["#16BDCA", "#9061F9"],
-        chart: {
-            height: 300,
-            width: 250,
-            type: "pie",
-        },
-        stroke: {
-            colors: ["black"],
-            lineCap: "",
-        },
-        plotOptions: {
-            pie: {
-                labels: {
-                    show: true,
-                },
-                size: "100%",
-                dataLabels: {
-                    offset: -25
-                }
+    function generatePieChartOptions(series, colors, width, labels) {
+        return {
+            series: series,
+            colors: colors,
+            chart: {
+                height: 250,
+                width: width,
+                type: "pie",
             },
-        },
-        labels: ["Influencers", "Businesses"],
-        dataLabels: {
-            enabled: true,
-            style: {
-                fontFamily: "tripsansbold, sans-serif",
+            stroke: {
                 colors: ["black"],
+                lineCap: "",
             },
-        },
-        legend: {
-            position: "bottom",
-            fontFamily: "tripsansbold, sans-serif",
-        },
-        yaxis: {
-            labels: {
-                formatter: function (value) {
-                    return value
+            plotOptions: {
+                pie: {
+                    labels: {
+                        show: true,
+                    },
+                    size: "100%",
+                    dataLabels: {
+                        offset: -25
+                    }
                 },
             },
-        },
-        xaxis: {
-            labels: {
-                formatter: function (value) {
-                    return value + "%"
+            labels: labels,
+            dataLabels: {
+                enabled: true,
+                style: {
+                    fontFamily: "tripsansbold, sans-serif",
+                    colors: ["black"],
                 },
             },
-            axisTicks: {
-                show: false,
+            legend: {
+                position: "bottom",
+                fontFamily: "tripsansbold, sans-serif",
             },
-            axisBorder: {
-                show: false,
+            yaxis: {
+                labels: {
+                    formatter: function (value) {
+                        return value
+                    },
+                },
             },
-        },
+            xaxis: {
+                labels: {
+                    formatter: function (value) {
+                        return value + "%"
+                    },
+                },
+                axisTicks: {
+                    show: false,
+                },
+                axisBorder: {
+                    show: false,
+                },
+            },
+        }
     }
 
-    let piechart_users = new ApexCharts(document.querySelector("#piechart_users"), piechart_users_options);
-    piechart_users.render();
-
-    let piechart_collaborations_options = {
-        series: [46, 12],
-        colors: ["#16BDCA", "#9061F9"],
-        chart: {
-            height: 300,
-            width: 250,
-            type: "pie",
-        },
-        stroke: {
-            colors: ["black"],
-            lineCap: "",
-        },
-        plotOptions: {
-            pie: {
-                labels: {
-                    show: true,
-                },
-                size: "100%",
-                dataLabels: {
-                    offset: -25
-                }
-            },
-        },
-        labels: ["Influencers", "Businesses"],
-        dataLabels: {
-            enabled: true,
-            style: {
-                fontFamily: "tripsansbold, sans-serif",
-                colors: ["black"],
-            },
-        },
-        legend: {
-            position: "bottom",
-            fontFamily: "tripsansbold, sans-serif",
-        },
-        yaxis: {
-            labels: {
-                formatter: function (value) {
-                    return value
-                },
-            },
-        },
-        xaxis: {
-            labels: {
-                formatter: function (value) {
-                    return value + "%"
-                },
-            },
-            axisTicks: {
-                show: false,
-            },
-            axisBorder: {
-                show: false,
-            },
-        },
+    function renderPieChart(elementId, options) {
+        let chart = new ApexCharts(document.querySelector(elementId), options);
+        chart.render();
     }
 
-    let piechart_collaborations = new ApexCharts(document.querySelector("#piechart_collaborations"), piechart_collaborations_options);
-    piechart_collaborations.render();
+    let piechart_users_options = generatePieChartOptions([{{ $totalInfluencers }}, {{ $totalBusinesses }}], ["#9061F9", "#1C64F2"], 200, ["Influencers", "Businesses"]);
+    renderPieChart("#piechart_users", piechart_users_options);
 
-    let piechart_proposals_options = {
-        series: [46, 12],
-        colors: ["#16BDCA", "#9061F9"],
-        chart: {
-            height: 300,
-            width: 250,
-            type: "pie",
-        },
-        stroke: {
-            colors: ["black"],
-            lineCap: "",
-        },
-        plotOptions: {
-            pie: {
-                labels: {
-                    show: true,
-                },
-                size: "100%",
-                dataLabels: {
-                    offset: -25
-                }
-            },
-        },
-        labels: ["Influencers", "Businesses"],
-        dataLabels: {
-            enabled: true,
-            style: {
-                fontFamily: "tripsansbold, sans-serif",
-                colors: ["black"],
-            },
-        },
-        legend: {
-            position: "bottom",
-            fontFamily: "tripsansbold, sans-serif",
-        },
-        yaxis: {
-            labels: {
-                formatter: function (value) {
-                    return value
-                },
-            },
-        },
-        xaxis: {
-            labels: {
-                formatter: function (value) {
-                    return value + "%"
-                },
-            },
-            axisTicks: {
-                show: false,
-            },
-            axisBorder: {
-                show: false,
-            },
-        },
-    }
+    let piechart_collaborations_options = generatePieChartOptions([{{ $totalPendingCollaborations }}, {{ $totalActiveCollaborations }}, {{ $totalCompletedCollaborations }} ], ["#9061F9", "#1C64F2", "#16BDCA"], 250, ["Pending", "Active", "Completed"]);
+    renderPieChart("#piechart_collaborations", piechart_collaborations_options);
 
-    let piechart_proposals = new ApexCharts(document.querySelector("#piechart_proposals"), piechart_proposals_options);
-    piechart_proposals.render();
+    let piechart_proposals_options = generatePieChartOptions([{{ $totalPendingProposals }}, {{ $totalAcceptedProposals }}, {{ $totalRejectedProposals }}], ["#9061F9", "#1C64F2", "#16BDCA"], 250, ["Pending", "Accepted", "Rejected"]);
+    renderPieChart("#piechart_proposals", piechart_proposals_options);
 
-    let piechart_transactions_options = {
-        series: [46, 12],
-        colors: ["#16BDCA", "#9061F9"],
-        chart: {
-            height: 300,
-            width: 250,
-            type: "pie",
-        },
-        stroke: {
-            colors: ["black"],
-            lineCap: "",
-        },
-        plotOptions: {
-            pie: {
-                labels: {
-                    show: true,
-                },
-                size: "100%",
-                dataLabels: {
-                    offset: -25
-                }
-            },
-        },
-        labels: ["Influencers", "Businesses"],
-        dataLabels: {
-            enabled: true,
-            style: {
-                fontFamily: "tripsansbold, sans-serif",
-                colors: ["black"],
-            },
-        },
-        legend: {
-            position: "bottom",
-            fontFamily: "tripsansbold, sans-serif",
-        },
-        yaxis: {
-            labels: {
-                formatter: function (value) {
-                    return value
-                },
-            },
-        },
-        xaxis: {
-            labels: {
-                formatter: function (value) {
-                    return value + "%"
-                },
-            },
-            axisTicks: {
-                show: false,
-            },
-            axisBorder: {
-                show: false,
-            },
-        },
-    }
+    let piechart_transactions_options = generatePieChartOptions([46, 12], ["#16BDCA", "#9061F9"], 200, ["Influencers", "Businesses"]);
+    renderPieChart("#piechart_transactions", piechart_transactions_options);
 
-    let piechart_transactions = new ApexCharts(document.querySelector("#piechart_transactions"), piechart_transactions_options);
-    piechart_transactions.render();
+    let piechart_coming_soon_options = generatePieChartOptions([1], ["rgba(255,93,38,0.5)"], 200, ["Coming Soon"]);
+    renderPieChart("#piechart_verifications", piechart_coming_soon_options);
+
+    renderPieChart("#piechart_tickets", piechart_coming_soon_options);
 
     let options1 = {
         series: [{
-            name: "Desktops",
-            data: [10, 41, 35, 51, 49, 62, 69, 91, 148, 150, 178, 190]
+            name: "Users",
+            data: @json($userGrowthByMonth)
         }],
         chart: {
             height: 350,
@@ -446,7 +256,7 @@
         },
         stroke: {
             curve: 'straight',
-            colors: ['#FF5D26']
+            colors: ['#16BDCA']
         },
         grid: {
             row: {
@@ -463,11 +273,11 @@
         },
         markers: {
             size: 4,
-            colors: ['#000000'], // Change the color of the markers here
+            colors: ['#1C64F2'], // Change the color of the markers here
         },
         tooltip: {
             marker: {
-                fillColors: ['#FF5D26'] // Change the color of the marker here
+                fillColors: ['#1C64F2'] // Change the color of the marker here
             },
         },
     };

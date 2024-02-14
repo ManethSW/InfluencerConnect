@@ -54,9 +54,7 @@ Route::post('/tasks/submit', [CollaborationController::class, 'submitTask'])->na
 Route::post('/tasks/complete', [CollaborationController::class, 'completeTask'])->name('tasks.complete');
 
 Route::middleware(['superadmin'])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('layouts.dashboard');
-    })->name('dashboard');
+    Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'showDashboard'])->name('dashboard');
 });
 
 Route::prefix('dashboard')->middleware(['superadmin'])->group(function () {

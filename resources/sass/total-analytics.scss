@@ -1,7 +1,9 @@
 .analytics-section-one {
     display: flex;
-    flex-direction: row;
+    //grid-template-columns: repeat(5, 1fr);
     justify-content: space-between;
+    column-gap: 25px;
+    justify-items: center;
     margin-top: 45px;
 }
 
@@ -14,13 +16,25 @@
     overflow: hidden;
 }
 
-.glass-effect {
+.glass-effect-analytics {
     background-color: rgba(255, 255, 255, 0.75);
     backdrop-filter: blur(10.0px);
     padding: 25px;
     display: flex;
     flex-direction: column;
-    row-gap: 15px;
+    height: 100%;
+}
+
+.glass-effect-analytics-graphs {
+    background-color: rgba(255, 255, 255, 0.75);
+    backdrop-filter: blur(10.0px);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.glass-effect-analytics-graphs .chart-header {
+    padding: 25px 25px 0px 25px;
 }
 
 .analytics-header {
@@ -35,16 +49,12 @@
 }
 
 .analytics-header i, .chart-header i {
-    font-size: 14px;
+    font-size: 16px;
 }
 
 .analytics-header h2, .chart-header h2 {
-    font-family: 'tripsansbold', serif;
+    font-family: 'tripsansultra', serif;
     font-size: 20px;
-}
-
-.analytics-amount {
-    color: var(--primary-color);
 }
 
 .analytics-body-content {
@@ -116,4 +126,10 @@
 
 .apexcharts-xaxis-tick {
     stroke: var(--secondary-color) !important; // Change the color of the ticks here
+}
+
+.piechart-container {
+    display: grid;
+    justify-content: center;
+    width: 100%;
 }
