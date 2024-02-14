@@ -60,32 +60,37 @@
     right: 20px;
     display: flex;
     flex-direction: row;
+    align-items: center;
     column-gap: 5px;
 }
 
 .card-rating h3 {
     font-family: 'tripsansbold';
-    font-size: 20px;
+    font-size: 16px;
     height: fit-content;
     margin: auto 0;
+}
+
+.card-rating img {
+    height: 16px;
 }
 
 .card-avatar-frame {
     border: 3px solid var(--primary-color-75);
     width: fit-content;
     margin: 0 auto;
-    border-radius: 40px;
+    border-radius: 30px;
     padding: 4px;
 }
 
 .card-avatar {
-    width: 100px;
-    height: 100px;
+    width: 80px;
+    height: 80px;
     display: flex;
     justify-content: center;
     align-items: center;
     background-color: rgba($color: #FFFFFF, $alpha: 0.8);
-    border-radius: 34px;
+    border-radius: 28px;
 }
 
 .card-avatar img {
@@ -108,7 +113,7 @@
 
 .card-info h3 {
     font-family: 'tripsansbold';
-    font-size: 20px;
+    font-size: 18px;
     text-align: center;
     margin-bottom: 0px;
     color: var(--primary-color-100);
@@ -116,7 +121,7 @@
 
 .card-info h4 {
     font-family: 'tripsansmedium';
-    font-size: 20px;
+    font-size: 16px;
     text-align: center;
     margin-bottom: 0px;
     color: var(--primary-color-85);
@@ -132,7 +137,7 @@
 }
 
 .card-links i {
-    font-size: 20px;
+    font-size: 18px;
     color: var(--secondary-color-85);
     transition: all 0.3s ease-in-out;
 }
@@ -140,6 +145,7 @@
 .link-divider {
     width: 5px;
     height: 5px;
+    margin-top: 10px;
     border-radius: 50%;
     background-color: var(--primary-color-50);
 }
@@ -150,24 +156,25 @@
     flex-direction: row;
     justify-content: space-between;
     column-gap: 50px;
-    margin: 0px auto;
+    margin: 10px auto;
 }
 
 .card-analytics div {
     display: flex;
     flex-direction: column;
     align-items: center;
+    row-gap: 5px;
 }
 
 .card-analytics h3 {
     font-family: 'tripsansbold', serif;
-    font-size: 20px;
+    font-size: 18px;
     color: var(--secondary-color);
 }
 
 .card-analytics h4 {
     font-family: 'tripsansbold', serif;
-    font-size: 20px;
+    font-size: 16px;
     color: var(--primary-color);
 }
 
@@ -207,12 +214,12 @@
 
 .card-action-buttons h3 {
     font-family: 'tripsansbold';
-    font-size: 20px;
+    font-size: 18px;
     color: var(--secondary-color);
 }
 
 .card-action-buttons i {
-    font-size: 14px;
+    font-size: 12px;
 }
 
 .card-action-buttons .view {

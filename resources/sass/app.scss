@@ -8,6 +8,7 @@
 @import 'navbar.scss';
 @import 'home.scss';
 @import 'collaborations.scss';
+@import 'search-collaborations.scss';
 
 :root {
     --primary-color: rgb(255, 93, 38);
@@ -171,6 +172,9 @@ p {
     margin-bottom: 0rem!important;
 }
 
+.modal-header {
+    border-radius: 25px 25px 0 0;
+}
 .navbar-toggler {
     padding: 0px;
     font-size: 25px;

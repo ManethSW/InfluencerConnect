@@ -26,15 +26,15 @@
 }
 
 .section-header-content h2 {
-    font-family: 'tripsansultra';
+    font-family: 'tripsansultra', serif;
     width: fit-content;
-    font-size: 30px;
+    font-size: 25px;
     color: var(--secondary-color);
 }
 
-.section-header-content h3 {
-    font-family: 'tripsansmedium';
-    font-size: 20px;
+.section-header-content h4 {
+    font-family: 'tripsansmedium', serif;
+    font-size: 18px;
     color: var(--secondary-color-50);
 }
 
@@ -46,39 +46,9 @@
     border-radius: 25px;
 }
 
-.carousel-item {
-    margin-top: 40px;
-}
-
-.carousel-control-prev,
-.carousel-control-next {
-    width: 5%;
-}
-
-.carousel-control-prev-icon {
-    background-image: url('../../public/Icons/left.svg');
-}
-
-.carousel-control-next-icon {
-    background-image: url('../../public/Icons/right.svg');
-}
-
-.carousel-inner {
-    max-width: 1320px;
-    margin: auto;
-}
-
-.items {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    margin-bottom: 100px;
-}
-
 .category-items {
     width: 1320px;
-    margin: 0px auto;
-    margin-top: 40px;
+    margin: 40px auto 0 auto;
     display: grid;
     row-gap: 40px;
 }
@@ -89,228 +59,73 @@
     justify-content: space-between;
 }
 
-.category-item {
-    width: 200px;
-    height: 200px;
-    border: 2px solid rgba(17, 17, 17, 10%);
-    border-radius: 25px;
-    background-color: rgba(17, 17, 17, 10%);
+.category-item-background-image {
+    width: 225px;
+    background-image: url('../../public/Images/hero.png');
+    background-size: cover;
+    background-position: center;
+    border-radius: 26px;
+    overflow: hidden;
+    border: 2px solid #787777;
+    transition: all 0.3s ease-in-out 0s;
+}
+
+.category-item-glass-effect {
+    background-color: rgba(255, 255, 255, 0.75);
+    backdrop-filter: blur(10.0px);
+    padding: 20px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    text-align: center;
-    row-gap: 10px;
-    padding: 0px 20px;
     transition: all 0.3s ease-in-out;
     cursor: pointer;
 }
 
-.category-item img {
+.category-item-glass-effect img {
+    width: 40px;
+    height: 40px;
     opacity: 0.75;
+    transition: all 0.3s ease-in-out 0s;
 }
 
-.category-item h3 {
-    font-family: 'Archivo', sans-serif;
-    font-size: 20px;
-    font-weight: 900;
-    color: rgba(17, 17, 17, 75%);
-    margin: 0px 0px 0px;
+.category-item-glass-effect h3 {
+    font-family: 'tripsansbold', sans-serif;
+    font-size: 16px;
+    color: var(--secondary-color-75);
+    margin: 0;
+    transition: all 0.3s ease-in-out 0s;
 }
 
 .item-divider {
-    height: 2.5px;
+    height: 2px;
     width: 20%;
-    margin: 10px 0px;
-    background-color: rgba(255, 93, 38, 50%);
+    margin: 15px 0;
+    background-color: var(--secondary-color-75);
     border-radius: 25px;
     transition: all 0.3s ease-in-out;
 }
 
-.category-item:hover {
+.category-item-background-image:hover {
     border: 2px solid #FF5D26;
 }
 
-.category-item:hover img {
+.category-item-background-image:hover img {
     opacity: 1;
 }
 
-.category-item:hover .item-divider {
+.category-item-background-image:hover .item-divider {
     width: 40%;
     background-color: #FF5D26;
 }
 
-.category-item:hover h3 {
+.category-item-background-image:hover h3 {
     color: rgba(17, 17, 17, 100%);
 }
 
-@media (max-width: 1750px) {
-
-    .hero, .search, .carousel-inner, .influencer-header {
-        max-width: 1070px;
-        margin: 0px auto;
-    }
-
-    .navbar-nav {
-        column-gap: 30px !important;
-    }
-
-    .hero {
-        height: 500px;
-        padding: 0px 30px 30px 30px;
-    }
-
-    .hero-items {
-        column-gap: 30px;
-    }
-
-    .hero-heading h1:nth-of-type(1),
-    .hero-heading h1:nth-of-type(2) {
-        font-size: 30px;
-        padding: 1px 0.5px;
-        line-height: 25px;
-    }
-
-    .hero-items p {
-        font-size: 15px;
-        padding: 1px;
-        padding-left: 4px;
-    }
-
-    .call-action-btn {
-        width: 100%;
-        height: 74px;
-        border: 4px solid #FF5D26;
-        padding: 17.5px;
-    }
-
-    .call-action-btn a {
-        font-size: 25px;
-    }
-
-    .search {
-        height: 60px;
-        margin-top: 20px;
-    }
-
-    .search input {
-        border-radius: 20px 0px 0px 20px;
-        border: 4px solid rgba(17, 17, 17, 25%);
-        font-size: 15px;
-        padding: 0px 17.5px;
-    }
-
-    .search input:focus {
-        border: 4px solid rgba(17, 17, 17, 100%) !important;
-    }
-
-    .search img {
-        padding: 20px;
-        border-radius: 0px 20px 20px 0px;
-    }
-
-    .influencers {
-        margin-top: 75px;
-    }
-
-    .influencer-header h2 {
-        font-size: 25px;
-    }
-
-    .influencer-header div {
-        height: 4px;
-    }
-
-    .carousel-item {
-        margin-top: 35px;
-    }
-
-    .carousel-control-prev,
-    .carousel-control-next {
-        width: 5% !important;
-    }
-
-    .influencer-card {
-        border-radius: 20px;
-        width: 200px;
-    }
-
-    .influencer-img {
-        border: 4px solid rgba(17, 17, 17, 10%);
-        border-radius: 20px 20px 0px 0px;
-    }
-
-    .influencer-img img {
-        // width: 200px;
-        height: 150px;
-    }
-
-    .influencer-content {
-        border-radius: 0px 0px 20px 20px;
-        padding: 4px;
-    }
-
-    .influencer-content h3 {
-        font-size: 18px;
-    }
-
-    .influencer-content p {
-        font-size: 12.5px;
-    }
-
-    .influencer-content p:nth-of-type(2) {
-        height: 80px;
-    }
-
-    .influencer-content .influencer-rating {
-        column-gap: 15px;
-    }
-
-    .influencer-content .influencer-rating img {
-        height: 17.5px;
-        width: 17.5px;
-    }
-
-    .influencer-content button {
-        border-radius: 18px;
-        font-size: 15px;
-    }
-
-    .influencer-card:hover p:nth-of-type(2) {
-        height: 80px;
-    }
-
-    .influencers-categories {
-        margin-top: 75px;
-    }
-
-    .category-items {
-        margin-top: 30px;
-    }
-
-    .items-row {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-    }
-
-    .items {
-        margin-bottom: 25px;
-    }
-
-    .category-items {
-        width: 1076px;
-    }
-
-    .category-item {
-        width: 170px;
-        height: 170px;
-        border-radius: 20px;
-        row-gap: 7.5px;
-        padding: 0px 17.5px;
-    }
-
-    .category-item h3 {
-        font-size: 15px;
-    }
+.featured-influencers-container {
+    margin: 50px auto 0 auto;
+    width: 1320px;
+    display: flex;
+    justify-content: space-between;
 }

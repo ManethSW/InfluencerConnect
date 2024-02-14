@@ -14,16 +14,14 @@ class CollaborationController extends Controller
 {
     public function index()
     {
-        // Get all the collaborations
         $collaborations = Collaboration::all();
         $users = User::all();
-        // Get all the tasks of the collaborations
         return view('dashboard.collaborations.index', compact('collaborations', 'users'));
     }
 
-    public function getAll() {
-        $collaborations = Collaboration::all();
-        return view('collaborations', compact('collaborations'));
+    public function getAllPending() {
+        $pendingCollaborations = Collaboration::where('status', CollaborationStatus::Pending)->get();
+        return view('search-collaborations', compact('pendingCollaborations'));
     }
 
     public function getByBusiness()
@@ -302,17 +300,20 @@ class CollaborationController extends Controller
 
     public function destroy(Collaboration $collaboration)
     {
-
-        // Delete the tasks
         $collaboration->tasks()->delete();
-
-        // Delete the proposals
         $collaboration->proposals()->delete();
-
-        // Delete the collaboration
         $collaboration->delete();
 
         return redirect()->route('collaborations.index')
+            ->with('success', 'Collaboration deleted successfully');
+    }
+
+    public function destroyByBusiness(Collaboration $collaboration)
+    {
+        $collaboration->tasks()->delete();
+        $collaboration->proposals()->delete();
+        $collaboration->delete();
+        return redirect()->route('collaborations.my_collaborations')
             ->with('success', 'Collaboration deleted successfully');
     }
 }

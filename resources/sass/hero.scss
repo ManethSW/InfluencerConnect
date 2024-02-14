@@ -23,10 +23,6 @@
     row-gap: 10px;
 }
 
-.animated-icon {
-    
-}
-
 .hero-header {
     display: flex;
     flex-direction: column;
@@ -82,6 +78,7 @@
     font-size: 40px;
     color: #EBEBEB;
     text-decoration: none;
+    margin: 0;
     transition: all 0.3s ease-in-out;
 }
 

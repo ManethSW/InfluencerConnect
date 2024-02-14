@@ -31,7 +31,9 @@
                     <div class="offer-actions">
                         <div class="main">
                             @if($collaboration->status == 0)
-                                <button class="decline">
+                                <button class="decline"
+                                        data-bs-toggle="modal"
+                                        data-bs-target="#deleteModal{{ $collaboration->id }}">
                                     <i class="fa-solid fa-xmark"></i>
                                 </button>
                                 <button class="edit" data-bs-toggle="modal"
@@ -116,6 +118,36 @@
                                                 </h4>
                                             </div>
                                         @endforeach
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade" id="deleteModal{{ $collaboration->id }}" tabindex="-1"
+                 aria-labelledby="deleteModalLabel{{ $collaboration->id }}"
+                 aria-hidden="false">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="incoming-offer-container">
+                            <div class="glass-effect">
+                                <div class="offer-header">
+                                    <h5 class="modal-title" id="deleteModalLabel">Delete Collaboration</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                </div>
+                                <div class="offer-task-section delete-modal-body">
+                                    <p>Are you sure you want to delete this collaboration?</p>
+                                    <div class="delete-custom-button-container">
+                                        <form method="post"
+                                              action="{{ route('collaborations.destroyByBusiness', $collaboration->id) }}">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="delete-modal-button delete">Delete</button>
+                                        </form>
+                                        <button type="button" class="delete-modal-button" data-bs-dismiss="modal">Cancel
+                                        </button>
                                     </div>
                                 </div>
                             </div>

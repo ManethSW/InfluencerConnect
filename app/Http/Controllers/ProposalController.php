@@ -159,6 +159,57 @@ class ProposalController extends Controller
         return redirect()->route('proposals.index')->with('success', 'Proposal submitted successfully');
     }
 
+    public function storeByInfluencers(Request $request)
+    {
+        $collaboration = Collaboration::find($request->collaboration_id);
+
+        // Check if the collaboration is still pending
+        if ($collaboration->status != 0) {
+            return response()->json(['error' => 'This collaboration is not accepting proposals.'], 400);
+        }
+
+        $existingProposal = Proposal::where('collaboration_id', $request->collaboration_id)
+            ->where('influencer_id', $request->influencer_id)
+            ->first();
+
+        if ($existingProposal) {
+            return redirect()->route('collaborations.my_proposals')->with('error', 'You have already submitted a proposal for this collaboration');
+        }
+
+        // Validate the request data
+        $request->validate([
+            'collaboration_id' => 'required|exists:collaborations,id',
+            'proposed_budget' => 'required|numeric|min:0',
+            'supporting_links' => 'nullable|string',
+            'supporting_file_1' => 'nullable|file',
+            'supporting_file_2' => 'nullable|file',
+            'supporting_file_3' => 'nullable|file',
+            'supporting_file_4' => 'nullable|file',
+            'supporting_file_5' => 'nullable|file',
+        ]);
+
+        // Create the proposal
+        $proposal = new Proposal;
+        $proposal->collaboration_id = $request->collaboration_id;
+        // Get influencer id from the authenticated user
+        $proposal->influencer_id = Auth::id();
+        $proposal->proposed_budget = $request->proposed_budget;
+        $proposal->supporting_links = $request->supporting_links;
+
+        // Handle the supporting files
+        for ($i = 1; $i <= 5; $i++) {
+            $fileKey = "supporting_file_$i";
+            if ($request->hasFile($fileKey)) {
+                $path = $request->file($fileKey)->store('supporting_files', 'public');
+                $proposal->$fileKey = $path;
+            }
+        }
+
+        $proposal->save();
+
+        return redirect()->route('collaborations.my_proposals')->with('success', 'Proposal submitted successfully');
+    }
+
     public function show($id)
     {
         $proposal = Proposal::with('influencer')->find($id);

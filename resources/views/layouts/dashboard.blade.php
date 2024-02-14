@@ -121,8 +121,9 @@
                 <div class="growth-chart">
                     <div class="glass-effect-analytics-graphs">
                         <div class="chart-header">
-                            <i class="fa-solid fa-users"></i>
-                            <h2>User Growth by Month</h2>
+                            <i class="fa-solid fa-sack-dollar"></i>
+                            <h2>Payments & Transactions by Month</h2>
+                            <p>Coming Soon</p>
                         </div>
                         <div id="charttwo"></div>
                     </div>
@@ -287,8 +288,8 @@
 
     let options2 = {
         series: [{
-            name: "Desktops",
-            data: [10, 41, 35, 51, 49, 62, 69, 91, 148, 150, 178, 190]
+            name: "Coming Soon",
+            data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
         }],
         chart: {
             height: 350,
@@ -303,7 +304,7 @@
         },
         stroke: {
             curve: 'straight',
-            colors: ['#FF5D26']
+            colors: ['#16BDCA']
         },
         grid: {
             row: {
@@ -320,11 +321,11 @@
         },
         markers: {
             size: 4,
-            colors: ['#000000'], // Change the color of the markers here
+            colors: ['#1C64F2'], // Change the color of the markers here
         },
         tooltip: {
             marker: {
-                fillColors: ['#FF5D26'] // Change the color of the marker here
+                fillColors: ['#1C64F2'] // Change the color of the marker here
             },
         },
     };

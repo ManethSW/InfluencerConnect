@@ -9,6 +9,6 @@ class CollaborationsController extends Controller
 
     public function show(Request $request) {
         $activePage = $request->query('page', 'incoming'); // Default to 'incoming' if no query parameter is provided
-        return view('collaborations', ['activePage' => $activePage]);
+        return view('search-collaborations', ['activePage' => $activePage]);
     }
 }

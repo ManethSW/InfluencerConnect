@@ -11,8 +11,6 @@
             <div class="nav-body-content">
                 <a class="link {{ request()->is('/') || request()->routeIs('home') ? ' active-custom active' : '' }}"
                    href="{{ route('home') }}">{{ __('Home') }}</a>
-                <a class="link" href="#">Influencers</a>
-                <a class="link" href="#">Businesses</a>
             </div>
             <div class="nav-body-content">
                 <div class="search">
@@ -30,8 +28,10 @@
             <div class="nav-body-content">
                 <a class="link {{ request()->is('/') || request()->routeIs('home') ? ' active-custom active' : '' }}"
                    href="{{ route('home') }}">{{ __('Home') }}</a>
-                <a class="link" href="#">Influencers</a>
-                <a class="link" href="#">Businesses</a>
+{{--                Check if user is influencer or not --}}
+                @if(Auth::user()->role_id->value == 10)
+                    <a class="link{{ request()->is('/collaborations') || request()->routeIs('collaborations.getAllPending') ? ' active' : '' }}" href="{{ route('collaborations.getAllPending') }}">Search Collaborations</a>
+                @endif
             </div>
             <div class="nav-body-content">
                 <div class="search">

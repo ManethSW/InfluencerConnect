@@ -4,8 +4,7 @@ use App\Http\Controllers\CategoryController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\InfluencerCardController;
-use App\Models\InfluencerCard;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\InfluencerCategoryController;
 use App\Http\Controllers\BusinessCategoryController;
 use App\Http\Controllers\CollaborationController;
@@ -32,7 +31,7 @@ Route::get('profile', function () {
     return view('profile');
 })->name('profile');
 
-Route::get('collaborations', [App\Http\Controllers\CollaborationController::class, 'getAll'])->name('collaborations.getAll');
+Route::get('collaborations', [App\Http\Controllers\CollaborationController::class, 'getAllPending'])->name('collaborations.getAllPending');
 
 Route::prefix('collaborations')->group(function () {
 //    Route::get('incoming', [App\Http\Controllers\IncomingOffersController::class, 'index'])->name('collaborations.incoming');
@@ -44,8 +43,10 @@ Route::prefix('collaborations')->group(function () {
 
 Route::post('collaborations/storeByBusiness', [App\Http\Controllers\CollaborationController::class, 'storeByBusiness'])->name('collaborations.storeByBusiness');
 Route::put('collaborations/{collaboration}/updateByBusiness', [App\Http\Controllers\CollaborationController::class, 'updateByBusiness'])->name('collaborations.updateByBusiness');
+Route::delete('collaborations/{collaboration}/destroyByBusiness', [App\Http\Controllers\CollaborationController::class, 'destroyByBusiness'])->name('collaborations.destroyByBusiness');
 
 Route::resource('proposals', ProposalController::class)->middleware('auth');
+Route::post('proposals/storeByInfluencers', [App\Http\Controllers\ProposalController::class, 'storeByInfluencers'])->name('proposals.storeByInfluencers');
 Route::put('proposals/{proposal}/updateByInfluencers', [App\Http\Controllers\ProposalController::class, 'updateByInfluencers'])->name('proposals.updateByInfluencers');
 Route::delete('proposals/{proposal}/destroyByInfluencers', [App\Http\Controllers\ProposalController::class, 'destroyByInfluencers'])->name('proposals.destroyByInfluencers');
 Route::get('proposals/{proposal}/acceptProposal', [App\Http\Controllers\ProposalController::class, 'acceptProposal'])->name('proposals.acceptProposal');
@@ -62,10 +63,6 @@ Route::prefix('dashboard')->middleware(['superadmin'])->group(function () {
     Route::get('users/{user}/suspend', [UserController::class, 'suspend'])->name('users.suspend');
     Route::get('users/{user}/activate', [UserController::class, 'activate'])->name('users.activate');
 
-    Route::resource('influencerCards', InfluencerCardController::class);
-    Route::get('influencerCards/{influencerCard}/suspend', [InfluencerCardController::class, 'suspend'])->name('influencerCards.suspend');
-    Route::get('influencerCards/{influencerCard}/activate', [InfluencerCardController::class, 'activate'])->name('influencerCards.activate');
-
     Route::resource('featuredInfluencers', FeaturedInfluencerController::class);
     Route::put('featuredInfluencers/{featuredInfluencer}/status', [FeaturedInfluencerController::class, 'updateStatus'])->name('featuredInfluencers.status.update');
 
@@ -81,10 +78,5 @@ Route::prefix('dashboard')->middleware(['superadmin'])->group(function () {
     Route::resource('proposals', ProposalController::class);
 });
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-Route::get('/', function () {
-    $influencerCards = InfluencerCard::with('user', 'influencerCategory')->get();
-
-    return view('home', ['influencerCards' => $influencerCards]);
-});
+Route::get('/home', [HomeController::class, 'index'])->name('home');
+Route::get('/', [HomeController::class, 'index']);

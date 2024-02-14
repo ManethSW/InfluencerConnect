@@ -165,7 +165,8 @@
                                         <div class="offer-task-priority"></div>
                                         <h4 id="task_description"></h4>
                                     </div>
-                                    <form action="{{ route('tasks.submit') }}" method="POST" enctype="multipart/form-data">
+                                    <form action="{{ route('tasks.submit') }}" method="POST"
+                                          enctype="multipart/form-data">
                                         @csrf
                                         <input type="hidden" id="task_id" name="task_id">
                                         <div class="links-container">
@@ -177,33 +178,23 @@
                                             <h4>Supporting Files</h4>
                                             <div class="upload-body-influencer-task">
                                                 <input type="file" name="supporting_file_1" id="supporting_file_1"
-                                                       hidden>
-                                                <label for="supporting_file_1" id="label_supporting_file_1">No File
-                                                    Uploaded</label>
+                                                       >
                                             </div>
                                             <div class="upload-body-influencer-task">
                                                 <input type="file" name="supporting_file_2" id="supporting_file_2"
-                                                       hidden>
-                                                <label for="supporting_file_2" id="label_supporting_file_2">No File
-                                                    Uploaded</label>
+                                                       >
                                             </div>
                                             <div class="upload-body-influencer-task">
                                                 <input type="file" name="supporting_file_3" id="supporting_file_3"
-                                                       hidden>
-                                                <label for="supporting_file_3" id="label_supporting_file_3">No File
-                                                    Uploaded</label>
+                                                       >
                                             </div>
                                             <div class="upload-body-influencer-task">
                                                 <input type="file" name="supporting_file_4" id="supporting_file_4"
-                                                       hidden>
-                                                <label for="supporting_file_4" id="label_supporting_file_4">No File
-                                                    Uploaded</label>
+                                                       >
                                             </div>
                                             <div class="upload-body-influencer-task">
                                                 <input type="file" name="supporting_file_5" id="supporting_file_5"
-                                                       hidden>
-                                                <label for="supporting_file_5" id="label_supporting_file_5">No File
-                                                    Uploaded</label>
+                                                       >
                                             </div>
                                         </div>
                                         <div class="task-action-buttons">
@@ -253,34 +244,6 @@
                 taskDescriptionElement.innerText = truncatedTaskDescription;
                 // taskStatusElement.class.add('task-pending');
 
-                const supporting_file_1 = taskContainer.querySelector('#supporting_file_1');
-                const supporting_file_2 = taskContainer.querySelector('#supporting_file_2');
-                const supporting_file_3 = taskContainer.querySelector('#supporting_file_3');
-                const supporting_file_4 = taskContainer.querySelector('#supporting_file_4');
-                const supporting_file_5 = taskContainer.querySelector('#supporting_file_5');
-                const label_supporting_file_1 = taskContainer.querySelector('#label_supporting_file_1');
-                const label_supporting_file_2 = taskContainer.querySelector('#label_supporting_file_2');
-                const label_supporting_file_3 = taskContainer.querySelector('#label_supporting_file_3');
-                const label_supporting_file_4 = taskContainer.querySelector('#label_supporting_file_4');
-                const label_supporting_file_5 = taskContainer.querySelector('#label_supporting_file_5');
-
-                supporting_file_1.addEventListener('change', function () {
-                    label_supporting_file_1.innerText = this.files[0].name;
-                });
-                supporting_file_2.addEventListener('change', function () {
-                    label_supporting_file_2.innerText = this.files[0].name;
-                });
-                supporting_file_3.addEventListener('change', function () {
-                    label_supporting_file_3.innerText = this.files[0].name;
-                });
-                supporting_file_4.addEventListener('change', function () {
-                    label_supporting_file_4.innerText = this.files[0].name;
-                });
-                supporting_file_5.addEventListener('change', function () {
-                    label_supporting_file_5.innerText = this.files[0].name;
-                });
-
-                // Get the task id and set it to the hidden input field
                 const task_id = taskContainer.querySelector('#task_id');
                 task_id.value = taskId;
             });

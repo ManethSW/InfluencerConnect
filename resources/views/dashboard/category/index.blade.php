@@ -18,8 +18,8 @@
                     <tr>
                         <th style="width: 10%;">ID</th>
                         <th style="width: 25%;">Category Name</th>
-                        <th style="width: 20%;">status</th>
-                        <th style="width: 35%;">Actions</th>
+                        <th style="width: 15%;">status</th>
+                        <th style="width: 40%;">Actions</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -43,6 +43,7 @@
                             <td class="action-btns">
                                 <button type="button" class="btn action-btn edit-btn" data-bs-toggle="modal"
                                         data-bs-target="#editModalInfluencer{{ $influencerCategory->id }}">
+                                    <i class="fa-solid fa-pen"></i>
                                     Edit
                                 </button>
                                 <form method="POST"
@@ -53,11 +54,18 @@
                                            value="{{ $influencerCategory->status == 1 ? 0 : 1 }}">
                                     <button type="submit"
                                             class="btn action-btn {{ $influencerCategory->status == 1 ? 'suspend-btn' : 'activate-btn' }}">
-                                        {{ $influencerCategory->status == 1 ? 'Suspend' : 'Activate' }}
+                                        @if($influencerCategory->status)
+                                            <i class="fa-solid fa-xmark"></i>
+                                            Suspend
+                                        @else
+                                            <i class="fa-solid fa-check"></i>
+                                            Activate
+                                        @endif
                                     </button>
                                 </form>
                                 <button type="button" class="btn action-btn delete-btn" data-bs-toggle="modal"
                                         data-bs-target="#deleteModal{{ $influencerCategory->id }}">
+                                    <i class="fa-solid fa-trash"></i>
                                     Delete
                                 </button>
                             </td>
@@ -166,6 +174,7 @@
                             <td class="action-btns">
                                 <button type="button" class="btn action-btn edit-btn" data-bs-toggle="modal"
                                         data-bs-target="#editModalBusiness{{ $businessCategory->id }}">
+                                    <i class="fa-solid fa-pen"></i>
                                     Edit
                                 </button>
                                 <form method="POST"
@@ -176,11 +185,18 @@
                                            value="{{ $businessCategory->status == 1 ? 0 : 1 }}">
                                     <button type="submit"
                                             class="btn action-btn {{ $businessCategory->status == 1 ? 'suspend-btn' : 'activate-btn' }}">
-                                        {{ $businessCategory->status == 1 ? 'Suspend' : 'Activate' }}
+                                        @if($businessCategory->status)
+                                            <i class="fa-solid fa-xmark"></i>
+                                            Suspend
+                                        @else
+                                            <i class="fa-solid fa-check"></i>
+                                            Activate
+                                        @endif
                                     </button>
                                 </form>
                                 <button type="button" class="btn action-btn delete-btn" data-bs-toggle="modal"
                                         data-bs-target="#suspendModal{{ $businessCategory->id }}">
+                                    <i class="fa-solid fa-trash"></i>
                                     Delete
                                 </button>
                             </td>

@@ -2,16 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\InfluencerCard;
-use Illuminate\Http\Request;
-use Illuminate\Contracts\View\View;
+use App\Models\FeaturedInfluencer;
 
 class HomeController extends Controller
 {
     public function index()
     {
-        $influencerCards = InfluencerCard::with('user', 'influencerCategory')->get();
+        $featuredInfluencers = FeaturedInfluencer::with('user', 'influencerCategory')
+            ->where('status', 1)
+            ->get();
 
-        return view('home', compact('influencerCards'));
+        return view('home', compact('featuredInfluencers'));
     }
 }

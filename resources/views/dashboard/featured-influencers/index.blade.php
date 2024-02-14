@@ -5,11 +5,10 @@
         <div class="row">
             <div class="col-sm">
                 <div class="users-header">
-                    <h3>Influencer Cards</h3>
+                    <h3>Featured Influencers</h3>
                     <div class="search-add">
                         <div class="add-user-button">
-                            <a class="btn btn-sm" data-bs-toggle="modal" data-bs-target="#addFeaturedInfluencer">Add
-                                Card</a>
+                            <a class="btn btn-sm" data-bs-toggle="modal" data-bs-target="#addFeaturedInfluencer">Add Featured</a>
 
                         </div>
                     </div>
@@ -44,8 +43,6 @@
                                 @endif
                             </td>
                             <td class="action-btns">
-                                <a href="{{ route('influencerCards.edit', $featuredInfluencer->id) }}"
-                                   class="btn action-btn edit-btn">Edit</a>
                                 <form method="POST"
                                       action="{{ route('featuredInfluencers.status.update', $featuredInfluencer->id) }}">
                                     @csrf
@@ -54,11 +51,18 @@
                                            value="{{ $featuredInfluencer->status == 1 ? 0 : 1 }}">
                                     <button type="submit"
                                             class="btn action-btn {{ $featuredInfluencer->status == 1 ? 'suspend-btn' : 'activate-btn' }}">
-                                        {{ $featuredInfluencer->status == 1 ? 'Suspend' : 'Activate' }}
+                                        @if($featuredInfluencer->status)
+                                            <i class="fa-solid fa-xmark"></i>
+                                            Suspend
+                                        @else
+                                            <i class="fa-solid fa-check"></i>
+                                            Activate
+                                        @endif
                                     </button>
                                 </form>
                                 <button type="button" class="btn action-btn delete-btn" data-bs-toggle="modal"
                                         data-bs-target="#deleteModal{{ $featuredInfluencer->id }}">
+                                    <i class="fa-solid fa-trash"></i>
                                     Delete
                                 </button>
                             </td>

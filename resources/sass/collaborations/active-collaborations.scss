@@ -176,16 +176,6 @@
 
 }
 
-.upload-body-influencer-task {
-    width: 100%;
-    padding: 5px;
-    padding-left: 15px;
-    border: 1px solid var(--secondary-color-50);
-    border-radius: 15px;
-    background-color: #FFFFFF;
-    margin-bottom: 15px;
-}
-
 .upload-body-influencer-task label {
     font-family: 'tripsansmedium', serif;
     font-size: 14px;
@@ -245,4 +235,17 @@
     border-radius: 15px;
     padding: 5px 20px;
     transition: all 0.3s ease-in-out;
+}
+
+.upload-body-influencer-task input {
+    width: 100%;
+    height: 40px;
+    background: #FFFFFF;
+    padding: 10px;
+    border: 1px solid var(--secondary-color-50);
+    border-radius: 15px;
+    font-family: 'tripsansregular', serif;
+    font-size: 16px;
+    color: var(--secondary-color-75);
+    margin-bottom: 15px;
 }
