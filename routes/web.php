@@ -41,7 +41,6 @@ Route::prefix('collaborations')->group(function () {
     Route::get('active_influencer', [App\Http\Controllers\CollaborationController::class, 'getActiveCollaborations'])->name('collaborations.active_influencer');
     Route::get('my_collaborations', [App\Http\Controllers\CollaborationController::class, 'getByBusiness'])->name('collaborations.my_collaborations');
     Route::get('active_business', [App\Http\Controllers\CollaborationController::class, 'getActiveCollaborations'])->name('collaborations.active_business');
-    Route::get('active', [App\Http\Controllers\CollaborationController::class, 'getActiveCollaborations'])->name('collaborations.active');
 });
 
 Route::put('collaborations/{collaboration}/updateByBusiness', [App\Http\Controllers\CollaborationController::class, 'updateByBusiness'])->name('collaborations.updateByBusiness');
@@ -51,6 +50,8 @@ Route::put('proposals/{proposal}/updateByInfluencers', [App\Http\Controllers\Pro
 Route::delete('proposals/{proposal}/destroyByInfluencers', [App\Http\Controllers\ProposalController::class, 'destroyByInfluencers'])->name('proposals.destroyByInfluencers');
 Route::get('proposals/{proposal}/acceptProposal', [App\Http\Controllers\ProposalController::class, 'acceptProposal'])->name('proposals.acceptProposal');
 Route::get('proposals/{proposal}/rejectProposal', [App\Http\Controllers\ProposalController::class, 'rejectProposal'])->name('proposals.rejectProposal');
+Route::post('/tasks/submit', [CollaborationController::class, 'submitTask'])->name('tasks.submit');
+Route::post('/tasks/complete', [CollaborationController::class, 'completeTask'])->name('tasks.complete');
 
 Route::middleware(['superadmin'])->group(function () {
     Route::get('/dashboard', function () {

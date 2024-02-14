@@ -6,8 +6,8 @@ enum CollaborationStatus: int
 {
     case Pending = 0;
     case Active = 1;
-    case Completed = 3;
-    case Rejected = 4;
+    case Completed = 2;
+    case Rejected = 3;
 
     public function getValue(): int
     {

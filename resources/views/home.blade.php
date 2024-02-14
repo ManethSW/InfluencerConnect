@@ -3,6 +3,7 @@
 {{--@php--}}
 {{--    $chunkedInfluencerCards = $influencerCards->chunk(4);--}}
 {{--@endphp--}}
+@include('components.navbar')
 
 @section('content')
     <div class="container home-container justify-content-center">
