@@ -123,8 +123,9 @@
                                     </div>
                                     <div class="col input-item">
                                         <label for="supporting_links">Supporting Links</label>
-                                        <input type="text" placeholder="separate with a comma(,)" class="form-control"
-                                               id="supporting_links" name="supporting_links"
+                                        <input type="text" placeholder="separate with a comma(,)"
+                                               class="form-control" id="supporting_links"
+                                               name="supporting_links"
                                                value="{{ $proposal->supporting_links }}">
                                     </div>
                                     <div id="col input-item tasks-container">
@@ -135,26 +136,27 @@
                                                     $fileKey = "supporting_file_$i";
                                                 @endphp
                                                 @if ($proposal->$fileKey)
-                                                    <div class="task-body">
-                                                        <input disabled type="text" class="form-control"
-                                                               id="{{ $fileKey }}" name="{{ $fileKey }}"
-                                                               value="{{ basename(Storage::url($proposal->$fileKey)) }}"
-                                                               readonly>
+                                                    <div class="task-body file-body">
+                                                                    <span class="form-control" id="{{ $fileKey }}"
+                                                                          name="{{ $fileKey }}">
+                                                                        {{ strlen(basename(Storage::url($proposal->$fileKey))) > 35 ? substr(basename(Storage::url($proposal->$fileKey)), 0, 35) . '...' : basename(Storage::url($proposal->$fileKey)) }}
+                                                                    </span>
                                                         <input type="hidden" id="new_{{ $fileKey }}"
                                                                name="new_{{ $fileKey }}">
-                                                        <button type="button" class="btn btn-danger remove-button"
-                                                                data-file-key="{{ $fileKey }}">Remove
-                                                        </button>
+                                                        <button type="button"
+                                                                class="delete-btn"
+                                                                data-file-key="{{ $fileKey }}"><i
+                                                                class="fa-solid fa-trash"></i></button>
                                                     </div>
                                                 @endif
                                             @endfor
                                         </div>
                                     </div>
                                     <div class="custom-button-container">
-                                        <button type="button" id="upload_file_button" class="btn btn-primary">Upload
+                                        <button type="button" id="upload_file_button" >Upload
                                             File
                                         </button>
-                                        <button type="submit" class="btn btn-primary">Update</button>
+                                        <button type="submit">Update</button>
                                     </div>
                                 </div>
                             </form>
@@ -216,11 +218,11 @@
                                     <div class="offer-task-list">
                                         @foreach($proposal->collaboration->tasks as $task)
                                             <div class="offer-task">
+                                                <div
+                                                    class="offer-task-priority {{ $task->priority == 0 ? 'low-priority' : ($task->priority == 1 ? 'medium-priority' : 'high-priority') }}"></div>
                                                 <h4>
                                                     {{ $task->description }}
                                                 </h4>
-                                                <div
-                                                    class="offer-task-priority {{ $task->priority == 0 ? 'low-priority' : ($task->priority == 1 ? 'medium-priority' : 'high-priority') }}"></div>
                                             </div>
                                         @endforeach
                                     </div>

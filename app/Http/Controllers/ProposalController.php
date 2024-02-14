@@ -101,7 +101,7 @@ class ProposalController extends Controller
                 }
 
                 // Store the new file
-                $path = $request->file($fileKey)->store('supporting_files');
+                $path = $request->file($fileKey)->store('supporting_files', 'public');
                 $proposal->$fileKey = $path;
             }
         }
@@ -149,7 +149,7 @@ class ProposalController extends Controller
         for ($i = 1; $i <= 5; $i++) {
             $fileKey = "supporting_file_$i";
             if ($request->hasFile($fileKey)) {
-                $path = $request->file($fileKey)->store('supporting_files');
+                $path = $request->file($fileKey)->store('supporting_files', 'public');
                 $proposal->$fileKey = $path;
             }
         }
@@ -196,7 +196,7 @@ class ProposalController extends Controller
                 }
 
                 // Store the new file
-                $path = $request->file($fileKey)->store('supporting_files');
+                $path = $request->file($fileKey)->store('supporting_files', 'public');
                 $proposal->$fileKey = $path;
             }
         }

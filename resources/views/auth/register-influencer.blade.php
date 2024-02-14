@@ -1,51 +1,49 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="form-register">
-                <div class="card-header form-header-register">
-                    <p>{{ __('Register - Influencer') }} </p>
-                    <p>
-                        @php
-                            $currentTime = date('H:i:s');
-                            $morningTime = '06:00:00';
-                            $afternoonTime = '12:00:00';
-                            $eveningTime = '18:00:00';
-
-                            if ($currentTime >= $morningTime && $currentTime < $afternoonTime) {
-                                echo 'Good Morning!';
-                            } elseif ($currentTime >= $afternoonTime && $currentTime < $eveningTime) {
-                                echo 'Good Afternoon!';
-                            } else {
-                                echo 'Good Evening!';
-                            }
-                        @endphp
-                    </p>
-                </div>
-                <div class="divider"></div>
-                <form method="POST" action="{{ route('register-influencer.store') }}">
-                    @csrf
-                    <div class="inputs">
-                        <x-form-input-field field="name" label="Name" type="text" placeholder="Enter your name" />
-                        <x-form-input-field field="email" label="Email Address" type="email"
-                                            placeholder="Enter your email" />
-                        <x-form-input-field field="password" label="Password" type="password"
-                                            placeholder="Enter a password" />
-                        <x-form-input-field field="password_confirmation" label="Confirm Password" type="password"
-                                            placeholder="Retype password" />
+    <div class="auth-navbar">
+        @include('components.navbar')
+    </div>
+    <div class="auth-container">
+        <div class="auth-hero"></div>
+        <div class="login-container container">
+            <div class="row justify-content-center">
+                <div class="form-login">
+                    <div class="auth-header">
+                        <h2>Influencer
+                        </h2>
+                        <h3>Great! Now enter your email and password to get started</h3>
                     </div>
-                    <div class="divider"></div>
-                    <p class="login-link">Already have an account?<a href="{{ route('login') }}">Login</a></p>
-                    <button type="submit" class="btn">
-                        {{ __('Register') }}
-                    </button>
-                </form>
+                    <form method="POST" action="{{ route('register-influencer.store') }}">
+                        @csrf
+                        <div class="inputs-container register-input-container">
+                            <x-form-input-field field="name" label="Name" type="text" placeholder="Enter your name" />
+                            <x-form-input-field field="email" label="Email Address" type="email"
+                                                placeholder="Enter your email" />
+                            <x-form-input-field field="password" label="Password" type="password"
+                                                placeholder="Enter a password" />
+                            <x-form-input-field field="password_confirmation" label="Confirm Password" type="password"
+                                                placeholder="Retype password" />
+                        </div>
+                        <button type="submit" class="auth-button">
+                            {{ __('Register') }}
+                        </button>
+                    </form>
+                    <div class="other-action">
+                        <h3>
+                            Have an account?
+                            <a href="{{ route('login') }}">
+                                Login here
+                            </a>
+                        </h3>
+                    </div>
+                    @if (session('error'))
+                        <div class="alert alert-danger">
+                            {{ session('error') }}
+                        </div>
+                    @endif
+                </div>
             </div>
         </div>
     </div>
-@endsection
-
-@section('footer')
-    <x-footer />
 @endsection

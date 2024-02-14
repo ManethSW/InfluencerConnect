@@ -24,18 +24,25 @@
                         </div>
                     </div>
                     <div class="active-collaboration-title-deadline">
-                        <h3>
-                            {{ $activeCollaboration->title }}
-                        </h3>
+                        <div class="title-status-badge">
+                            @if($activeCollaboration->status == 0)
+                                <div class="collaboration-status-badge pending"></div>
+                            @elseif($activeCollaboration->status == 1)
+                                <div class="collaboration-status-badge accepted"></div>
+                            @elseif($activeCollaboration->status == 2)
+                                <div class="collaboration-status-badge completed"></div>
+                            @elseif($activeCollaboration->status == 3)
+                                <div class="collaboration-status-badge rejected"></div>
+                            @endif
+                            <h3>{{ $activeCollaboration->title }}</h3>
+                        </div>
                         <h3>
                             {{ $activeCollaboration->deadline }}
                         </h3>
                     </div>
-                    <div class="offer-description active-collaboration-description">
-                        <p>
-                            {{ $activeCollaboration->description }}
-                        </p>
-                    </div>
+                    <h4 class="offer-description">
+                        {{ $activeCollaboration->description }}
+                    </h4>
                     <div class="offer-actions">
                         <div class="main">
                             <div class="other">

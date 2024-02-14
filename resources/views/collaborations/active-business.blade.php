@@ -22,18 +22,25 @@
                         </div>
                     </div>
                     <div class="active-collaboration-title-deadline">
-                        <h3>
-                            {{ $activeCollaboration->title }}
-                        </h3>
+                        <div class="title-status-badge">
+                            @if($activeCollaboration->status == 0)
+                                <div class="collaboration-status-badge pending"></div>
+                            @elseif($activeCollaboration->status == 1)
+                                <div class="collaboration-status-badge accepted"></div>
+                            @elseif($activeCollaboration->status == 2)
+                                <div class="collaboration-status-badge completed"></div>
+                            @elseif($activeCollaboration->status == 3)
+                                <div class="collaboration-status-badge rejected"></div>
+                            @endif
+                            <h3>{{ $activeCollaboration->title }}</h3>
+                        </div>
                         <h3>
                             {{ $activeCollaboration->deadline }}
                         </h3>
                     </div>
-                    <div class="offer-description active-collaboration-description">
-                        <p>
-                            {{ $activeCollaboration->description }}
-                        </p>
-                    </div>
+                    <h4 class="offer-description">
+                        {{ $activeCollaboration->description }}
+                    </h4>
                     <div class="offer-actions">
                         <div class="main">
                             <div class="other">
@@ -232,7 +239,7 @@
                                             </button>
                                         </div>
                                     </div>
-                                    <div class="proposal-action-buttons">
+                                    <div class="complete-task">
                                         <form action="{{ route('tasks.complete') }}" method="POST">
                                             @csrf
                                             <input type="hidden" id="task_id" name="task_id">
@@ -326,14 +333,14 @@
                 const viewLinksButton = taskContainer.querySelector('#view_links_button');
                 const viewUploadsButton = taskContainer.querySelector('#view_uploads_button');
 
-                viewLinksContainer.style.display = 'block';
+                viewLinksContainer.style.display = 'flex';
                 viewUploadsContainer.style.display = 'none';
                 viewLinksButton.classList.add('active-button');
                 viewUploadsButton.classList.remove('active-button');
 
                 // Add event listeners to the view links and view uploads buttons to switch between the two containers
                 viewLinksButton.addEventListener('click', function () {
-                    viewLinksContainer.style.display = 'block';
+                    viewLinksContainer.style.display = 'flex';
                     viewUploadsContainer.style.display = 'none';
                     viewLinksButton.classList.add('active-button');
                     viewUploadsButton.classList.remove('active-button');
@@ -341,7 +348,7 @@
 
                 viewUploadsButton.addEventListener('click', function () {
                     viewLinksContainer.style.display = 'none';
-                    viewUploadsContainer.style.display = 'block';
+                    viewUploadsContainer.style.display = 'flex';
                     viewLinksButton.classList.remove('active-button');
                     viewUploadsButton.classList.add('active-button');
                 });

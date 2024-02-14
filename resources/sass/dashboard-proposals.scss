@@ -1,0 +1,50 @@
+.custom-width-proposal {
+    width: 1000px!important;
+}
+
+.proposal-links-uploads-dashboard {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 25px;
+}
+
+.view-links-container {
+    display: flex;
+    flex-direction: row;
+    column-gap: 25px;
+}
+
+.view-links-container-dashboard h3, .upload-body-dashboard h3 {
+    font-family: 'tripsansmedium';
+    font-size: 16px;
+    color: var(--secondary-color-75);
+    background-color: #FFFFFF;
+    border: 2px solid var(--secondary-color-50);
+    padding: 10px 15px;
+    border-radius: 15px;
+}
+
+.upload-body-dashboard h3 {
+    width: 100%;
+}
+
+.view-uploads-container-dashboard .upload-body-dashboard {
+    display: flex;
+    flex-direction: row;
+    column-gap: 15px;
+}
+
+.upload-body-dashboard button {
+    font-family: 'tripsansmedium';
+    font-size: 16px;
+    color: var(--primary-color);
+    background-color: #FFFFFF;
+    border: 2px solid var(--primary-color);
+    padding: 10px 10px;
+    border-radius: 15px;
+    cursor: pointer;
+}
+
+.upload-body-dashboard button i {
+    font-size: 12px;
+}

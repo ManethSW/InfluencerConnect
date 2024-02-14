@@ -26,7 +26,7 @@
                 <div class="header-navigation">
                     @if (Auth::user()->role_id->value == 10)
                         <a href="{{ route('collaborations.my_proposals') }}" class="{{ Route::currentRouteNamed('collaborations.my_proposals') ? 'active' : '' }}">My Proposals</a>
-                        <a href="{{ route('collaborations.active_influencer') }}" class="{{ Route::currentRouteNamed('collaborations.active_influencer') ? 'active' : '' }}">Active Collaborations</a>
+                        <a href="{{ route('collaborations.active_influencer') }}" class="{{ Route::currentRouteNamed('collaborations.active_influencer') ? 'active' : '' }}">My Collaborations</a>
                     @else
                         <a class="btn btn-sm {{ Route::currentRouteNamed('collaborations.store') ? 'active' : '' }}" data-bs-toggle="modal" data-bs-target="#addCollaborationModal">Add Collaboration</a>
                         <a href="{{ route('collaborations.my_collaborations') }}" class="{{ Route::currentRouteNamed('collaborations.my_collaborations') ? 'active' : '' }}">My Collaboration</a>
@@ -44,21 +44,21 @@
             <div class="modal-dialog modal-dialog-centered custom-modal-width">
                 <div class="modal-container-1 modal-content">
                     <div class="custom-modal-header modal-header">
-                        <h5 class="modal-title" id="addCollaborationModalLabel">Create a new collaboration</h5>
+                        <h5 class="modal-title" id="addCollaborationModalLabel">Add Collaboration</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="custom-modal-body modal-body">
-                        <form method="post" action="{{ route('collaborations.store') }}">
+                        <form method="post" action="{{ route('collaborations.storeByBusiness') }}">
                             @csrf
                             <div class="form-container">
                                 <div class="col input-item">
                                     <label for="title">Collaboration Title</label>
-                                    <input type="text" class="form-control" id="title" name="title" required>
+                                    <input placeholder="Enter a title" type="text" class="form-control" id="title" name="title" required>
                                 </div>
                                 <div class="form-row-container">
                                     <div class="col input-item">
                                         <label for="budget">Budget</label>
-                                        <input type="text" class="form-control" id="budget" name="budget" required>
+                                        <input placeholder="Enter a budget" type="text" class="form-control" id="budget" name="budget" required>
                                     </div>
                                     <div class="col input-item">
                                         <label for="collaboration_type">Collaboration Type</label>
@@ -76,22 +76,19 @@
                                 </div>
                                 <div class="col input-item">
                                     <label for="description">Collaboration Description</label>
-                                    <input type="text" class="form-control" id="description" name="description"
-                                           required>
+                                    <input placeholder="Enter a collaboration" type="text" class="form-control" id="description" name="description" required>
                                 </div>
                                 <div id="col input-item tasks-container">
                                     <label for="tasks">Tasks</label>
-                                    <div id="tasks_body" class="tasks-body">
-                                        <h4 class="default-message">Click on + Add Task to add a task with a title and
-                                            priority</h4>
+                                    <div id="tasks_body-add" class="tasks-body">
+                                        <h4 class="default-message">Click on + Add Task to add a task with a title and priority</h4>
                                         <!-- Task fields will be added here -->
                                     </div>
                                 </div>
                                 <input class="hidden-input" type="hidden" name="request_type" value="0">
-                                <div class="custom-button-container">
-                                    <button type="button" id="add_task_button" class="btn btn-primary">+ Add A Task
-                                    </button>
-                                    <button type="submit" class="btn btn-primary">Create</button>
+                                <div class="custom-button-container custom-button-container-add-collaboration">
+                                    <button type="button" id="add_task_button-collaborations" class="">+ Add A Task</button>
+                                    <button type="submit" class="">Create</button>
                                 </div>
                             </div>
                         </form>
@@ -112,8 +109,16 @@
 <script>
     document.addEventListener('DOMContentLoaded', (event) => {
         let taskId = 0;
-        const taskContainer = document.getElementById('tasks_body');
-        document.getElementById('add_task_button').addEventListener('click', function () {
+        const taskContainer = document.getElementById('tasks_body-add');
+        const defaultMessage = document.querySelector('.default-message');
+        const addTaskButton = document.getElementById('add_task_button-collaborations');
+
+        addTaskButton.addEventListener('click', function () {
+            // Remove the default message when a task is added
+            if (defaultMessage) {
+                defaultMessage.remove();
+            }
+
             // Create a new div with class 'task-body'
             const taskBody = document.createElement('div');
             taskBody.className = 'task-body';

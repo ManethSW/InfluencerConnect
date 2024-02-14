@@ -17,7 +17,13 @@ class CollaborationController extends Controller
         // Get all the collaborations
         $collaborations = Collaboration::all();
         $users = User::all();
+        // Get all the tasks of the collaborations
         return view('dashboard.collaborations.index', compact('collaborations', 'users'));
+    }
+
+    public function getAll() {
+        $collaborations = Collaboration::all();
+        return view('collaborations', compact('collaborations'));
     }
 
     public function getByBusiness()
@@ -25,6 +31,12 @@ class CollaborationController extends Controller
         $businessId = Auth::id();
         $collaborations = Collaboration::where('business_id', $businessId)->get();
         return view('collaborations.my-collaborations', compact('collaborations'));
+    }
+
+    public function getByInfluencer() {
+        $influencerId = Auth::id();
+        $activeCollaborations = Collaboration::where('influencer_id', $influencerId)->get();
+        return view('collaborations.active-influencer', compact('activeCollaborations'));
     }
 
     public function getActiveCollaborations()
@@ -153,11 +165,42 @@ class CollaborationController extends Controller
             $collaborationTask->save();
         }
 
-        if (auth()->user()->role_id->value == 1) {
-            return redirect()->route('collaborations.index')->with('success', 'Collaboration created successfully');
-        } else {
-            return redirect()->route('collaborations.index', ['page' => 'my_collaborations'])->with('success', 'Collaboration created successfully');
+        return redirect()->route('collaborations.index')->with('success', 'Collaboration created successfully');
+    }
+
+    public function storeByBusiness (Request $request)
+    {
+        $request->validate([
+            'title' => 'required',
+            'collaboration_type' => 'required',
+            'description' => 'required',
+            'budget' => 'required',
+            'deadline' => 'required',
+            'tasks' => 'required|array|min:1',
+            'tasks.*.description' => 'required',
+            'tasks.*.priority' => 'required',
+        ]);
+
+        $collaboration = new Collaboration;
+        $collaboration->business_id = Auth::id();
+        $collaboration->title = $request->title;
+        $collaboration->collaboration_type = $request->collaboration_type;
+        $collaboration->description = $request->description;
+        $collaboration->budget = $request->budget;
+        $collaboration->deadline = $request->deadline;
+        $collaboration->request_type = $request->request_type;
+        $collaboration->status = CollaborationStatus::Pending;
+        $collaboration->save();
+
+        foreach ($request->tasks as $task) {
+            $collaborationTask = new CollaborationTask;
+            $collaborationTask->collaboration_id = $collaboration->id;
+            $collaborationTask->description = $task['description'];
+            $collaborationTask->priority = $task['priority'];
+            $collaborationTask->save();
         }
+
+        return redirect()->route('collaborations.my_collaborations')->with('success', 'Collaboration created successfully');
     }
 
     public function show(Collaboration $collaboration)

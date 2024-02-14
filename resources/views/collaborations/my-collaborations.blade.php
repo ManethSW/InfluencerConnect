@@ -23,8 +23,10 @@
                     <h4 class="offer-description">{{ $collaboration->description }}</h4>
                     <div class="collaboration-type-tasks-number">
                         <h3>
-                            Type: {{ \App\Enums\CollaborationType::asSelectArray()[$collaboration->collaboration_type] }}</h3>
-                        <h3>No of tasks: {{ $collaboration->tasks->count() }}</h3>
+                            Type : <span
+                                class="orange-text">{{ \App\Enums\CollaborationType::asSelectArray()[$collaboration->collaboration_type] }}</span>
+                        </h3>
+                        <h3>No of tasks: <span class="orange-text">{{ $collaboration->tasks->count() }}</span></h3>
                     </div>
                     <div class="offer-actions">
                         <div class="main">
@@ -107,11 +109,11 @@
                                     <div class="offer-task-list">
                                         @foreach($collaboration->tasks as $task)
                                             <div class="offer-task">
+                                                <div
+                                                    class="offer-task-priority {{ $task->priority == 0 ? 'low-priority' : ($task->priority == 1 ? 'medium-priority' : 'high-priority') }}"></div>
                                                 <h4>
                                                     {{ $task->description }}
                                                 </h4>
-                                                <div
-                                                    class="offer-task-priority {{ $task->priority == 0 ? 'low-priority' : ($task->priority == 1 ? 'medium-priority' : 'high-priority') }}"></div>
                                             </div>
                                         @endforeach
                                     </div>
@@ -200,10 +202,10 @@
                                         </div>
                                     </div>
                                     <input class="hidden-input" type="hidden" name="request_type" value="0">
-                                    <div class="custom-button-container">
-                                        <button type="button" id="add_task_button" class="btn btn-primary">+ Add A Task
+                                    <div class="custom-button-container custom-button-container-add-collaboration">
+                                        <button type="button" id="add_task_button">+ Add A Task
                                         </button>
-                                        <button type="submit" class="btn btn-primary">save</button>
+                                        <button type="submit">Create</button>
                                     </div>
                                 </div>
                             </form>
@@ -246,7 +248,8 @@
                                                     </button>
                                                 </div>
                                             </div>
-                                            <div class="col-md-6 proposal-details" id="proposalDetails{{$proposal->id}}">
+                                            <div class="col-md-6 proposal-details"
+                                                 id="proposalDetails{{$proposal->id}}">
                                                 <div class="proposal-body">
                                                     <h3>{{ $proposal->influencer->name }}</h3>
                                                     <h3>{{ $proposal->proposed_budget }}</h3>
@@ -264,7 +267,7 @@
                             </div>
                         </div>
                         <div class="proposal-container-2 background-image"
-                                id="proposal-container-{{$collaboration->id}}">
+                             id="proposal-container-{{$collaboration->id}}">
                             <div class="proposal-glass-effect">
                                 <div class="select-proposal-prompt">
                                     <h3>Select a proposal to view</h3>
@@ -349,14 +352,16 @@
                                     </div>
                                     @if($collaboration->status == 0)
                                         <div class="proposal-action-buttons">
-                                            <form action="{{ route('proposals.acceptProposal', ['proposal' => $proposal->id]) }}">
+                                            <form
+                                                action="{{ route('proposals.acceptProposal', ['proposal' => $proposal->id]) }}">
                                                 @csrf
                                                 <button class="accept" type="submit">
                                                     Accept
                                                     <i class="fa-solid fa-check"></i>
                                                 </button>
                                             </form>
-                                            <form action="{{ route('proposals.rejectProposal', ['proposal' => $proposal->id]) }}">
+                                            <form
+                                                action="{{ route('proposals.rejectProposal', ['proposal' => $proposal->id]) }}">
                                                 @csrf
                                                 <button class="decline" type="submit">
                                                     Reject
@@ -413,7 +418,11 @@
                 // Set the links in the proposal content by using the array. If they are undefined, set the text to "No Link Uploaded" and truncate the text to be less than 20 characters
                 for (let i = 0; i < 5; i++) {
                     const linkElement = proposalContainer.querySelector('#link-' + (i + 1));
-                    linkElement.innerText = links[i] === '' ? 'No Link Uploaded' : links[i].length > 25 ? links[i].substring(0, 25) + '...' : links[i];
+                    if (links[i] !== '') {
+                        linkElement.innerHTML = `<a href="${links[i]}" target="_blank">${links[i].length > 25 ? links[i].substring(0, 25) + '...' : links[i]}</a>`;
+                    } else {
+                        linkElement.innerText = 'No Link Uploaded';
+                    }
                 }
 
                 // Get the supporting files respectively
@@ -434,7 +443,7 @@
                         fileElement.innerText = supportingFiles[i].length > 20 ? supportingFiles[i].substring(0, 20) + '...' : supportingFiles[i];
                         downloadButton.disabled = false;
                         downloadButton.addEventListener('click', function () {
-                            window.open('/storage/app/' + supportingFiles[i], '_blank');
+                            window.open('/storage/' + supportingFiles[i], '_blank');
                         });
                     } else {
                         fileElement.innerText = 'No File Uploaded';
@@ -448,14 +457,14 @@
                 const viewLinksButton = proposalContainer.querySelector('#view_links_button');
                 const viewUploadsButton = proposalContainer.querySelector('#view_uploads_button');
 
-                viewLinksContainer.style.display = 'block';
+                viewLinksContainer.style.display = 'flex';
                 viewUploadsContainer.style.display = 'none';
                 viewLinksButton.classList.add('active-button');
                 viewUploadsButton.classList.remove('active-button');
 
                 // Add event listeners to the view links and view uploads buttons to switch between the two containers
                 viewLinksButton.addEventListener('click', function () {
-                    viewLinksContainer.style.display = 'block';
+                    viewLinksContainer.style.display = 'flex';
                     viewUploadsContainer.style.display = 'none';
                     viewLinksButton.classList.add('active-button');
                     viewUploadsButton.classList.remove('active-button');
@@ -463,57 +472,11 @@
 
                 viewUploadsButton.addEventListener('click', function () {
                     viewLinksContainer.style.display = 'none';
-                    viewUploadsContainer.style.display = 'block';
+                    viewUploadsContainer.style.display = 'flex';
                     viewLinksButton.classList.remove('active-button');
                     viewUploadsButton.classList.add('active-button');
                 });
             });
-        });
-
-        let taskId = 0;
-        const taskContainer = document.getElementById('tasks_body');
-        document.getElementById('add_task_button').addEventListener('click', function () {
-            // Create a new div with class 'task-body'
-            const taskBody = document.createElement('div');
-            taskBody.className = 'task-body';
-
-            // Create task description field
-            const descriptionField = document.createElement('input');
-            descriptionField.type = 'text';
-            descriptionField.className = 'task-text'; // Add class 'task-text'
-            descriptionField.name = `tasks[${taskId}][description]`; // Use array name to send multiple task descriptions
-            descriptionField.placeholder = 'Task Description';
-            descriptionField.required = true;
-
-            // Create task priority field
-            const priorityField = document.createElement('select');
-            priorityField.className = 'task-selector'; // Add class 'task-selector'
-            priorityField.name = `tasks[${taskId}][priority]`; // Use array name to send multiple task priorities
-            priorityField.required = true;
-
-            const lowOption = document.createElement('option');
-            lowOption.value = '0';
-            lowOption.text = 'Low';
-            priorityField.add(lowOption);
-
-            const mediumOption = document.createElement('option');
-            mediumOption.value = '1';
-            mediumOption.text = 'Medium';
-            priorityField.add(mediumOption);
-
-            const criticalOption = document.createElement('option');
-            criticalOption.value = '2';
-            criticalOption.text = 'Critical';
-            priorityField.add(criticalOption);
-
-            // Append the fields to the task body
-            taskBody.appendChild(descriptionField);
-            taskBody.appendChild(priorityField);
-
-            // Append the task body to the task container
-            taskContainer.appendChild(taskBody);
-
-            taskId++;
         });
     });
 </script>

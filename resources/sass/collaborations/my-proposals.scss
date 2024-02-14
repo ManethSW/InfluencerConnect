@@ -124,3 +124,44 @@
     font-size: 14px;
     padding: 10px 15px;
 }
+
+.file-body {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    column-gap: 15px;
+}
+
+.file-body span {
+    border: 2px solid var(--secondary-color-50);
+    border-radius: 15px;
+    height: 40px;
+    padding: 0px 15px;
+    display: grid;
+    align-items: center;
+    width: 100%;
+    font-family: 'tripsansregular', serif;
+    font-size: 16px;
+}
+
+.file-body button {
+    height: 40px;
+}
+
+.delete-btn {
+    border: 2px solid #FF343F;
+    color: #FF343F;
+    border-radius: 10px;
+    padding: 0 15px;
+    transition: 0.3s all ease-in;
+}
+
+.delete-btn:hover {
+    background-color: #FF0000;
+    color: white;
+}
+
+.custom-button-container {
+    height: 40px;
+}

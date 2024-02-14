@@ -64,7 +64,7 @@
                             </td>
                             <td class="action-btns">
                                 <button type="button" class="btn action-btn edit-btn" data-bs-toggle="modal"
-                                        data-bs-target="#viewModal{{ $collaboration->id }}">
+                                        data-bs-target="#viewCollaboration-{{ $collaboration->id }}">
                                     <i class="fa-solid fa-arrow-right"></i>
                                     View
                                 </button>
@@ -204,6 +204,72 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="modal fade" id="viewCollaboration-{{ $collaboration->id }}" tabindex="-1"
+                             aria-labelledby="viewCollaborationLabel"
+                             aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered custom-modal-width">
+                                <div class="modal-content">
+                                    <div class="incoming-offer-container">
+                                        <div class="glass-effect">
+                                            <div class="offer-header">
+                                                <div class="offer-user">
+                                                    <i class="fa-solid fa-user"></i>
+                                                    <h2>{{ $collaboration->business->name }}</h2>
+                                                </div>
+                                                <div class="modal-close-section">
+                                                    <h2 class="offer-budget">
+                                                        LKR {{ $collaboration->budget }}
+                                                    </h2>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                            aria-label="Close"></button>
+                                                </div>
+                                            </div>
+                                            <div class="offer-title-date">
+                                                <h3>
+                                                    {{ $collaboration->title }}
+                                                </h3>
+                                                <h3 id="offer-deadline">
+                                                    {{ $collaboration->deadline }}
+                                                </h3>
+                                            </div>
+                                            <h4 class="offer-description">
+                                                {{ $collaboration->description }}
+                                            </h4>
+                                            <div class="offer-task-section">
+                                                <div class="offer-title-date">
+                                                    <h3>What you are required to do</h3>
+                                                    <div class="showcase-priority">
+                                                        <div>
+                                                            <h4>Low</h4>
+                                                            <div class="offer-task-priority low-priority"></div>
+                                                        </div>
+                                                        <div>
+                                                            <h4>Medium</h4>
+                                                            <div class="offer-task-priority medium-priority"></div>
+                                                        </div>
+                                                        <div>
+                                                            <h4>Critical</h4>
+                                                            <div class="offer-task-priority high-priority"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="offer-task-list">
+                                                    @foreach($collaboration->tasks as $task)
+                                                        <div class="offer-task">
+                                                            <div
+                                                                class="offer-task-priority {{ $task->priority == 0 ? 'low-priority' : ($task->priority == 1 ? 'medium-priority' : 'high-priority') }}"></div>
+                                                            <h4>
+                                                                {{ $task->description }}
+                                                            </h4>
+                                                        </div>
+                                                    @endforeach
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     @endforeach
                     </tbody>
                 </table>
@@ -212,7 +278,7 @@
     </div>
     <div class="modal fade" id="addCollaborationModal" tabindex="-1" aria-labelledby="addCollaborationModalLabel"
          aria-hidden="false">
-        <div class="modal-dialog custom-modal-width">
+        <div class="modal-dialog modal-dialog-centered custom-modal-width">
             <div class="modal-container-1 modal-content">
                 <div class="custom-modal-header modal-header">
                     <h5 class="modal-title" id="addCollaborationModalLabel">Add Collaboration</h5>

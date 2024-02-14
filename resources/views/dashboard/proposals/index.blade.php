@@ -52,7 +52,8 @@
                                 @endif
                             </td>
                             <td class="action-btns">
-                                <button type="button" class="btn action-btn edit-btn" data-bs-toggle="modal"
+                                <button type="button" class="btn action-btn edit-btn view-proposal-button" data-bs-toggle="modal"
+                                        data-proposal-id="{{ $proposal->id }}"
                                         data-bs-target="#viewModal{{ $proposal->id }}">
                                     <i class="fa-solid fa-arrow-right"></i>
                                     View
@@ -77,6 +78,116 @@
                                 @endif
                             </td>
                         </tr>
+                        <div class="modal fade" id="viewModal{{ $proposal->id }}" tabindex="-1"
+                             aria-labelledby="viewModalLabel{{ $proposal->id }}"
+                             aria-hidden="false">
+                            <div class="modal-dialog modal-dialog-centered custom-width-proposal">
+                                <div class="modal-content">
+                                    <div class="custom-modal-header modal-header">
+                                        <h5 class="modal-title" id="viewModalLabel">Proposal By
+                                            "{{ $proposal->influencer->name }}" for Collaboration id
+                                            "{{ $proposal->collaboration_id }}"</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                    </div>
+                                    <div class="custom-modal-body modal-body">
+                                        <div class="proposal-content-dashboard" id=proposal-container-{{$proposal->id}}>
+                                            <div id="proposalContent-{{ $proposal->id }}" style="display: none">
+                                                <h3>{{ $proposal->supporting_links }}</h3>
+                                                <h3>{{ $proposal->supporting_file_1 }}</h3>
+                                                <h3>{{ $proposal->supporting_file_2 }}</h3>
+                                                <h3>{{ $proposal->supporting_file_3 }}</h3>
+                                                <h3>{{ $proposal->supporting_file_4 }}</h3>
+                                                <h3>{{ $proposal->supporting_file_5 }}</h3>
+                                            </div>
+                                            <div class="proposal-links-uploads-dashboard" id="proposal-container-{{ $proposal->id }}">
+                                                <div class="view-links-container-dashboard view-container">
+                                                    <h3 id="link-1">
+                                                        No link uplaoded
+                                                    </h3>
+                                                    <h3 id="link-2">
+                                                        No Link Uploaded
+                                                    </h3>
+                                                    <h3 id="link-3">
+                                                        No Link Uploaded
+                                                    </h3>
+                                                    <h3 id="link-5">
+                                                        No Link Uploaded
+                                                    </h3>
+                                                    <h3 id="link-4">
+                                                        No Link Uploaded
+                                                    </h3>
+                                                </div>
+                                                <div class="view-uploads-container-dashboard view-container">
+                                                    <div class="upload-body-dashboard">
+                                                        <h3 id="supporting_file_1">
+                                                            {{--                                                            Get the first file upload which supporting_file_1--}}
+                                                            @if ($proposal->supporting_file_1)
+                                                                {{ strlen(basename(Storage::url($proposal->supporting_file_1))) > 10 ? substr(basename(Storage::url($proposal->supporting_file_1)), 0, 10) . '...' : basename(Storage::url($proposal->supporting_file_1)) }}
+                                                            @else
+                                                                No File Uploaded
+                                                            @endif
+                                                        </h3>
+                                                        {{--                                                        Make the button download the supporting_file_1 if there is any--}}
+                                                        <button id="download-supporting_file_1">
+                                                            <i class="fa-solid fa-download"></i>
+                                                        </button>
+                                                    </div>
+                                                    <div class="upload-body-dashboard">
+                                                        <h3 id="supporting_file_2">
+                                                            @if ($proposal->supporting_file_2)
+                                                                {{ strlen(basename(Storage::url($proposal->supporting_file_1))) > 10 ? substr(basename(Storage::url($proposal->supporting_file_1)), 0, 10) . '...' : basename(Storage::url($proposal->supporting_file_1)) }}
+                                                            @else
+                                                                No File Uploaded
+                                                            @endif
+                                                        </h3>
+                                                        <button id="download-supporting_file_2">
+                                                            <i class="fa-solid fa-download"></i>
+                                                        </button>
+                                                    </div>
+                                                    <div class="upload-body-dashboard">
+                                                        <h3 id="supporting_file_3">
+                                                            @if ($proposal->supporting_file_3)
+                                                                {{ strlen(basename(Storage::url($proposal->supporting_file_1))) > 10 ? substr(basename(Storage::url($proposal->supporting_file_1)), 0, 10) . '...' : basename(Storage::url($proposal->supporting_file_1)) }}
+                                                            @else
+                                                                No File Uploaded
+                                                            @endif
+                                                        </h3>
+                                                        <button id="download-supporting_file_3">
+                                                            <i class="fa-solid fa-download"></i>
+                                                        </button>
+                                                    </div>
+                                                    <div class="upload-body-dashboard">
+                                                        <h3 id="supporting_file_4">
+                                                            @if ($proposal->supporting_file_4)
+                                                                {{ strlen(basename(Storage::url($proposal->supporting_file_1))) > 10 ? substr(basename(Storage::url($proposal->supporting_file_1)), 0, 10) . '...' : basename(Storage::url($proposal->supporting_file_1)) }}
+                                                            @else
+                                                                No File Uploaded
+                                                            @endif
+                                                        </h3>
+                                                        <button id="download-supporting_file_4">
+                                                            <i class="fa-solid fa-download"></i>
+                                                        </button>
+                                                    </div>
+                                                    <div class="upload-body-dashboard">
+                                                        <h3 id="supporting_file_5">
+                                                            @if ($proposal->supporting_file_5)
+                                                                {{ strlen(basename(Storage::url($proposal->supporting_file_1))) > 10 ? substr(basename(Storage::url($proposal->supporting_file_1)), 0, 10) . '...' : basename(Storage::url($proposal->supporting_file_1)) }}
+                                                            @else
+                                                                No File Uploaded
+                                                            @endif
+                                                        </h3>
+                                                        <button id="download-supporting_file_5">
+                                                            <i class="fa-solid fa-download"></i>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         <div class="modal fade" id="editProposalModal{{ $proposal->id }}" tabindex="-1"
                              aria-labelledby="editProposalModalLabel{{ $proposal->id }}"
                              aria-hidden="false">
@@ -209,15 +320,18 @@
                                 <label for="collaboration_id">Pick a collaboration to assign the proposal to</label>
                                 <select id="collaboration_id" name="collaboration_id" class="form-control">
                                     @foreach ($collaborations as $collaboration)
-                                        <option value="{{ $collaboration->id }}">
-                                            {{ $collaboration->id }} : {{ $collaboration->title }}
-                                        </option>
+                                        @if ($collaboration->status == \App\Enums\CollaborationStatus::Pending->getValue())
+                                            <option value="{{ $collaboration->id }}">
+                                                {{ $collaboration->id }} : {{ $collaboration->title }}
+                                            </option>
+                                        @endif
                                     @endforeach
                                 </select>
                             </div>
                             <div class="col input-item">
                                 <label for="proposed_budget">Proposed Budget</label>
-                                <input placeholder="Enter proposed budget" type="text" class="form-control" id="proposed_budget" name="proposed_budget"
+                                <input placeholder="Enter proposed budget" type="text" class="form-control"
+                                       id="proposed_budget" name="proposed_budget"
                                        required>
                             </div>
                             <div class="col input-item">
@@ -247,7 +361,6 @@
 
 <script>
     document.addEventListener('DOMContentLoaded', (event) => {
-        // Add event listeners to the "Remove" buttons
         document.querySelectorAll('.remove-button').forEach(button => {
             button.addEventListener('click', function () {
                 document.getElementById(`new_${button.dataset.fileKey}`).value = '';
@@ -296,6 +409,58 @@
             });
 
             fileId1++;
+        });
+
+
+        const viewButtons = document.querySelectorAll('.view-proposal-button');
+        viewButtons.forEach(function (button) {
+            button.addEventListener('click', function () {
+                // Get the clicked proposal detail
+                const proposalId = this.getAttribute('data-proposal-id');
+                const clickedProposalContent = document.getElementById('proposalContent-' + proposalId);
+
+                const proposalContainer = document.getElementById('proposal-container-' + proposalId);
+
+                // Get the supporting links from the clicked proposal detail which is the first h3 element
+                const supportingLinks = clickedProposalContent.querySelector('h3').innerText.split(',');
+                while (supportingLinks.length < 5) {
+                    supportingLinks.push('');
+                }
+
+                // Set the links in the proposal content by using the array. If they are undefined, set the text to "No Link Uploaded" and truncate the text to be less than 20 characters
+                for (let i = 0; i < 5; i++) {
+                    const linkElement = proposalContainer.querySelector('#link-' + (i + 1));
+                    if (supportingLinks[i] !== '') {
+                        linkElement.innerHTML = `<a href="${supportingLinks[i]}" target="_blank">${supportingLinks[i].length > 25 ? supportingLinks[i].substring(0, 25) + '...' : supportingLinks[i]}</a>`;
+                    } else {
+                        linkElement.innerText = 'No Link Uploaded';
+                    }
+                }
+
+                // Get the supporting files respectively
+                const supportingFiles = [
+                    clickedProposalContent.querySelector('h3:nth-child(2)').innerText,
+                    clickedProposalContent.querySelector('h3:nth-child(3)').innerText,
+                    clickedProposalContent.querySelector('h3:nth-child(4)').innerText,
+                    clickedProposalContent.querySelector('h3:nth-child(5)').innerText,
+                    clickedProposalContent.querySelector('h3:nth-child(6)').innerText,
+                ];
+
+                console.log(supportingFiles)
+                // Set the download button for each file if there is any
+                for (let i = 0; i < 5; i++) {
+                    const downloadButton = proposalContainer.querySelector('#download-supporting_file_' + (i + 1));
+                    console.log(downloadButton)
+                    if (supportingFiles[i]) {
+                        downloadButton.disabled = false;
+                        downloadButton.addEventListener('click', function () {
+                            window.open('/storage/' + supportingFiles[i], '_blank');
+                        });
+                    } else {
+                        downloadButton.disabled = true;
+                    }
+                }
+            });
         });
     });
 </script>

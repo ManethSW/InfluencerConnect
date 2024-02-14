@@ -152,6 +152,12 @@
     row-gap: 15px;
 }
 
+.view-links-container {
+    display: flex;
+    flex-direction: column;
+    row-gap: 15px;
+}
+
 .view-links-container h3 {
     font-family: 'tripsansmedium', serif;
     font-size: 16px;
@@ -159,7 +165,6 @@
     background-color: rgba(255, 255, 255, 0.75);
     padding: 10px 20px;
     border-radius: 15px;
-    margin-bottom: 15px;
 }
 
 .proposal-content {
@@ -193,7 +198,6 @@
     display: flex;
     flex-direction: row;
     column-gap: 15px;
-    margin-bottom: 15px;
 }
 
 .upload-body h3 {
@@ -285,4 +289,8 @@
     font-family: 'tripsansmedium', serif;
     font-size: 16px;
     color: var(--secondary-color-50);
+}
+
+.custom-button-container-add-collaboration button {
+    padding: 5px 0;
 }

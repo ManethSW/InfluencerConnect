@@ -31,18 +31,17 @@ Route::get('profile', function () {
     return view('profile');
 })->name('profile');
 
-Route::get('collaborations', function () {
-    return view('collaborations');
-})->name('collaborations');
+Route::get('collaborations', [App\Http\Controllers\CollaborationController::class, 'getAll'])->name('collaborations.getAll');
 
 Route::prefix('collaborations')->group(function () {
 //    Route::get('incoming', [App\Http\Controllers\IncomingOffersController::class, 'index'])->name('collaborations.incoming');
     Route::get('my_proposals', [App\Http\Controllers\ProposalController::class, 'getByInfluencers'])->name('collaborations.my_proposals');
-    Route::get('active_influencer', [App\Http\Controllers\CollaborationController::class, 'getActiveCollaborations'])->name('collaborations.active_influencer');
+    Route::get('active_influencer', [App\Http\Controllers\CollaborationController::class, 'getByInfluencer'])->name('collaborations.active_influencer');
     Route::get('my_collaborations', [App\Http\Controllers\CollaborationController::class, 'getByBusiness'])->name('collaborations.my_collaborations');
     Route::get('active_business', [App\Http\Controllers\CollaborationController::class, 'getActiveCollaborations'])->name('collaborations.active_business');
 });
 
+Route::post('collaborations/storeByBusiness', [App\Http\Controllers\CollaborationController::class, 'storeByBusiness'])->name('collaborations.storeByBusiness');
 Route::put('collaborations/{collaboration}/updateByBusiness', [App\Http\Controllers\CollaborationController::class, 'updateByBusiness'])->name('collaborations.updateByBusiness');
 
 Route::resource('proposals', ProposalController::class)->middleware('auth');
