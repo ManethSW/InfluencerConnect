@@ -31,6 +31,14 @@ class BusinessCategoryController extends Controller
             ->with('success', 'Business Category updated successfully');
     }
 
+    public function updateStatus(Request $request, BusinessCategory $businessCategory)
+    {
+        $businessCategory->update($request->all());
+
+        return redirect()->route('category.index')
+            ->with('success', 'Business Category status updated successfully');
+    }
+
     public function destroy(BusinessCategory $businessCategory)
     {
         $businessCategory->delete();

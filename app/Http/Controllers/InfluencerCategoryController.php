@@ -32,21 +32,21 @@ class InfluencerCategoryController extends Controller
             ->with('success', 'Influencer Category updated successfully');
     }
 
+    public function updateStatus(Request $request, InfluencerCategory $influencerCategory)
+    {
+        $influencerCategory->update($request->all());
+
+        return redirect()->route('category.index')
+            ->with('success', 'Influencer Category status updated successfully');
+    }
+
 
     public function destroy(InfluencerCategory $influencerCategory)
     {
-        // Check if there are any InfluencerCards associated with the InfluencerCategory
-        if ($influencerCategory->influencerCards()->exists()) {
-            // If there are, return an error message and stop the deletion process
-            return redirect()->route('category.index')
-                ->with('error', 'Cannot delete this Influencer Category as it is being used by some Influencer Cards');
-        } else {
-            // If there are no InfluencerCards associated with the InfluencerCategory, delete it
-            $influencerCategory->delete();
+        $influencerCategory->delete();
 
-            return redirect()->route('category.index')
-                ->with('success', 'Influencer Category deleted successfully');
-        }
+        return redirect()->route('category.index')
+            ->with('success', 'Influencer Category deleted successfully');
     }
 
 }

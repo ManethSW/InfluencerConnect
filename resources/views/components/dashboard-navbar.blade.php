@@ -19,9 +19,9 @@
                 </a>
             </li>
             <li class="side-navbar-item-links">
-                <i class="fa-regular fa-id-card"></i>
-                <a class="nav-link" href="{{ route('influencerCards.index') }}">
-                    Influencer Cards
+                <i class="fa-solid fa-award"></i>
+                <a class="nav-link" href="{{ route('featuredInfluencers.index') }}">
+                    Featured Influencers
                 </a>
             </li>
             <li class="side-navbar-item-links">

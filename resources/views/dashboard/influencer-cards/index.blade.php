@@ -7,15 +7,6 @@
                 <div class="users-header">
                     <h3>Influencer Cards</h3>
                     <div class="search-add">
-                        {{-- <form method="get" action="{{ route('influencerCards.index') }}" class="">
-                            <div class="input-group search">
-                                <input type="search" name="search" class="form-control"
-                                    placeholder="Search cards by influencer names" style="width: 275px">
-                                <div class="input-group-append">
-                                    <button type="submit" class="btn">Search</button>
-                                </div>
-                            </div>
-                        </form> --}}
                         <div class="add-user-button">
                             <a class="btn btn-sm" data-bs-toggle="modal" data-bs-target="#addInfluencerCardModal">Add
                                 Card</a>
@@ -133,64 +124,5 @@
             </div>
         </div>
     </div>
-    <div class="modal fade" id="addInfluencerCardModal" tabindex="-1" aria-labelledby="addInfluencerCardModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title" id="addInfluencerCardModalLabel">Add Influencer Card</h4>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <form method="post" action="{{ route('influencerCards.store') }}" enctype="multipart/form-data">
-                        @csrf
-                        <div class="form-row edit-form">
-                            <div class="col input-item">
-                                <label for="avatar">Avatar</label>
-                                <input type="file" id="avatar" name="avatar" class="form-control">
-                            </div>
-                            <div class="col input-item">
-                                <label for="user_id">User</label>
-                                <select id="user_id" name="user_id" class="form-control">
-                                    @foreach ($users as $user)
-                                        @if ($user->role_id->value != 1 && $user->role_id->value != 11 && $user->influencerCard()->doesntExist())
-                                            <option value="{{ $user->id }}">
-                                                {{ $user->name }}
-                                            </option>
-                                        @endif
-                                    @endforeach
-                                </select>
-                            </div>
-                            <div class="col input-item">
-                                <label for="influencer_category_id">Influencer Category</label>
-                                <select id="influencer_category_id" name="influencer_category_id" class="form-control">
-                                    @foreach ($categories as $category)
-                                        <option value="{{ $category->id }}">{{ $category->name }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                            <div class="col input-item">
-                                <label for="rating">Rating</label>
-                                <input type="number" id="rating" name="rating" class="form-control">
-                            </div>
-                            <div class="col input-item">
-                                <label for="description">Description</label>
-                                <textarea id="description" name="description" class="form-control"></textarea>
-                            </div>
-                            <div class="col input-item">
-                                <label for="visible">Visible</label>
-                                <select id="visible" name="visible" class="form-control">
-                                    <option value="1">Yes</option>
-                                    <option value="0">No</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="modal-button">
-                            <button type="submit" class="btn btn-primary">Create</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
+
 @endsection

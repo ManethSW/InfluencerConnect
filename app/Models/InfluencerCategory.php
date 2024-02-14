@@ -12,10 +12,6 @@ class InfluencerCategory extends Model
     }
     protected $fillable = [
         'name',
+        'status',
     ];
-
-    public function services()
-    {
-        return $this->hasMany(Service::class);
-    }
 }

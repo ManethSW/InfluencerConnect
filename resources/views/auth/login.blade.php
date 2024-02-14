@@ -11,12 +11,11 @@
                 <div class="form-login">
                     <div class="auth-header">
                         <h2>Welcome,
-{{--                            Check the time and see if it is morning then display Good Morning like wise for other times--}}
                             @php
                                 $time = date("H");
                                 if ($time < "12") {
                                     echo "Good Morning";
-                                } elseif ($time < "17") {
+                                } elseif ($time >= "12" && $time < "17") {
                                     echo "Good Afternoon";
                                 } else {
                                     echo "Good Evening";

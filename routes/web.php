@@ -10,6 +10,7 @@ use App\Http\Controllers\InfluencerCategoryController;
 use App\Http\Controllers\BusinessCategoryController;
 use App\Http\Controllers\CollaborationController;
 use App\Http\Controllers\ProposalController;
+use \App\Http\Controllers\FeaturedInfluencerController;
 
 Auth::routes();
 
@@ -67,10 +68,15 @@ Route::prefix('dashboard')->middleware(['superadmin'])->group(function () {
     Route::get('influencerCards/{influencerCard}/suspend', [InfluencerCardController::class, 'suspend'])->name('influencerCards.suspend');
     Route::get('influencerCards/{influencerCard}/activate', [InfluencerCardController::class, 'activate'])->name('influencerCards.activate');
 
+    Route::resource('featuredInfluencers', FeaturedInfluencerController::class);
+    Route::put('featuredInfluencers/{featuredInfluencer}/status', [FeaturedInfluencerController::class, 'updateStatus'])->name('featuredInfluencers.status.update');
+
     Route::resource('categories', CategoryController::class);
     Route::get('category', [CategoryController::class, 'index'])->name('category.index');
     Route::resource('influencerCategories', InfluencerCategoryController::class);
+    Route::put('/influencer-category/{influencerCategory}/status', [App\Http\Controllers\InfluencerCategoryController::class, 'updateStatus'])->name('influencer-category.status.update');
     Route::resource('businessCategories', BusinessCategoryController::class);
+    Route::put('/business-category/{businessCategory}/status', [App\Http\Controllers\BusinessCategoryController::class, 'updateStatus'])->name('business-category.status.update');
 
     Route::resource('collaborations', CollaborationController::class);
 
