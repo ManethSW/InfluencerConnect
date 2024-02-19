@@ -17,7 +17,7 @@ return new class extends Migration {
             $table->text('description');
             $table->decimal('budget', 8, 2);
             $table->date('deadline');
-            $table->tinyInteger('status');
+            $table->tinyInteger('status')->default(0);
             $table->timestamps();
         });
     }

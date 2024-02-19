@@ -11,6 +11,8 @@
             <div class="nav-body-content">
                 <a class="link {{ request()->is('/') || request()->routeIs('home') ? ' active-custom active' : '' }}"
                    href="{{ route('home') }}">{{ __('Home') }}</a>
+                <a class="link"  href="#">Influencers</a>
+                <a class="link"  href="#">Businesses</a>
             </div>
             <div class="nav-body-content">
                 <div class="search">
@@ -28,7 +30,8 @@
             <div class="nav-body-content">
                 <a class="link {{ request()->is('/') || request()->routeIs('home') ? ' active-custom active' : '' }}"
                    href="{{ route('home') }}">{{ __('Home') }}</a>
-{{--                Check if user is influencer or not --}}
+                <a class="link" href="#">Influencers</a>
+                <a class="link" href="#">Businesses</a>
                 @if(Auth::user()->role_id->value == 10)
                     <a class="link{{ request()->is('/collaborations') || request()->routeIs('collaborations.getAllPending') ? ' active' : '' }}" href="{{ route('collaborations.getAllPending') }}">Search Collaborations</a>
                 @endif
@@ -44,12 +47,12 @@
                             type="button">
                         <span class="sr-only">Open user menu</span>
                         <div class="pr-2">
-                            @if (empty(Auth::user()->avatar))
+{{--                            @if (empty(Auth::user()->avatar))--}}
                                 <i class="fa-solid fa-user avatar"></i>
-                            @else
-                                <img class="w-8 h-8 me-2 rounded-full" src="{{ Auth::user()->avatar }}"
-                                     alt="user photo">
-                            @endif
+{{--                            @else--}}
+{{--                                <img class="w-8 h-8 me-2 rounded-full" src="{{ Auth::user()->avatar }}"--}}
+{{--                                     alt="user photo">--}}
+{{--                            @endif--}}
                         </div>
                         {{ Auth::user()->name }}
                         <div class="px-2">

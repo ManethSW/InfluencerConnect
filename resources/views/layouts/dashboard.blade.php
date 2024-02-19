@@ -222,19 +222,16 @@
         chart.render();
     }
 
-    let piechart_users_options = generatePieChartOptions([{{ $totalInfluencers }}, {{ $totalBusinesses }}], ["#9061F9", "#1C64F2"], 200, ["Influencers", "Businesses"]);
+    let piechart_users_options = generatePieChartOptions([{{ $totalInfluencers }}, {{ $totalBusinesses }}], ["#FF6F59", "#FF5861"], 200, ["Influencers", "Businesses"]);
     renderPieChart("#piechart_users", piechart_users_options);
 
-    let piechart_collaborations_options = generatePieChartOptions([{{ $totalPendingCollaborations }}, {{ $totalActiveCollaborations }}, {{ $totalCompletedCollaborations }} ], ["#9061F9", "#1C64F2", "#16BDCA"], 250, ["Pending", "Active", "Completed"]);
+    let piechart_collaborations_options = generatePieChartOptions([{{ $totalPendingCollaborations }}, {{ $totalActiveCollaborations }}, {{ $totalCompletedCollaborations }} ], ["#FF6F59", "#FF5861", "#FF5D26"], 250, ["Pending", "Active", "Completed"]);
     renderPieChart("#piechart_collaborations", piechart_collaborations_options);
 
-    let piechart_proposals_options = generatePieChartOptions([{{ $totalPendingProposals }}, {{ $totalAcceptedProposals }}, {{ $totalRejectedProposals }}], ["#9061F9", "#1C64F2", "#16BDCA"], 250, ["Pending", "Accepted", "Rejected"]);
+    let piechart_proposals_options = generatePieChartOptions([{{ $totalPendingProposals }}, {{ $totalAcceptedProposals }}, {{ $totalRejectedProposals }}], ["#FF6F59", "#FF5861", "#FF5D26"], 250, ["Pending", "Accepted", "Rejected"]);
     renderPieChart("#piechart_proposals", piechart_proposals_options);
 
-    let piechart_transactions_options = generatePieChartOptions([46, 12], ["#16BDCA", "#9061F9"], 200, ["Influencers", "Businesses"]);
-    renderPieChart("#piechart_transactions", piechart_transactions_options);
-
-    let piechart_coming_soon_options = generatePieChartOptions([1], ["rgba(255,93,38,0.5)"], 200, ["Coming Soon"]);
+    let piechart_coming_soon_options = generatePieChartOptions([1], ["#FF5D26"], 200, ["Coming Soon"]);
     renderPieChart("#piechart_verifications", piechart_coming_soon_options);
 
     renderPieChart("#piechart_tickets", piechart_coming_soon_options);
@@ -257,7 +254,7 @@
         },
         stroke: {
             curve: 'straight',
-            colors: ['#16BDCA']
+            colors: ['#FF6F59']
         },
         grid: {
             row: {
@@ -274,11 +271,11 @@
         },
         markers: {
             size: 4,
-            colors: ['#1C64F2'], // Change the color of the markers here
+            colors: ['#FF5D26'], // Change the color of the markers here
         },
         tooltip: {
             marker: {
-                fillColors: ['#1C64F2'] // Change the color of the marker here
+                fillColors: ['#FF5D26'] // Change the color of the marker here
             },
         },
     };
@@ -304,7 +301,7 @@
         },
         stroke: {
             curve: 'straight',
-            colors: ['#16BDCA']
+            colors: ['#FF6F59']
         },
         grid: {
             row: {
@@ -321,11 +318,11 @@
         },
         markers: {
             size: 4,
-            colors: ['#1C64F2'], // Change the color of the markers here
+            colors: ['#FF5D26'], // Change the color of the markers here
         },
         tooltip: {
             marker: {
-                fillColors: ['#1C64F2'] // Change the color of the marker here
+                fillColors: ['#FF5D26'] // Change the color of the marker here
             },
         },
     };

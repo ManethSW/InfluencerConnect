@@ -11,6 +11,7 @@ return new class extends Migration
         Schema::create('business_categories', function (Blueprint $table) {
             $table->id();
             $table->string('name')->unique();
+            $table->tinyInteger('status')->default(0);
             $table->timestamps();
         });
     }

@@ -15,7 +15,7 @@
             </div>
             <div class="featured-influencers-container">
                 @foreach ($featuredInfluencers as $featuredInfluencer)
-                    <x-influencer-card image="storage/{{ $featuredInfluencer->user->avatar }}" alt="influencer"
+                    <x-influencer-card image="{{ asset('storage/' . $featuredInfluencer->user->avatar) }}" alt="influencer"
                                        name="{{ $featuredInfluencer->user->name }}"
                                        category="{{ $featuredInfluencer->influencerCategory->name }}"
                                        rating="4.5"

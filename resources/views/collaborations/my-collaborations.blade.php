@@ -263,7 +263,11 @@
                                         <h3 class="no-proposals">No proposals submitted</h3>
                                     @else
                                         @foreach ($collaboration->proposals as $proposal)
-                                            <div class="proposals-user-budget">
+                                            <div class="proposals-user-budget @if($proposal->status == 1)
+                                                proposal-accepted
+                                                @elseif($proposal->status == 2)
+                                                proposal-rejected
+                                            @endif">
                                                 <div class="user-budget">
                                                     <div class="offer-user">
                                                         <i class="fa-solid fa-user"></i>

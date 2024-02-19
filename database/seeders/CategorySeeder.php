@@ -2,6 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Models\BusinessCategory;
+use App\Models\InfluencerCategory;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -12,64 +14,79 @@ class CategorySeeder extends Seeder
      */
     public function run(): void
     {
-        \App\Models\InfluencerCategory::create([
-            'name' => 'Fashion and Beauty',
+        InfluencerCategory::create([
+            'name' => 'Blogger',
+            'status' => 1,
         ]);
 
-        \App\Models\InfluencerCategory::create([
-            'name' => 'Fitness and Wellness',
+        InfluencerCategory::create([
+            'name' => 'Vlogger',
+            'status' => 1,
         ]);
 
-        \App\Models\InfluencerCategory::create([
-            'name' => 'Food and Culinary',
+        InfluencerCategory::create([
+            'name' => 'Short Video',
+            'status' => 1,
         ]);
 
-        \App\Models\InfluencerCategory::create([
-            'name' => 'Tech and Gadgets',
+        InfluencerCategory::create([
+            'name' => 'Podcaster',
+            'status' => 1,
         ]);
 
-        \App\Models\InfluencerCategory::create([
-            'name' => 'Music and Entertainment',
+        InfluencerCategory::create([
+            'name' => 'Photographer',
+            'status' => 1,
         ]);
 
-        \App\Models\InfluencerCategory::create([
-            'name' => 'Gaming and Esports',
+        InfluencerCategory::create([
+            'name' => 'Gamer',
+            'status' => 1,
         ]);
 
-        \App\Models\InfluencerCategory::create([
+        InfluencerCategory::create([
             'name' => 'Pets and Animals',
+            'status' => 1,
         ]);
 
-        \App\Models\BusinessCategory::create([
+        BusinessCategory::create([
             'name' => 'Travel and Adventure',
+            'status' => 1,
         ]);
 
-        \App\Models\BusinessCategory::create([
-            'name' => 'Home and Decor',
+        BusinessCategory::create([
+            'name' => 'Music & Entertainment',
+            'status' => 1,
         ]);
 
-        \App\Models\BusinessCategory::create([
-            'name' => 'Parenting and Family',
+        BusinessCategory::create([
+            'name' => '	Tech & Gadgets',
+            'status' => 1,
         ]);
 
-        \App\Models\BusinessCategory::create([
-            'name' => 'Business and Finance',
+        BusinessCategory::create([
+            'name' => 'Gaming & Esports',
+            'status' => 1,
         ]);
 
-        \App\Models\BusinessCategory::create([
-            'name' => 'Education and Learning',
+        BusinessCategory::create([
+            'name' => 'Fashion & Beauty',
+            'status' => 1,
         ]);
 
-        \App\Models\BusinessCategory::create([
-            'name' => 'Art and Design',
+        BusinessCategory::create([
+            'name' => 'Pets & Animals',
+            'status' => 1,
         ]);
 
-        \App\Models\BusinessCategory::create([
-            'name' => 'Sports and Fitness',
+        BusinessCategory::create([
+            'name' => 'Food & Culinary',
+            'status' => 1,
         ]);
 
-        \App\Models\BusinessCategory::create([
-            'name' => 'Beauty and Personal Care',
+        BusinessCategory::create([
+            'name' => 'Fitness & Wellness',
+            'status' => 1,
         ]);
     }
 }

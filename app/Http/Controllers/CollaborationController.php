@@ -208,6 +208,7 @@ class CollaborationController extends Controller
 
     public function submitTask(Request $request)
     {
+//        @dd($request->all());
         try {
             $taskId = $request->input('task_id');
 

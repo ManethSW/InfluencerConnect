@@ -131,6 +131,8 @@
                                     <div id="col input-item tasks-container">
                                         <label for="tasks">Supporting Files</label>
                                         <div id="files_body" class="tasks-body">
+                                            <h4 class="default-message">Click "Upload File" to add a file to the
+                                                proposal</h4>
                                             @for ($i = 1; $i <= 5; $i++)
                                                 @php
                                                     $fileKey = "supporting_file_$i";
@@ -254,7 +256,7 @@
 
             const deleteButton = document.createElement('button');
             deleteButton.innerHTML = '<i class="fa-solid fa-trash"></i>';
-            deleteButton.className = 'btn btn-danger';
+            deleteButton.className = 'action-btn delete-btn';
             deleteButton.type = 'button';
             deleteButton.addEventListener('click', function () {
                 fileBody.remove();

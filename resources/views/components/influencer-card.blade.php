@@ -10,7 +10,7 @@
             <div class="card-avatar-frame">
                 <div class="card-avatar">
                     @if ($image != "" )
-                        <img src="{{ asset($image) }}" alt="{{ $alt }}">
+                        <img src="{{ asset('images/hero.png') }}" alt="{{ $alt }}">
 {{--                        @dd($image)--}}
                     @else
                         <i class="fa-solid fa-user"></i>

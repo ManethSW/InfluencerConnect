@@ -10,6 +10,8 @@ return new class extends Migration {
         Schema::create('featured_influencers', function (Blueprint $table) {
             $table->id();
             $table->foreignId('influencer_id')->constrained('users');
+            $table->integer('influencer_category_id');
+            $table->tinyInteger('status')->default(1)->comment('1: Active, 0: Inactive');
             $table->timestamps();
         });
     }
